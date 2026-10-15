@@ -1,5 +1,9 @@
 # Gaussian Parcel PINN
 
+**هندسهٔ جدید در branch `geometry/bilateral-semicircle`:** [notebook مستقل گرفتگی دوطرفه](BilateralConstriction_GPU.ipynb) · [راهنمای فارسی](docs/CONSTRICTION_GPU_FA.md) · [کد آمادهٔ دانلود](deliverables/BilateralConstriction_GPU_code.zip). این نسخه جریان پایای سیال با دو مانع نیم‌دایره‌ای را حل می‌کند و فعلاً ذره‌ای ندارد. هندسه قابل تغییر است و بودجهٔ GPU مانند notebook قبلی ۵۵ دقیقه است. تابع جریان، پیوستگی و دبی واحد را به‌صورت سخت برقرار می‌کند. [گزارش بررسی‌ها](docs/CONSTRICTION_CHECKS.md).
+
+![Bilateral semicircular constriction](docs/figures/bilateral_geometry.png)
+
 **اجرای GPU با بودجهٔ زمانی:** [notebook مستقل GPU](GaussianParcelPINN_GPU.ipynb) · [راهنمای فارسی و خروجی‌ها](docs/GPU_NOTEBOOK_FA.md). مدل اصلی پارسل گاوسی دوبعدی، چهار حالت، هدف ۵۵ دقیقه شامل حداکثر ۳۵ دقیقه آموزش و زمان جدا برای شکل‌ها و انیمیشن. کد و مراجع تحلیلی لازم داخل notebook هستند؛ GPU و دقت نهایی باید در اجرای واقعی بررسی شوند.
 
 [باز کردن مستقیم در Google Colab](https://colab.research.google.com/github/mohrezsayeh90-ai/final_cloud_code/blob/main/GaussianParcelPINN_GPU.ipynb) · [بستهٔ کد GPU](deliverables/GaussianParcelPINN_GPU_code.zip)
