@@ -1,6 +1,6 @@
 # Gaussian Parcel PINN
 
-**هندسهٔ جدید در branch `geometry/bilateral-semicircle`:** [notebook مستقل گرفتگی دوطرفه](BilateralConstriction_GPU.ipynb) · [راهنمای فارسی](docs/CONSTRICTION_GPU_FA.md) · [کد آمادهٔ دانلود](deliverables/BilateralConstriction_GPU_code.zip). این نسخه جریان پایای سیال با دو مانع نیم‌دایره‌ای را حل می‌کند و فعلاً ذره‌ای ندارد. هندسه قابل تغییر است و بودجهٔ GPU مانند notebook قبلی ۵۵ دقیقه است. تابع جریان، پیوستگی و دبی واحد را به‌صورت سخت برقرار می‌کند. [گزارش بررسی‌ها](docs/CONSTRICTION_CHECKS.md).
+**مدل اصلی ابر ذرات گاوسی با هندسهٔ جدید:** [notebook مستقل گرفتگی دوطرفه](BilateralConstriction_GPU.ipynb) · [راهنمای فارسی](docs/CONSTRICTION_GPU_FA.md) · [کد آمادهٔ دانلود](deliverables/BilateralConstriction_GPU_code.zip). حل زمانی سیال–پارسل، کوپل دوطرفهٔ گاوسی، مرز تناوبی، نیروی محرک و چهار حالت قبلی حفظ شده‌اند؛ فقط گرفتگی و تغییرهای لازم دامنه، مرز و شرط اولیه افزوده شده‌اند. بودجهٔ هدف GPU همان ۵۵ دقیقه است. [گزارش بررسی‌ها](docs/CONSTRICTION_CHECKS.md). برداشت قبلیِ جریان پایای بدون ذره در archive حفظ شده و مسیر پیش‌فرض این notebook نیست.
 
 ![Bilateral semicircular constriction](docs/figures/bilateral_geometry.png)
 

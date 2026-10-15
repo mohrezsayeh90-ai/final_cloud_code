@@ -85,7 +85,7 @@ def run(args):
 
     def launch(stage, i, limit):
         name = f'{stage}_{definitions[i]["name"]}'
-        command = [sys.executable, '-u', str(root/'run_constriction.py'), '--worker', stage,
+        command = [sys.executable, '-u', str(root/'run_fluid_only_constriction.py'), '--worker', stage,
                    '--index', str(i), '--out', str(out), '--seconds', str(max(.01, limit-7)),
                    '--device', args.device, '--precision', args.precision]
         status = supervised(command, max(0, limit), out/f'{name}.log')

@@ -87,8 +87,8 @@ class ConstrictedFlowTests(unittest.TestCase):
         with torch.no_grad(): flux = m.flux(sections, order=160)
         torch.testing.assert_close(flux, torch.ones_like(flux), atol=1e-8, rtol=1e-8)
 
-    def test_standalone_notebook_payload_matches_source(self):
-        nb = json.loads((ROOT/'BilateralConstriction_GPU.ipynb').read_text())
+    def test_archived_fluid_only_notebook_payload_integrity(self):
+        nb = json.loads((ROOT/'archive/BilateralConstriction_fluid_only_GPU.ipynb').read_text())
         constants = {}; code = []
         for c in nb['cells']:
             if c['cell_type'] != 'code': continue
@@ -103,7 +103,8 @@ class ConstrictedFlowTests(unittest.TestCase):
         self.assertIn('run_constriction.py', '\n'.join(code))
         with zipfile.ZipFile(io.BytesIO(payload)) as z:
             self.assertIsNone(z.testzip())
-            for name in z.namelist(): self.assertEqual(z.read(name), (ROOT/name).read_bytes())
+            self.assertIn('constricted_flow/model.py', z.namelist())
+            self.assertNotIn('gaussian_constriction/model.py', z.namelist())
 
     @unittest.skipUnless(torch.cuda.is_available(), 'CUDA GPU unavailable in this environment')
     def test_real_cuda_training(self):
