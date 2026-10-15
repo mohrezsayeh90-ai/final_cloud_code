@@ -1,0 +1,15 @@
+{
+  "omega": -0.30199999998326654,
+  "momentum_rms": 0.05507944562140862,
+  "continuity_rms": 0.27958765899317395,
+  "torque_normalized": -0.12469671470869595,
+  "torque_normalized_256": -0.12469671470869594,
+  "torque_offset_1e5": -0.12470270066995676,
+  "cylinder_boundary_max_error": 8.326672684688674e-17,
+  "wall_boundary_max_error": 0.0,
+  "physics_criteria_met": false,
+  "reference_omega_magnitude": 0.4608,
+  "predicted_omega_magnitude": 0.30199999998326654,
+  "relative_error": 0.3446180555918695,
+  "comparison_within_tolerance": false
+}

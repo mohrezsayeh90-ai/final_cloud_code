@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Resolved-cylinder PINN",
+    "caption": "The field network and a trainable angular velocity are constrained by Navier\u2013Stokes, continuity, hard no-slip and zero torque. FEM-generated velocity data assist training. Published spin values are used only in the final comparison.",
+    "files": [
+      "workflow.png",
+      "workflow.pdf",
+      "workflow.svg"
+    ]
+  },
+  {
+    "title": "Couette flow",
+    "caption": "CO01: fields in the frame moving at \u0394U/2. Cylinder center y/H=0.5 is prescribed. PINN uses internally generated FEM velocity anchors; the relative velocity L2 error on independent points is 0.168%. Article values are held out.",
+    "files": [
+      "flow_CO01.png",
+      "flow_CO01.pdf",
+      "flow_CO01.svg"
+    ]
+  },
+  {
+    "title": "Training history",
+    "caption": "CO01: horizontal axis is optimizer iteration, not physical time. The paper target was not supplied to training or checkpoint selection.",
+    "files": [
+      "training_CO01.png",
+      "training_CO01.pdf",
+      "training_CO01.svg"
+    ]
+  },
+  {
+    "title": "Couette flow",
+    "caption": "CO02: fields in the frame moving at \u0394U/2. Cylinder center y/H=0.5 is prescribed. PINN uses internally generated FEM velocity anchors; the relative velocity L2 error on independent points is 0.204%. Article values are held out.",
+    "files": [
+      "flow_CO02.png",
+      "flow_CO02.pdf",
+      "flow_CO02.svg"
+    ]
+  },
+  {
+    "title": "Training history",
+    "caption": "CO02: horizontal axis is optimizer iteration, not physical time. The paper target was not supplied to training or checkpoint selection.",
+    "files": [
+      "training_CO02.png",
+      "training_CO02.pdf",
+      "training_CO02.svg"
+    ]
+  },
+  {
+    "title": "Equilibrium rotation",
+    "caption": "Direct comparison with the supplied finest-grid article table at Rep=1 and 2. Lines connect two evaluated conditions; they are not a continuous Reynolds sweep. No parameter was tuned to either article spin value.",
+    "files": [
+      "rotation_comparison.png",
+      "rotation_comparison.pdf",
+      "rotation_comparison.svg"
+    ]
+  },
+  {
+    "title": "Rotation plateau",
+    "caption": "The blue curve is digitized from supplied Figure 2(b). FEM/PINN predict only the steady angular speed, shown over the final reference window t=20\u201330. They do not predict or validate the preceding transient relaxation. The numerical table is the primary target.",
+    "files": [
+      "rotation_plateau.png",
+      "rotation_plateau.pdf",
+      "rotation_plateau.svg"
+    ]
+  },
+  {
+    "title": "Benchmark geometry",
+    "caption": "Original walls (0, \u0394U) are transformed by a Galilean velocity \u0394U/2. The cylinder translates with the symmetry-plane fluid velocity and rotates freely. Its symmetry-plane position is an input, not a validated prediction.",
+    "files": [
+      "geometry.png",
+      "geometry.pdf",
+      "geometry.svg"
+    ]
+  },
+  {
+    "title": "Free rotation",
+    "caption": "Kinematic rendering of the PINN-predicted steady rotation. It does not show simulated startup, acceleration or lateral migration.",
+    "files": [
+      "free_rotation.gif",
+      "free_rotation.mp4"
+    ]
+  }
+]

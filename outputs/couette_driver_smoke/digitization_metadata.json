@@ -1,0 +1,23 @@
+{
+  "source": "reference_inputs/Validation_Pack/figures/garcia2023_fig2_couette.png",
+  "sha256": "307927e725779abcb7929704b38eea96ead0e3ad722895466b4fde53bf82d556",
+  "panel": "Figure 2(b), blue Rep=1 curve",
+  "axis_pixels": {
+    "x0": 529,
+    "x1": 882,
+    "y0": 321,
+    "y1": 42
+  },
+  "axis_values": {
+    "time": [
+      0,
+      30
+    ],
+    "omega": [
+      0.3,
+      0.55
+    ]
+  },
+  "method": "Median blue-pixel row per image column; no smoothing or phase alignment.",
+  "limitations": "Only a visual plateau check. Numeric table is the primary reference. Pixel uncertainty excludes source and calibration uncertainty."
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "path": "literature_validation/__init__.py",
+    "sha256": "5f7c4c5542c27ace44f52052224c645566798f4e3a8a3a74d2cd5786e21e4a44"
+  },
+  {
+    "path": "literature_validation/couette.py",
+    "sha256": "4ed8c882305a5f56194328ab6745148d597f910e6efd73c4cfd266464bf92d1a"
+  },
+  {
+    "path": "literature_validation/fem_couette.py",
+    "sha256": "56ee57a24c87391ff63744cc9f171fe50fabc4742dddfae496d4cfddab419086"
+  },
+  {
+    "path": "literature_validation/report.py",
+    "sha256": "f538c69ab5ae245e5f5c9f82f7dd41f821e2ede4ad5e7dfd363fbd4131db8604"
+  }
+]

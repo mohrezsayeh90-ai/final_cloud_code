@@ -1,0 +1,37 @@
+<!doctype html><html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Couette validation</title><style>
+body{font:16px/1.6 system-ui;color:#203449;background:#edf2f6;margin:0}main{max-width:1100px;margin:auto;padding:30px}article{background:white;padding:25px;margin:25px 0;border-radius:12px}img{max-width:100%;height:auto}.note{background:#fff1d7;padding:20px}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:8px;border:1px solid #cad4df}a{color:#2563a6}</style><main>
+<h1>Couette equilibrium rotation</h1><p dir="rtl">مقایسهٔ مستقیم سرعت دوران تعادلی استوانه با مقاله؛ مرکز استوانه در خط تقارن قرار داده شده و مسیر مهاجرت اولیه در این آزمون بررسی نمی‌شود.</p>
+<div class="note">FEM-assisted PINN; article targets held out. This is a conditional equilibrium-spin benchmark. The original Gaussian parcel model is not validated by this comparison.</div>
+<p><a href="summary.json">Full metrics and criteria</a> · <a href="comparison.csv">CSV table</a> · <a href="comparison.tex">LaTeX table</a> · <a href="REPORT.md">Scientific report</a> · <a href="reference_extraction.png">Reference extraction</a></p><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>case_id</th>
+      <th>reference_spin</th>
+      <th>FEM_spin</th>
+      <th>PINN_spin</th>
+      <th>FEM_error_percent</th>
+      <th>PINN_error_percent</th>
+      <th>physics_criteria_met</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CO01</td>
+      <td>0.4608</td>
+      <td>0.46018</td>
+      <td>0.45974</td>
+      <td>0.1347</td>
+      <td>0.23002</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <td>CO02</td>
+      <td>0.4281</td>
+      <td>0.42734</td>
+      <td>0.42728</td>
+      <td>0.17867</td>
+      <td>0.1926</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table><article><h2>Resolved-cylinder PINN</h2><img src="workflow.png"><p>The field network and a trainable angular velocity are constrained by Navier–Stokes, continuity, hard no-slip and zero torque. FEM-generated velocity data assist training. Published spin values are used only in the final comparison.</p><p><a href="workflow.png">PNG</a> · <a href="workflow.pdf">PDF</a> · <a href="workflow.svg">SVG</a></p></article><article><h2>Couette flow</h2><img src="flow_CO01.png"><p>CO01: fields in the frame moving at ΔU/2. Cylinder center y/H=0.5 is prescribed. PINN uses internally generated FEM velocity anchors; the relative velocity L2 error on independent points is 0.168%. Article values are held out.</p><p><a href="flow_CO01.png">PNG</a> · <a href="flow_CO01.pdf">PDF</a> · <a href="flow_CO01.svg">SVG</a></p></article><article><h2>Training history</h2><img src="training_CO01.png"><p>CO01: horizontal axis is optimizer iteration, not physical time. The paper target was not supplied to training or checkpoint selection.</p><p><a href="training_CO01.png">PNG</a> · <a href="training_CO01.pdf">PDF</a> · <a href="training_CO01.svg">SVG</a></p></article><article><h2>Couette flow</h2><img src="flow_CO02.png"><p>CO02: fields in the frame moving at ΔU/2. Cylinder center y/H=0.5 is prescribed. PINN uses internally generated FEM velocity anchors; the relative velocity L2 error on independent points is 0.204%. Article values are held out.</p><p><a href="flow_CO02.png">PNG</a> · <a href="flow_CO02.pdf">PDF</a> · <a href="flow_CO02.svg">SVG</a></p></article><article><h2>Training history</h2><img src="training_CO02.png"><p>CO02: horizontal axis is optimizer iteration, not physical time. The paper target was not supplied to training or checkpoint selection.</p><p><a href="training_CO02.png">PNG</a> · <a href="training_CO02.pdf">PDF</a> · <a href="training_CO02.svg">SVG</a></p></article><article><h2>Equilibrium rotation</h2><img src="rotation_comparison.png"><p>Direct comparison with the supplied finest-grid article table at Rep=1 and 2. Lines connect two evaluated conditions; they are not a continuous Reynolds sweep. No parameter was tuned to either article spin value.</p><p><a href="rotation_comparison.png">PNG</a> · <a href="rotation_comparison.pdf">PDF</a> · <a href="rotation_comparison.svg">SVG</a></p></article><article><h2>Rotation plateau</h2><img src="rotation_plateau.png"><p>The blue curve is digitized from supplied Figure 2(b). FEM/PINN predict only the steady angular speed, shown over the final reference window t=20–30. They do not predict or validate the preceding transient relaxation. The numerical table is the primary target.</p><p><a href="rotation_plateau.png">PNG</a> · <a href="rotation_plateau.pdf">PDF</a> · <a href="rotation_plateau.svg">SVG</a></p></article><article><h2>Benchmark geometry</h2><img src="geometry.png"><p>Original walls (0, ΔU) are transformed by a Galilean velocity ΔU/2. The cylinder translates with the symmetry-plane fluid velocity and rotates freely. Its symmetry-plane position is an input, not a validated prediction.</p><p><a href="geometry.png">PNG</a> · <a href="geometry.pdf">PDF</a> · <a href="geometry.svg">SVG</a></p></article><article><h2>Free rotation</h2><img src="free_rotation.gif"><p>Kinematic rendering of the PINN-predicted steady rotation. It does not show simulated startup, acceleration or lateral migration.</p><p><a href="free_rotation.gif">GIF</a> · <a href="free_rotation.mp4">MP4</a></p></article></main></html>

@@ -1,0 +1,1 @@
+This unsuccessful physics-only development pilot used the streamfunction formulation and Cartesian features. Its original settings file is preserved as settings_original.json. Explicit formulation metadata was added for compatibility with the current loader. It is not a successful literature validation result.

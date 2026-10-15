@@ -1,0 +1,67 @@
+{
+  "scope": "Conditional validation of equilibrium angular velocity for a resolved 2D circular cylinder at the symmetry plane.",
+  "case_ids": [
+    "CO01"
+  ],
+  "literature_source": {
+    "authors": "Garcia-Villalba et al.",
+    "year": 2023,
+    "doi": "10.1016/j.compfluid.2023.105936",
+    "url": "https://arxiv.org/abs/2305.16061",
+    "locator": "Section 4.1; finest-grid equilibrium table and Figure 2(b)",
+    "reference_sha256": "1345879c66ce879ea9ed49bd2403bf5f37da09b6465b53eb689a85ac081daa96",
+    "reference_type": "Published numerical simulation, manually transcribed table in user-provided pack"
+  },
+  "rows": [
+    {
+      "case_id": "CO01",
+      "Rep": 1.0,
+      "reference_spin": 0.4608,
+      "FEM_spin": 0.4601793022048495,
+      "PINN_spin": 0.30199999998326654,
+      "FEM_error_percent": 0.1347000423503699,
+      "PINN_error_percent": 34.46180555918695,
+      "FEM_mesh_change_percent": 0.00566809446413957,
+      "PINN_velocity_relative_L2": 0.08856355958828228,
+      "PINN_momentum_rms": 0.05507944562140862,
+      "PINN_continuity_rms": 0.27958765899317395,
+      "PINN_torque_normalized": -0.12469671470869595,
+      "wall_error": 0.0,
+      "surface_error": 8.326672684688674e-17,
+      "comparison_within_tolerance": false,
+      "physics_criteria_met": false,
+      "mode": "FEM-assisted PINN",
+      "pinn_directory": "outputs/couette_driver_smoke/CO01/pinn",
+      "FEM_directory": "outputs/couette_driver_smoke/CO01/fem_fine"
+    }
+  ],
+  "all_declared_criteria_met": false,
+  "protocol": {
+    "geometry": [
+      2,
+      1
+    ],
+    "diameter": 0.25,
+    "center": [
+      1,
+      0.5
+    ],
+    "density_ratio": 1,
+    "viscosity": "1/(64 Rep)",
+    "boundary": "Periodic x, moving no-slip walls; no-slip circular cylinder with unknown torque-free rotation",
+    "frame": "Translating at \u0394U/2",
+    "reference_values_used_in_training": false,
+    "FEM_used_as_PINN_velocity_anchors": true,
+    "reference_tolerance": 0.1,
+    "momentum_rms_tolerance": 0.01,
+    "continuity_rms_tolerance": 0.01,
+    "normalized_torque_tolerance": 0.002
+  },
+  "limitations": [
+    "Center y/H=.5 is prescribed. Initial migration from y/H=.4 and its transient curve are not validated.",
+    "This is a resolved-surface extension. Original Gaussian parcel coupling/collision models are not certified by this comparison.",
+    "The PINN uses independently generated FEM field anchors. It is not a physics-only PINN result.",
+    "The reference is numerical literature data, not an experiment. Single-seed PINN uncertainty is not quantified.",
+    "Reference targets are from the supplied source pack; the external arXiv download was blocked by environment egress policy."
+  ]
+}
