@@ -43,6 +43,8 @@ def main():
         gallery.safe('trajectories',particles,entry['case'],folder)
         gallery.safe('budgets',budgets,entry['case'],folder)
         gallery.safe('animation',particles,entry['case'],folder)
+        if cfg.dimension == 2 and (folder/'gaussian_snapshots.png').is_file():
+            gallery.safe('gaussian_transport',model,entry['case'],folder)
     gallery.safe('sweep',previous['cases'])
     report(out,cfg,gallery,verification,previous['cases'],previous['literature_cases'],previous['errors'],previous['seconds'])
     renderer=Path(__file__).parent/'parcel_pinn'/'figures.py'

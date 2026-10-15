@@ -1,0 +1,15 @@
+{
+  "notebook_sha256": "65c71aa6ee14a59fcc17678e7726628e8f20f964ceb410958a15be509f05ebbe",
+  "notebook_schema_valid": true,
+  "all_code_cells_executed": 8,
+  "qa_override": "Only the in-memory QA copy used CPU, smoke, total=6 min and train=.3 min; CUDA availability guard bypassed. The shipped notebook requires CUDA.",
+  "cuda_tested": false,
+  "cell_errors": 0,
+  "notebook_seconds": 60.2251677029999,
+  "solver_seconds": 54.51842900599877,
+  "workflow_complete": true,
+  "research_quality_criteria_met": false,
+  "png_count": 27,
+  "gif_count": 4,
+  "mp4_count": 4
+}

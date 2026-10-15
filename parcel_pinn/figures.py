@@ -195,6 +195,56 @@ class Gallery:
         fig.suptitle('Parcel velocities')
         self.save(fig,'velocities','Parcel velocities',f'{name}: PINN velocity outputs. Kinematic consistency with position derivatives is audited separately.',out)
 
+    def gaussian_transport(self, model, name, out):
+        """Render the actual fixed-width normalized kernels, not arbitrary blobs."""
+        from .physics import gaussian_raw
+        c = self.cfg
+        x, y = np.linspace(0, c.lengths[0], 101), np.linspace(0, 1, 41)
+        xx, yy = np.meshgrid(x, y)
+        points = torch.tensor(np.stack([xx.ravel(), yy.ravel()], 1)[None], dtype=torch.float64)
+        times = np.linspace(0, c.final_time, c.frames)
+        images, centers = [], []
+        with torch.no_grad():
+            for value in times:
+                t = torch.tensor([[value]], dtype=torch.float64)
+                q, _, _, _, z, _ = model.coupling(t)
+                raw = gaussian_raw(points, q, c.width, c.lengths)/z
+                alpha = raw.sum(-1)[0]*model.physical['represented_mass']/c.density_ratio
+                images.append(alpha.numpy().reshape(xx.shape))
+                center = q[0].numpy().copy(); center[:, 0] %= c.lengths[0]
+                centers.append(center)
+        maximum = max(float(np.max(a)) for a in images) or 1.
+        fig, axes = plt.subplots(2, 2, figsize=(10.5, 5.5), layout='constrained')
+        for ax, k in zip(axes.ravel(), np.linspace(0, len(times)-1, 4).astype(int)):
+            im = ax.pcolormesh(xx, yy, images[k], shading='auto', cmap='magma', vmin=0, vmax=maximum, rasterized=True)
+            ax.scatter(centers[k][:, 0], centers[k][:, 1], s=12, c='cyan', edgecolors='white', linewidths=.4)
+            ax.set(xlabel='x / H', ylabel='y / H', title=f't U/H = {times[k]:.2f}', aspect='equal')
+        fig.colorbar(im, ax=axes.ravel().tolist(), label='Volume fraction', shrink=.85)
+        caption = (f'{name}: fixed-width Gaussian kernels centered on PINN trajectories, normalized using the same '
+                   'channel quadrature as the coupling. Periodic images in x; no stochastic diffusion or width evolution is modeled.')
+        self.save(fig, 'gaussian_snapshots', 'Gaussian transport', caption, out)
+        fig, ax = plt.subplots(figsize=(9, 3.6), layout='constrained')
+        im = ax.imshow(images[0], origin='lower', extent=(0, c.lengths[0], 0, 1), cmap='magma', vmin=0, vmax=maximum, aspect='equal')
+        dots = ax.scatter(centers[0][:, 0], centers[0][:, 1], s=20, c='cyan', edgecolors='white', linewidths=.4)
+        label = ax.text(.02, .92, '', color='white', transform=ax.transAxes)
+        ax.set(xlabel='x / H', ylabel='y / H', title='Gaussian transport')
+        fig.colorbar(im, ax=ax, label='Volume fraction', shrink=.8)
+        def update(k):
+            im.set_data(images[k]); dots.set_offsets(centers[k]); label.set_text(f't U/H = {times[k]:.2f}')
+            return im, dots, label
+        anim = FuncAnimation(fig, update, frames=len(times), interval=90, blit=False)
+        path = Path(out)/'gaussian_transport.gif'
+        anim.save(path, writer=PillowWriter(fps=12), dpi=min(c.dpi, 120))
+        self.items.append(dict(title='Gaussian transport', caption=caption, files=[str(path.relative_to(self.root))]))
+        if FFMpegWriter.isAvailable():
+            mp4 = Path(out)/'gaussian_transport.mp4'
+            try:
+                anim.save(mp4, writer=FFMpegWriter(fps=12, codec='libx264', extra_args=['-pix_fmt', 'yuv420p']), dpi=120)
+                self.items[-1]['files'].append(str(mp4.relative_to(self.root)))
+            except Exception as exc:
+                self.errors.append(dict(figure='optional MP4', error=str(exc)))
+        plt.close(fig)
+
     def budgets(self, data, name, out):
         fig,axes=plt.subplots(1,3,figsize=(12,3.3),layout='constrained')
         axes[0].plot(data.time,data.energy);axes[0].set(title='Kinetic energy',ylabel='E')

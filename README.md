@@ -1,5 +1,9 @@
 # Gaussian Parcel PINN
 
+**اجرای GPU با بودجهٔ زمانی:** [notebook مستقل GPU](GaussianParcelPINN_GPU.ipynb) · [راهنمای فارسی و خروجی‌ها](docs/GPU_NOTEBOOK_FA.md). مدل اصلی پارسل گاوسی دوبعدی، چهار حالت، هدف ۵۵ دقیقه شامل حداکثر ۳۵ دقیقه آموزش و زمان جدا برای شکل‌ها و انیمیشن. کد و مراجع تحلیلی لازم داخل notebook هستند؛ GPU و دقت نهایی باید در اجرای واقعی بررسی شوند.
+
+[باز کردن مستقیم در Google Colab](https://colab.research.google.com/github/mohrezsayeh90-ai/final_cloud_code/blob/main/GaussianParcelPINN_GPU.ipynb) · [بستهٔ کد GPU](deliverables/GaussianParcelPINN_GPU_code.zip)
+
 افزونهٔ جدید برای مقایسهٔ مستقیم دوران تعادلی استوانه با مقاله آماده شده است: [راهنمای اعتبارسنجی CO01 و CO02](docs/COUETTE_VALIDATION.md)، [جدول و گزارش اجرا](outputs/couette_validation/REPORT.md). این افزونه PINN با دادهٔ کمکیِ حل مستقل FEM است و دامنهٔ تأیید آن در گزارش مشخص شده است.
 
 نسخهٔ اولیه مطابق درخواست شما **حل دوبعدی** است: سیال تراکم‌ناپذیر، مسیر دوبعدی parcelهای کروی، کوپل دوطرفهٔ گاوسی و آموزش مبتنی بر معادلات. نمای عمق‌دار صرفاً نمایش هندسیِ حل دوبعدی است. هیچ نتیجهٔ آزمایشی، عدد همگرایی یا دادهٔ مرجع به جای پیش‌بینی شبکه ساخته نمی‌شود.
@@ -16,7 +20,7 @@ python -m pip install -r requirements.txt
 python run.py --preset demo --validation-pack ./Validation_Pack --out outputs/my_run
 ```
 
-در ویندوز فعال‌سازی با `.venv\Scripts\activate` است. اگر PyTorch سازگار با GPU دارید، از نصب مجدد آن با نسخهٔ CPU خودداری کنید؛ پیاده‌سازی فعلی به‌طور پیش‌فرض روی CPU و float64 اجرا می‌شود. اجرای GPU در این نسخه پیاده نشده است.
+در ویندوز فعال‌سازی با `.venv\Scripts\activate` است. اگر PyTorch سازگار با GPU دارید، از نصب مجدد آن با نسخهٔ CPU خودداری کنید. مسیر `run.py` روی CPU و float64 اجرا می‌شود؛ برای آموزش CUDA از notebook جدید GPU یا `run_gpu.py` استفاده کنید.
 
 - `smoke`: بررسی مسیر اجرا؛ آموزش بسیار کوتاه و نامناسب برای استنتاج فیزیکی.
 - `demo`: چهار حالت، یک seed، آموزش متوسط برای بررسی روش و خروجی‌ها.
