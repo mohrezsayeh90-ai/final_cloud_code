@@ -1,0 +1,50 @@
+{
+  "preset": "demo",
+  "seed": 7,
+  "seeds": [
+    7
+  ],
+  "dimension": 2,
+  "lengths": [
+    3.0,
+    1.0
+  ],
+  "depth_ratio": 1.0,
+  "final_time": 1.0,
+  "reynolds": 20.0,
+  "density_ratio": 1000.0,
+  "nparcels": 6,
+  "width": 0.14,
+  "gravity": [
+    0.0,
+    -0.1
+  ],
+  "collision": "none",
+  "stiffness": 300.0,
+  "damping": 0.03,
+  "hidden": 32,
+  "depth": 3,
+  "epochs": 2200,
+  "ode_epochs": 2200,
+  "tg_epochs": 400,
+  "lr": 0.002,
+  "time_batch": 3,
+  "space_batch": 40,
+  "quadrature": [
+    16,
+    16
+  ],
+  "frames": 41,
+  "dpi": 180,
+  "threads": 2,
+  "residual_tolerance": 0.03,
+  "relative_l2_tolerance": 0.03,
+  "learning_rate_decay": 0.25,
+  "cases": [
+    {
+      "name": "baseline",
+      "stokes": 0.2,
+      "loading": 0.05
+    }
+  ]
+}

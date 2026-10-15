@@ -1,0 +1,8 @@
+{
+  "termination": "training_error: FloatingPointError: nonfinite loss at step 2",
+  "best_step": 0,
+  "best_audit_loss": 20.153143052025204,
+  "completed_steps": 1,
+  "checkpoint_kind": "initialized",
+  "seconds": 0.25718536499994116
+}

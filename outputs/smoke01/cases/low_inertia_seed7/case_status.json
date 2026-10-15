@@ -1,0 +1,33 @@
+{
+  "case": "low_inertia",
+  "seed": 7,
+  "directory": "cases/low_inertia_seed7",
+  "residuals": {
+    "momentum": 1.1169258736286987,
+    "continuity": 0.006158925226570236,
+    "position": 0.012063674500018962,
+    "particle": 11.133915941707349,
+    "confinement": 0.0
+  },
+  "max_slip_re": 0.23441550535161457,
+  "max_volume_fraction": 0.0003078373632914732,
+  "quality_criteria_met": false,
+  "training": {
+    "termination": "budget_exhausted",
+    "best_step": 3,
+    "best_audit_loss": 125.64604684649588,
+    "completed_steps": 3,
+    "checkpoint_kind": "trained",
+    "seconds": 0.16639015599980667
+  },
+  "physical": {
+    "diameter": 0.00848528137423857,
+    "physical_mass": 0.00031988757154740227,
+    "multiplicity": 78.15245799974883,
+    "represented_mass": 0.025000000000000005,
+    "stokes": 0.08,
+    "loading": 0.05000000000000001
+  },
+  "max_momentum_balance_residual": 0.03651946315815539,
+  "max_energy_balance_residual": 2.9497372420393053
+}

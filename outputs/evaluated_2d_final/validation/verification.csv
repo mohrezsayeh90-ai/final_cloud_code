@@ -1,0 +1,11 @@
+case_id,outcome,details,independent_residual_rms
+V01,passed,Physics-only ODE PINN; supplied analytical CSV held out.,0.0013468688834305316
+V02,passed,Physics-only ODE PINN; supplied analytical CSV held out.,0.006120223892691081
+V03,passed,2D wall and periodic-seam kernels; constant field sampling.,
+V04,passed,Independent 3D product quadrature against supplied free-space array.,
+V05,passed,Frictionless physical binary impact algebra; not a channel collision validation.,
+V06,passed,Frictionless physical binary impact algebra; not a channel collision validation.,
+V07,passed,Physical wall restitution algebra.,
+V08,passed,Frozen-rate Poisson group counts and hard-sphere impact-normal sampler. Does not verify an evolving collision gas.,
+V09,passed,Coincident 10/50/100-parcel splitting at fixed population 10000. Spatial/statistical refinement remains separate.,
+V10,passed,"Periodic 2D Taylor–Green PINN, nu=.01, t in [0,5], pressure gauge p(0,0,t)=0; analytic solution held out.",0.0007381208346791611

@@ -1,0 +1,958 @@
+{
+  "workflow_complete": true,
+  "research_quality_criteria_met": false,
+  "dimension": 2,
+  "preset": "demo",
+  "seconds": 163.28870866299985,
+  "verification_passed": 9,
+  "verification_total": 10,
+  "verification": [
+    {
+      "case_id": "V01",
+      "outcome": "passed",
+      "evidence": "numerical_verification",
+      "details": "Physics-only ODE PINN; supplied analytical CSV held out.",
+      "metrics": {
+        "v_over_vt": {
+          "rmse": 0.0031103592792133842,
+          "max_error": 0.010745261845024584,
+          "relative_l2": 0.0037115701136584806
+        },
+        "distance_over_vt_tau": {
+          "rmse": 0.004564553490673317,
+          "max_error": 0.007329419558943617,
+          "relative_l2": 0.0021694033346185584
+        }
+      },
+      "independent_residual_rms": 0.013073126500537659,
+      "training": {
+        "termination": "budget_exhausted",
+        "best_step": 700,
+        "best_audit_loss": 0.00014920410778138237,
+        "completed_steps": 700,
+        "checkpoint_kind": "trained",
+        "seconds": 1.714731520999976
+      },
+      "tolerances": {
+        "relative_l2": 0.03,
+        "residual_rms": 0.03
+      }
+    },
+    {
+      "case_id": "V02",
+      "outcome": "failed",
+      "evidence": "numerical_verification",
+      "details": "Physics-only ODE PINN; supplied analytical CSV held out.",
+      "metrics": {
+        "fluid_u": {
+          "rmse": 0.0025046731795280272,
+          "max_error": 0.00789529349734018,
+          "relative_l2": 0.0133571422401277
+        },
+        "particle_v": {
+          "rmse": 0.010018692718112085,
+          "max_error": 0.031581173989360556,
+          "relative_l2": 0.03298056949324139
+        }
+      },
+      "independent_residual_rms": 0.12146359602458497,
+      "training": {
+        "termination": "budget_exhausted",
+        "best_step": 686,
+        "best_audit_loss": 0.013827753414444595,
+        "completed_steps": 700,
+        "checkpoint_kind": "trained",
+        "seconds": 1.6170634070001597
+      },
+      "tolerances": {
+        "relative_l2": 0.03,
+        "residual_rms": 0.03
+      }
+    },
+    {
+      "case_id": "V03",
+      "outcome": "passed",
+      "evidence": "numerical_verification",
+      "details": "2D wall and periodic-seam kernels; constant field sampling.",
+      "max_error": 8.43769498715119e-15
+    },
+    {
+      "case_id": "V04",
+      "outcome": "passed",
+      "evidence": "numerical_verification",
+      "details": "Independent 3D product quadrature against supplied free-space array.",
+      "metrics": {
+        "rmse": 4.486411882663595e-17,
+        "max_error": 1.0061396160665481e-16,
+        "relative_l2": 1.2919319371857377e-15
+      }
+    },
+    {
+      "case_id": "V05",
+      "outcome": "passed",
+      "evidence": "numerical_verification",
+      "details": "Frictionless physical binary impact algebra; not a channel collision validation.",
+      "max_error": 0.0,
+      "velocity_1": [
+        -0.8,
+        0.0
+      ],
+      "velocity_2": [
+        0.8,
+        0.0
+      ],
+      "final_energy": 0.6400000000000001
+    },
+    {
+      "case_id": "V06",
+      "outcome": "passed",
+      "evidence": "numerical_verification",
+      "details": "Frictionless physical binary impact algebra; not a channel collision validation.",
+      "max_error": 0.0,
+      "velocity_1": [
+        -1.0,
+        0.5
+      ],
+      "velocity_2": [
+        1.0,
+        -0.5
+      ],
+      "final_energy": 1.25
+    },
+    {
+      "case_id": "V07",
+      "outcome": "passed",
+      "evidence": "numerical_verification",
+      "details": "Physical wall restitution algebra.",
+      "outgoing_velocity": [
+        2.0,
+        1.8000000000000007
+      ]
+    },
+    {
+      "case_id": "V08",
+      "outcome": "passed",
+      "evidence": "numerical_verification",
+      "details": "Frozen-rate Poisson group counts and hard-sphere impact-normal sampler. Does not verify an evolving collision gas.",
+      "repetitions": 500000,
+      "expected_physical_count": 0.17575651578708898,
+      "observed_physical_count": 0.164,
+      "mean_ci95": [
+        0.13043406693580872,
+        0.20356724227213627
+      ],
+      "five_standard_errors": 0.09374340397785035,
+      "expected_group_count": 0.00017575651578708899,
+      "impact_normal_second_moment_error": 0.0010071599179007906
+    },
+    {
+      "case_id": "V09",
+      "outcome": "passed",
+      "evidence": "numerical_verification",
+      "details": "Coincident 10/50/100-parcel splitting at fixed population 10000. Spatial/statistical refinement remains separate.",
+      "max_force_density_difference": 2.6645352591003757e-15,
+      "physical_counts": [
+        10000.0,
+        10000.0,
+        10000.0
+      ]
+    },
+    {
+      "case_id": "V10",
+      "outcome": "passed",
+      "evidence": "numerical_verification",
+      "details": "Periodic 2D Taylor\u2013Green PINN, nu=.01, t in [0,1], pressure gauge p(0,0,t)=0; analytic solution held out.",
+      "metrics": {
+        "u": {
+          "rmse": 0.001449605340445581,
+          "max_error": 0.0048124203778760755,
+          "relative_l2": 0.0029320620341039254
+        },
+        "v": {
+          "rmse": 0.0009238003406370961,
+          "max_error": 0.0028638546962047595,
+          "relative_l2": 0.0018468984240935893
+        },
+        "p": {
+          "rmse": 0.005651667183467955,
+          "max_error": 0.014908821225950719,
+          "relative_l2": 0.010213538683966438
+        }
+      },
+      "independent_residual_rms": 0.002053907187608137,
+      "training": {
+        "termination": "budget_exhausted",
+        "best_step": 400,
+        "best_audit_loss": 5.0685126968855096e-06,
+        "completed_steps": 400,
+        "checkpoint_kind": "trained",
+        "seconds": 9.437401230999967
+      },
+      "tolerances": {
+        "relative_l2": 0.03,
+        "residual_rms": 0.03
+      }
+    }
+  ],
+  "cases": [
+    {
+      "case": "low_inertia",
+      "seed": 7,
+      "directory": "cases/low_inertia_seed7",
+      "residuals": {
+        "momentum": 0.47504918625035925,
+        "continuity": 0.03342096828887025,
+        "position": 0.08927617694619876,
+        "particle": 3.0893175600650387,
+        "confinement": 0.0
+      },
+      "max_slip_re": 0.23443674843502701,
+      "max_volume_fraction": 0.00042630961904889975,
+      "quality_criteria_met": false,
+      "training": {
+        "termination": "budget_exhausted",
+        "best_step": 376,
+        "best_audit_loss": 0.19009778222582907,
+        "completed_steps": 400,
+        "checkpoint_kind": "trained",
+        "seconds": 17.534745015999988
+      },
+      "physical": {
+        "diameter": 0.00848528137423857,
+        "physical_mass": 0.00031988757154740227,
+        "multiplicity": 78.15245799974883,
+        "represented_mass": 0.025000000000000005,
+        "stokes": 0.08,
+        "loading": 0.05000000000000001
+      },
+      "max_momentum_balance_residual": 0.9019584439812769,
+      "max_energy_balance_residual": 1.4400864030174505
+    },
+    {
+      "case": "baseline",
+      "seed": 7,
+      "directory": "cases/baseline_seed7",
+      "residuals": {
+        "momentum": 0.23961999355464758,
+        "continuity": 0.03686713698263204,
+        "position": 0.05341233181174714,
+        "particle": 0.963452423122405,
+        "confinement": 0.0
+      },
+      "max_slip_re": 0.37067704614930014,
+      "max_volume_fraction": 0.00040180848078869745,
+      "quality_criteria_met": false,
+      "training": {
+        "termination": "budget_exhausted",
+        "best_step": 392,
+        "best_audit_loss": 0.05619957844693778,
+        "completed_steps": 400,
+        "checkpoint_kind": "trained",
+        "seconds": 16.99209502299982
+      },
+      "physical": {
+        "diameter": 0.01341640786499874,
+        "physical_mass": 0.0012644666515873309,
+        "multiplicity": 19.771181761588252,
+        "represented_mass": 0.025000000000000005,
+        "stokes": 0.2,
+        "loading": 0.05000000000000001
+      },
+      "max_momentum_balance_residual": 0.2970923812620768,
+      "max_energy_balance_residual": 0.7749321198924699
+    },
+    {
+      "case": "high_loading",
+      "seed": 7,
+      "directory": "cases/high_loading_seed7",
+      "residuals": {
+        "momentum": 0.669874651569817,
+        "continuity": 0.022410629623588613,
+        "position": 0.04426468785327578,
+        "particle": 0.8983941102539013,
+        "confinement": 0.0
+      },
+      "max_slip_re": 0.37067704614930014,
+      "max_volume_fraction": 0.0011727733042573014,
+      "quality_criteria_met": false,
+      "training": {
+        "termination": "budget_exhausted",
+        "best_step": 392,
+        "best_audit_loss": 0.07445423459280373,
+        "completed_steps": 400,
+        "checkpoint_kind": "trained",
+        "seconds": 17.958788715000082
+      },
+      "physical": {
+        "diameter": 0.01341640786499874,
+        "physical_mass": 0.0012644666515873309,
+        "multiplicity": 59.31354528476474,
+        "represented_mass": 0.075,
+        "stokes": 0.2,
+        "loading": 0.15
+      },
+      "max_momentum_balance_residual": 0.8340505037195435,
+      "max_energy_balance_residual": 2.6997702891884723
+    },
+    {
+      "case": "high_inertia",
+      "seed": 7,
+      "directory": "cases/high_inertia_seed7",
+      "residuals": {
+        "momentum": 0.08024924789490315,
+        "continuity": 0.005618027571805632,
+        "position": 0.003488952857407682,
+        "particle": 0.08302932465349899,
+        "confinement": 0.0
+      },
+      "max_slip_re": 0.6420314771301412,
+      "max_volume_fraction": 0.00037659021843642265,
+      "quality_criteria_met": false,
+      "training": {
+        "termination": "budget_exhausted",
+        "best_step": 392,
+        "best_audit_loss": 0.0023210580387475438,
+        "completed_steps": 400,
+        "checkpoint_kind": "trained",
+        "seconds": 26.629823881999982
+      },
+      "physical": {
+        "diameter": 0.023237900077244498,
+        "physical_mass": 0.006570361455077247,
+        "multiplicity": 3.8049657040833353,
+        "represented_mass": 0.025000000000000005,
+        "stokes": 0.6,
+        "loading": 0.05000000000000001
+      },
+      "max_momentum_balance_residual": 0.11022006653897265,
+      "max_energy_balance_residual": 0.19253499088091441
+    }
+  ],
+  "literature_cases": [
+    {
+      "order": 1,
+      "case_id": "CO01",
+      "family": "Couette lateral migration",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "",
+      "reference": "data/couette_equilibrium.csv",
+      "source": "https://arxiv.org/abs/2305.16061",
+      "source_locator": "Section 4.1 Tables 1 and 2; Fig. 2 for Re 1 and 5"
+    },
+    {
+      "order": 2,
+      "case_id": "CO02",
+      "family": "Couette lateral migration",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "",
+      "reference": "data/couette_equilibrium.csv",
+      "source": "https://arxiv.org/abs/2305.16061",
+      "source_locator": "Section 4.1 Tables 1 and 2; Fig. 2 for Re 1 and 5"
+    },
+    {
+      "order": 3,
+      "case_id": "CO03",
+      "family": "Couette lateral migration",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "",
+      "reference": "data/couette_equilibrium.csv",
+      "source": "https://arxiv.org/abs/2305.16061",
+      "source_locator": "Section 4.1 Tables 1 and 2; Fig. 2 for Re 1 and 5"
+    },
+    {
+      "order": 4,
+      "case_id": "CO04",
+      "family": "Couette lateral migration",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "",
+      "reference": "data/couette_equilibrium.csv",
+      "source": "https://arxiv.org/abs/2305.16061",
+      "source_locator": "Section 4.1 Tables 1 and 2; Fig. 2 for Re 1 and 5"
+    },
+    {
+      "order": 5,
+      "case_id": "CO05",
+      "family": "Couette lateral migration",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "",
+      "reference": "data/couette_equilibrium.csv",
+      "source": "https://arxiv.org/abs/2305.16061",
+      "source_locator": "Section 4.1 Tables 1 and 2; Fig. 2 for Re 1 and 5"
+    },
+    {
+      "order": 6,
+      "case_id": "CO06",
+      "family": "Couette lateral migration",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "",
+      "reference": "data/couette_equilibrium.csv",
+      "source": "https://arxiv.org/abs/2305.16061",
+      "source_locator": "Section 4.1 Tables 1 and 2; Fig. 2 for Re 1 and 5"
+    },
+    {
+      "order": 7,
+      "case_id": "CO07",
+      "family": "Couette lateral migration",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "",
+      "reference": "data/couette_equilibrium.csv",
+      "source": "https://arxiv.org/abs/2305.16061",
+      "source_locator": "Section 4.1 Tables 1 and 2; Fig. 2 for Re 1 and 5"
+    },
+    {
+      "order": 8,
+      "case_id": "CO08",
+      "family": "Couette lateral migration",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "",
+      "reference": "data/couette_equilibrium.csv",
+      "source": "https://arxiv.org/abs/2305.16061",
+      "source_locator": "Section 4.1 Tables 1 and 2; Fig. 2 for Re 1 and 5"
+    },
+    {
+      "order": 9,
+      "case_id": "CO09",
+      "family": "Couette lateral migration",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "",
+      "reference": "data/couette_equilibrium.csv",
+      "source": "https://arxiv.org/abs/2305.16061",
+      "source_locator": "Section 4.1 Tables 1 and 2; Fig. 2 for Re 1 and 5"
+    },
+    {
+      "order": 10,
+      "case_id": "CO10",
+      "family": "Couette lateral migration",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "",
+      "reference": "data/couette_equilibrium.csv",
+      "source": "https://arxiv.org/abs/2305.16061",
+      "source_locator": "Section 4.1 Tables 1 and 2; Fig. 2 for Re 1 and 5"
+    },
+    {
+      "order": 11,
+      "case_id": "DK01",
+      "family": "Two-disc drafting kissing tumbling",
+      "readiness": "B",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "Curves need digitization; reproduce repulsion force from original cited contact law.",
+      "reference": "figures/uhlmann2005_fig6_dkt.png",
+      "source": "https://arxiv.org/abs/1809.08170",
+      "source_locator": "Section 5.2.1 Figs. 6-8"
+    },
+    {
+      "order": 12,
+      "case_id": "WK01",
+      "family": "Two-disc wake interaction without contact",
+      "readiness": "B",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "Reference curves need digitization.",
+      "reference": "figures/uhlmann2005_fig9_wake.png",
+      "source": "https://arxiv.org/abs/1809.08170",
+      "source_locator": "Section 5.2.2 Figs. 9-14"
+    },
+    {
+      "order": 13,
+      "case_id": "GS01",
+      "family": "Confined settling centered vertical pair",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "Exact viscosity for each labeled Re and absolute initial height not recovered; digitize curves; copy effective wall-spacing convention. Re is an outcome, not an independent input.",
+      "reference": "figures/ghosh2013_fig15_layouts.png",
+      "source": "https://arxiv.org/abs/1304.0804",
+      "source_locator": "Sections 4.4 and 5; Figs. 16"
+    },
+    {
+      "order": 14,
+      "case_id": "GS02",
+      "family": "Confined settling centered vertical pair",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "Exact viscosity for each labeled Re and absolute initial height not recovered; digitize curves; copy effective wall-spacing convention. Re is an outcome, not an independent input.",
+      "reference": "figures/ghosh2013_fig15_layouts.png",
+      "source": "https://arxiv.org/abs/1304.0804",
+      "source_locator": "Sections 4.4 and 5; Figs. 17"
+    },
+    {
+      "order": 15,
+      "case_id": "GS03",
+      "family": "Confined settling centered vertical pair",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "Exact viscosity for each labeled Re and absolute initial height not recovered; digitize curves; copy effective wall-spacing convention. Re is an outcome, not an independent input.",
+      "reference": "figures/ghosh2013_fig15_layouts.png",
+      "source": "https://arxiv.org/abs/1304.0804",
+      "source_locator": "Sections 4.4 and 5; Figs. 18-20"
+    },
+    {
+      "order": 16,
+      "case_id": "GS04",
+      "family": "Confined settling off-center vertical pair",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "Exact viscosity for each labeled Re and absolute initial height not recovered; digitize curves; copy effective wall-spacing convention. Re is an outcome, not an independent input.",
+      "reference": "figures/ghosh2013_fig15_layouts.png",
+      "source": "https://arxiv.org/abs/1304.0804",
+      "source_locator": "Sections 4.4 and 5; Figs. 21"
+    },
+    {
+      "order": 17,
+      "case_id": "GS05",
+      "family": "Confined settling off-center vertical pair",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "Exact viscosity for each labeled Re and absolute initial height not recovered; digitize curves; copy effective wall-spacing convention. Re is an outcome, not an independent input.",
+      "reference": "figures/ghosh2013_fig15_layouts.png",
+      "source": "https://arxiv.org/abs/1304.0804",
+      "source_locator": "Sections 4.4 and 5; Figs. 21-23"
+    },
+    {
+      "order": 18,
+      "case_id": "GS06",
+      "family": "Confined settling off-center vertical pair",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "Exact viscosity for each labeled Re and absolute initial height not recovered; digitize curves; copy effective wall-spacing convention. Re is an outcome, not an independent input.",
+      "reference": "figures/ghosh2013_fig15_layouts.png",
+      "source": "https://arxiv.org/abs/1304.0804",
+      "source_locator": "Sections 4.4 and 5; Figs. 21"
+    },
+    {
+      "order": 19,
+      "case_id": "GS07",
+      "family": "Confined settling off-center vertical pair",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "Exact viscosity for each labeled Re and absolute initial height not recovered; digitize curves; copy effective wall-spacing convention. Re is an outcome, not an independent input.",
+      "reference": "figures/ghosh2013_fig15_layouts.png",
+      "source": "https://arxiv.org/abs/1304.0804",
+      "source_locator": "Sections 4.4 and 5; Figs. 24-25"
+    },
+    {
+      "order": 20,
+      "case_id": "GS08",
+      "family": "Confined settling off-center single disc",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Resolved 2D cylinder, finite-size hydrodynamic forces/torques and matching boundaries required.",
+      "missing": "Exact viscosity for each labeled Re and absolute initial height not recovered; digitize curves; copy effective wall-spacing convention. Re is an outcome, not an independent input.",
+      "reference": "figures/ghosh2013_fig15_layouts.png",
+      "source": "https://arxiv.org/abs/1304.0804",
+      "source_locator": "Sections 4.4 and 5; Figs. 9-11"
+    },
+    {
+      "order": 21,
+      "case_id": "TC01",
+      "family": "Confined nylon sphere settling",
+      "readiness": "B",
+      "outcome": "not_run",
+      "reason": "Confined finite sphere, wall/history effects and digitized measured curves required.",
+      "missing": "Original machine curves not located; digitize Fig. 5; fix height ordinate and top boundary interpretation from source before transient comparison.",
+      "reference": "figures/tencate2002_fig5_settling.png",
+      "source": "https://repository.tudelft.nl/record/uuid:f3f9724f-906d-4938-a15c-a661e63eb203",
+      "source_locator": "Table I; Figs. 5, 9, 11-13"
+    },
+    {
+      "order": 22,
+      "case_id": "TC02",
+      "family": "Confined nylon sphere settling",
+      "readiness": "B",
+      "outcome": "not_run",
+      "reason": "Confined finite sphere, wall/history effects and digitized measured curves required.",
+      "missing": "Original machine curves not located; digitize Fig. 5; fix height ordinate and top boundary interpretation from source before transient comparison.",
+      "reference": "figures/tencate2002_fig5_settling.png",
+      "source": "https://repository.tudelft.nl/record/uuid:f3f9724f-906d-4938-a15c-a661e63eb203",
+      "source_locator": "Table I; Figs. 5, 9, 11-13"
+    },
+    {
+      "order": 23,
+      "case_id": "TC03",
+      "family": "Confined nylon sphere settling",
+      "readiness": "B",
+      "outcome": "not_run",
+      "reason": "Confined finite sphere, wall/history effects and digitized measured curves required.",
+      "missing": "Original machine curves not located; digitize Fig. 5; fix height ordinate and top boundary interpretation from source before transient comparison.",
+      "reference": "figures/tencate2002_fig5_settling.png",
+      "source": "https://repository.tudelft.nl/record/uuid:f3f9724f-906d-4938-a15c-a661e63eb203",
+      "source_locator": "Table I; Figs. 5, 9, 11-13"
+    },
+    {
+      "order": 24,
+      "case_id": "TC04",
+      "family": "Confined nylon sphere settling",
+      "readiness": "B",
+      "outcome": "not_run",
+      "reason": "Confined finite sphere, wall/history effects and digitized measured curves required.",
+      "missing": "Original machine curves not located; digitize Fig. 5; fix height ordinate and top boundary interpretation from source before transient comparison.",
+      "reference": "figures/tencate2002_fig5_settling.png",
+      "source": "https://repository.tudelft.nl/record/uuid:f3f9724f-906d-4938-a15c-a661e63eb203",
+      "source_locator": "Table I; Figs. 5, 9, 11-13"
+    },
+    {
+      "order": 25,
+      "case_id": "UD01",
+      "family": "Unconfined heavy sphere steady vertical",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Resolved finite-size sphere and matching force/torque, boundary and wake physics required.",
+      "missing": "",
+      "reference": "data/sphere_original",
+      "source": "https://arxiv.org/abs/1310.5358",
+      "source_locator": "Tables 1-5; Figs. 5-16"
+    },
+    {
+      "order": 26,
+      "case_id": "UD02",
+      "family": "Unconfined heavy sphere steady oblique",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Resolved finite-size sphere and matching force/torque, boundary and wake physics required.",
+      "missing": "",
+      "reference": "data/sphere_original",
+      "source": "https://arxiv.org/abs/1310.5358",
+      "source_locator": "Tables 1-5; Figs. 5-16"
+    },
+    {
+      "order": 27,
+      "case_id": "UD03",
+      "family": "Unconfined heavy sphere oscillating oblique",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Resolved finite-size sphere and matching force/torque, boundary and wake physics required.",
+      "missing": "",
+      "reference": "data/sphere_original; data/sphere190_timeseries.csv",
+      "source": "https://arxiv.org/abs/1310.5358",
+      "source_locator": "Tables 1-5; Figs. 5-16"
+    },
+    {
+      "order": 28,
+      "case_id": "UD04",
+      "family": "Unconfined heavy sphere chaotic",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Resolved finite-size sphere and matching force/torque, boundary and wake physics required.",
+      "missing": "",
+      "reference": "data/sphere_original",
+      "source": "https://arxiv.org/abs/1310.5358",
+      "source_locator": "Tables 1-5; Figs. 5-16"
+    },
+    {
+      "order": 29,
+      "case_id": "OB01",
+      "family": "Oblate spheroid steady vertical",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Spheroid orientation, anisotropic hydrodynamics and torque are absent.",
+      "missing": "",
+      "reference": "data/spheroid_original",
+      "source": "https://arxiv.org/abs/2011.07506",
+      "source_locator": "Official data sheet Tables 1-2 and bundled data"
+    },
+    {
+      "order": 30,
+      "case_id": "OB02",
+      "family": "Oblate spheroid steady oblique",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Spheroid orientation, anisotropic hydrodynamics and torque are absent.",
+      "missing": "",
+      "reference": "data/spheroid_original",
+      "source": "https://arxiv.org/abs/2011.07506",
+      "source_locator": "Official data sheet Tables 1-2 and bundled data"
+    },
+    {
+      "order": 31,
+      "case_id": "OB03",
+      "family": "Oblate spheroid steady oblique",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Spheroid orientation, anisotropic hydrodynamics and torque are absent.",
+      "missing": "",
+      "reference": "data/spheroid_original",
+      "source": "https://arxiv.org/abs/2011.07506",
+      "source_locator": "Official data sheet Tables 1-2 and bundled data"
+    },
+    {
+      "order": 32,
+      "case_id": "OB04",
+      "family": "Oblate spheroid vertical periodic",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Spheroid orientation, anisotropic hydrodynamics and torque are absent.",
+      "missing": "",
+      "reference": "data/spheroid_original; data/spheroid_C15_timeseries.csv",
+      "source": "https://arxiv.org/abs/2011.07506",
+      "source_locator": "Official data sheet Tables 1-2 and bundled data"
+    },
+    {
+      "order": 33,
+      "case_id": "OB05",
+      "family": "Oblate spheroid chaotic",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Spheroid orientation, anisotropic hydrodynamics and torque are absent.",
+      "missing": "",
+      "reference": "data/spheroid_original",
+      "source": "https://arxiv.org/abs/2011.07506",
+      "source_locator": "Official data sheet Tables 1-2 and bundled data"
+    },
+    {
+      "order": 34,
+      "case_id": "OB06",
+      "family": "Oblate spheroid chaotic",
+      "readiness": "A",
+      "outcome": "not_run",
+      "reason": "Spheroid orientation, anisotropic hydrodynamics and torque are absent.",
+      "missing": "",
+      "reference": "data/spheroid_original",
+      "source": "https://arxiv.org/abs/2011.07506",
+      "source_locator": "Official data sheet Tables 1-2 and bundled data"
+    },
+    {
+      "order": 35,
+      "case_id": "HG01",
+      "family": "Experimental settling and wall impact Steel_16",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Raw experimental arrays not bundled; wall lubrication, finite-size and wet impact physics absent.",
+      "missing": "Repository verified, files not downloaded (403 via available transfer path); obtain CenterCoord.mat Vx.mat Vy.mat and initial conditions.",
+      "reference": "https://data.mendeley.com/datasets/mf27c92nc3/1",
+      "source": "https://arxiv.org/abs/2009.02250",
+      "source_locator": "Table 1; Figs. 5-11; Mendeley V1"
+    },
+    {
+      "order": 36,
+      "case_id": "HG02",
+      "family": "Experimental settling and wall impact Steel_14",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Raw experimental arrays not bundled; wall lubrication, finite-size and wet impact physics absent.",
+      "missing": "Repository verified, files not downloaded (403 via available transfer path); obtain CenterCoord.mat Vx.mat Vy.mat and initial conditions.",
+      "reference": "https://data.mendeley.com/datasets/mf27c92nc3/1",
+      "source": "https://arxiv.org/abs/2009.02250",
+      "source_locator": "Table 1; Figs. 5-11; Mendeley V1"
+    },
+    {
+      "order": 37,
+      "case_id": "HG03",
+      "family": "Experimental settling and wall impact PTFE_20",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Raw experimental arrays not bundled; wall lubrication, finite-size and wet impact physics absent.",
+      "missing": "Repository verified, files not downloaded (403 via available transfer path); obtain CenterCoord.mat Vx.mat Vy.mat and initial conditions.",
+      "reference": "https://data.mendeley.com/datasets/mf27c92nc3/1",
+      "source": "https://arxiv.org/abs/2009.02250",
+      "source_locator": "Table 1; Figs. 5-11; Mendeley V1"
+    },
+    {
+      "order": 38,
+      "case_id": "HG04",
+      "family": "Experimental settling and wall impact PTFE_10",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Raw experimental arrays not bundled; wall lubrication, finite-size and wet impact physics absent.",
+      "missing": "Repository verified, files not downloaded (403 via available transfer path); obtain CenterCoord.mat Vx.mat Vy.mat and initial conditions.",
+      "reference": "https://data.mendeley.com/datasets/mf27c92nc3/1",
+      "source": "https://arxiv.org/abs/2009.02250",
+      "source_locator": "Table 1; Figs. 5-11; Mendeley V1"
+    },
+    {
+      "order": 39,
+      "case_id": "HG05",
+      "family": "Experimental settling and wall impact PTFE_06",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Raw experimental arrays not bundled; wall lubrication, finite-size and wet impact physics absent.",
+      "missing": "Repository verified, files not downloaded (403 via available transfer path); obtain CenterCoord.mat Vx.mat Vy.mat and initial conditions.",
+      "reference": "https://data.mendeley.com/datasets/mf27c92nc3/1",
+      "source": "https://arxiv.org/abs/2009.02250",
+      "source_locator": "Table 1; Figs. 5-11; Mendeley V1"
+    },
+    {
+      "order": 40,
+      "case_id": "HG06",
+      "family": "Experimental settling and wall impact POM_20",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Raw experimental arrays not bundled; wall lubrication, finite-size and wet impact physics absent.",
+      "missing": "Repository verified, files not downloaded (403 via available transfer path); obtain CenterCoord.mat Vx.mat Vy.mat and initial conditions.",
+      "reference": "https://data.mendeley.com/datasets/mf27c92nc3/1",
+      "source": "https://arxiv.org/abs/2009.02250",
+      "source_locator": "Table 1; Figs. 5-11; Mendeley V1"
+    },
+    {
+      "order": 41,
+      "case_id": "HG07",
+      "family": "Experimental settling and wall impact Rubber_22",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Raw experimental arrays not bundled; wall lubrication, finite-size and wet impact physics absent.",
+      "missing": "Repository verified, files not downloaded (403 via available transfer path); obtain CenterCoord.mat Vx.mat Vy.mat and initial conditions.",
+      "reference": "https://data.mendeley.com/datasets/mf27c92nc3/1",
+      "source": "https://arxiv.org/abs/2009.02250",
+      "source_locator": "Table 1; Figs. 5-11; Mendeley V1"
+    },
+    {
+      "order": 42,
+      "case_id": "AP01",
+      "family": "Gaussian parcel gravity settling",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Finite-volume displacement and dense contact closure required; dilute NS is incompatible.",
+      "missing": "Exact initial parcel realization, collision parameters and some BCs not recovered; original curves not found. Preserve actual represented mass, not just particle count.",
+      "reference": "figures/apte2008_fig2_fluidization.png",
+      "source": "https://dept.aem.umn.edu/~kmahesh/globalassets/publpdf/journal/apte_ijmf.pdf",
+      "source_locator": "Table 1 Fig. 1"
+    },
+    {
+      "order": 43,
+      "case_id": "AP02",
+      "family": "Gaussian parcel gas jet fluidization",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Finite-volume displacement and dense contact closure required; dilute NS is incompatible.",
+      "missing": "Exact initial parcel realization, collision parameters and some BCs not recovered; original curves not found. Preserve actual represented mass, not just particle count.",
+      "reference": "figures/apte2008_fig2_fluidization.png",
+      "source": "https://dept.aem.umn.edu/~kmahesh/globalassets/publpdf/journal/apte_ijmf.pdf",
+      "source_locator": "Table 2 Figs. 2-5"
+    },
+    {
+      "order": 44,
+      "case_id": "AP03",
+      "family": "Gaussian parcel Poiseuille bed mobilization",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Finite-volume displacement and dense contact closure required; dilute NS is incompatible.",
+      "missing": "Exact initial parcel realization, collision parameters and some BCs not recovered; original curves not found. Preserve actual represented mass, not just particle count.",
+      "reference": "figures/apte2008_fig2_fluidization.png",
+      "source": "https://dept.aem.umn.edu/~kmahesh/globalassets/publpdf/journal/apte_ijmf.pdf",
+      "source_locator": "Table 3 Figs. 6-8"
+    },
+    {
+      "order": 45,
+      "case_id": "ER01",
+      "family": "ERPP fixed localized force",
+      "readiness": "B",
+      "outcome": "not_run",
+      "reason": "ERPP diffusion regularization, self-disturbance correction and exact source setup are not implemented; V01/V02/V03 are reduced verification only.",
+      "missing": "Original force/grid/regularization settings must be copied from source for exact paper replication; included analytic curve is a normalized verification target.",
+      "reference": "data/analytic_stokes.csv",
+      "source": "https://arxiv.org/abs/1405.6969",
+      "source_locator": "Section 3.1 Figs. 3-8"
+    },
+    {
+      "order": 46,
+      "case_id": "ER02",
+      "family": "ERPP imposed settling trajectory",
+      "readiness": "B",
+      "outcome": "not_run",
+      "reason": "ERPP diffusion regularization, self-disturbance correction and exact source setup are not implemented; V01/V02/V03 are reduced verification only.",
+      "missing": "Original force/grid/regularization settings must be copied from source for exact paper replication; included analytic curve is a normalized verification target.",
+      "reference": "data/analytic_stokes.csv",
+      "source": "https://arxiv.org/abs/1405.6969",
+      "source_locator": "Section 3.2.1 Figs. 9-10"
+    },
+    {
+      "order": 47,
+      "case_id": "ER03",
+      "family": "ERPP fully coupled settling with self correction",
+      "readiness": "B",
+      "outcome": "not_run",
+      "reason": "ERPP diffusion regularization, self-disturbance correction and exact source setup are not implemented; V01/V02/V03 are reduced verification only.",
+      "missing": "Original force/grid/regularization settings must be copied from source for exact paper replication; included analytic curve is a normalized verification target.",
+      "reference": "data/analytic_stokes.csv",
+      "source": "https://arxiv.org/abs/1405.6969",
+      "source_locator": "Section 3.2.2 Fig. 11"
+    },
+    {
+      "order": 48,
+      "case_id": "FR01",
+      "family": "Neutrally buoyant sphere free-stream release",
+      "readiness": "B",
+      "outcome": "not_run",
+      "reason": "Resolved finite-size sphere and matching force/torque, boundary and wake physics required.",
+      "missing": "Time curves require digitization. For spinning case confirm the section 4.3 enlarged lateral-domain convention before quantitative use.",
+      "reference": "P03 source figures 3 or 5-7; not digitized",
+      "source": "https://arxiv.org/abs/2305.16061",
+      "source_locator": "Section 4.2 Fig. 3"
+    },
+    {
+      "order": 49,
+      "case_id": "FR02",
+      "family": "Neutrally buoyant sphere free-stream release",
+      "readiness": "B",
+      "outcome": "not_run",
+      "reason": "Resolved finite-size sphere and matching force/torque, boundary and wake physics required.",
+      "missing": "Time curves require digitization. For spinning case confirm the section 4.3 enlarged lateral-domain convention before quantitative use.",
+      "reference": "P03 source figures 3 or 5-7; not digitized",
+      "source": "https://arxiv.org/abs/2305.16061",
+      "source_locator": "Section 4.2 Fig. 3"
+    },
+    {
+      "order": 50,
+      "case_id": "FR03",
+      "family": "Neutrally buoyant sphere free-stream release with spin",
+      "readiness": "B",
+      "outcome": "not_run",
+      "reason": "Resolved finite-size sphere and matching force/torque, boundary and wake physics required.",
+      "missing": "Time curves require digitization; reproduce the steady pre-release rotating state.",
+      "reference": "P03 source figures 3 or 5-7; not digitized",
+      "source": "https://arxiv.org/abs/2305.16061",
+      "source_locator": "Section 4.3 Figs. 5-7"
+    },
+    {
+      "order": 51,
+      "case_id": "LD01",
+      "family": "Three dimensional DKT",
+      "readiness": "C",
+      "outcome": "not_run",
+      "reason": "Resolved finite-size sphere and matching force/torque, boundary and wake physics required.",
+      "missing": "Fluid viscosity/density, particle density and upper BC require extraction; curves not digitized.",
+      "reference": "figures/li_fig5.png; figures/li_fig6.png",
+      "source": "https://www.mdpi.com/1996-1073/15/9/3297",
+      "source_locator": "Section 3.2 Figs. 5-8"
+    }
+  ],
+  "physical_validation_cases_run": 0,
+  "plot_errors": [],
+  "errors": [],
+  "display_depth_only": true,
+  "limitations": [
+    "No experimental or resolved-body validation claimed.",
+    "Regularized disturbed-velocity drag, no self-disturbance correction.",
+    "Low slip Reynolds number required by Stokes drag; reported explicitly.",
+    "No lubrication, lift, added mass, Basset history, particle rotation or finite-volume displacement.",
+    "Soft contact is an optional physical-sphere closure; default parcel cases are collision-free.",
+    "Residual thresholds are project criteria, not universal scientific accuracy.",
+    "Paper preset and spatial/time/width/parcel refinement need separate completed runs."
+  ]
+}

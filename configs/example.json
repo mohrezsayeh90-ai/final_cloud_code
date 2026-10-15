@@ -1,0 +1,15 @@
+{
+  "epochs": 2000,
+  "ode_epochs": 2200,
+  "tg_epochs": 800,
+  "quadrature": [24, 24],
+  "seeds": [7],
+  "dimension": 2,
+  "lengths": [3.0, 1.0],
+  "depth_ratio": 1.0,
+  "gravity": [0.0, -0.1],
+  "collision": "none",
+  "cases": [
+    {"name": "baseline", "stokes": 0.2, "loading": 0.05}
+  ]
+}

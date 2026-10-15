@@ -1,0 +1,77 @@
+{
+  "P01": {
+    "authors": "Uhlmann",
+    "year": 2005,
+    "title": "An immersed boundary method with direct forcing for the simulation of particulate flows",
+    "doi": "10.1016/j.jcp.2005.03.017",
+    "url": "https://arxiv.org/abs/1809.08170"
+  },
+  "P02": {
+    "authors": "Ghosh and Stockie",
+    "year": 2013,
+    "title": "Numerical simulations of particle sedimentation using the immersed boundary method",
+    "doi": "",
+    "url": "https://arxiv.org/abs/1304.0804"
+  },
+  "P03": {
+    "authors": "Garcia-Villalba et al.",
+    "year": 2023,
+    "title": "An efficient method for particle-resolved simulations of neutrally buoyant spheres",
+    "doi": "10.1016/j.compfluid.2023.105936",
+    "url": "https://arxiv.org/abs/2305.16061"
+  },
+  "P04": {
+    "authors": "ten Cate et al.",
+    "year": 2002,
+    "title": "Particle imaging velocimetry experiments and lattice-Boltzmann simulations on a single sphere settling under gravity",
+    "doi": "10.1063/1.1512918",
+    "url": "https://repository.tudelft.nl/record/uuid:f3f9724f-906d-4938-a15c-a661e63eb203"
+  },
+  "P05": {
+    "authors": "Uhlmann and Dusek",
+    "year": 2014,
+    "title": "The motion of a single heavy sphere in ambient fluid a benchmark for interface-resolved particulate flow simulations with significant relative velocities",
+    "doi": "10.1016/j.ijmultiphaseflow.2013.10.010",
+    "url": "https://arxiv.org/abs/1310.5358",
+    "data_url": "https://www.iwu.kit.edu/nfm/dns_data/particles/single_sphere_sedimentation/"
+  },
+  "P06": {
+    "authors": "Moriche Uhlmann and Dusek",
+    "year": 2021,
+    "title": "A single oblate spheroid settling in unbounded ambient fluid a benchmark for simulations in steady and unsteady wake regimes",
+    "doi": "",
+    "url": "https://arxiv.org/abs/2011.07506",
+    "data_url": "https://doi.org/10.4121/13042793",
+    "data_license": "CC0 as returned by the official Figshare record"
+  },
+  "P07": {
+    "authors": "Hagemeier Thevenin and Richter",
+    "year": 2021,
+    "title": "Settling of spherical particles in the transitional regime",
+    "doi": "10.1016/j.ijmultiphaseflow.2021.103589",
+    "url": "https://arxiv.org/abs/2009.02250",
+    "data_url": "https://data.mendeley.com/datasets/mf27c92nc3/1",
+    "data_license": "CC BY 4.0"
+  },
+  "P08": {
+    "authors": "Apte Mahesh and Lundgren",
+    "year": 2008,
+    "title": "Accounting for finite-size effects in simulations of disperse particle-laden flows",
+    "doi": "10.1016/j.ijmultiphaseflow.2007.10.005",
+    "url": "https://dept.aem.umn.edu/~kmahesh/globalassets/publpdf/journal/apte_ijmf.pdf"
+  },
+  "P09": {
+    "authors": "Gualtieri et al.",
+    "year": 2015,
+    "title": "Exact regularized point particle method for multiphase flows in the two-way coupling regime",
+    "doi": "",
+    "url": "https://arxiv.org/abs/1405.6969"
+  },
+  "P10": {
+    "authors": "Li et al.",
+    "year": 2022,
+    "title": "IBM-LBM-DEM Study of Two-Particle Sedimentation Drafting-Kissing-Tumbling and Effects of Particle Reynolds Number and Initial Positions of Particles",
+    "doi": "10.3390/en15093297",
+    "url": "https://www.mdpi.com/1996-1073/15/9/3297"
+  }
+}

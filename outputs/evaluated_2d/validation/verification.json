@@ -1,0 +1,193 @@
+[
+  {
+    "case_id": "V01",
+    "outcome": "passed",
+    "evidence": "numerical_verification",
+    "details": "Physics-only ODE PINN; supplied analytical CSV held out.",
+    "metrics": {
+      "v_over_vt": {
+        "rmse": 0.0005570383564539353,
+        "max_error": 0.0008920755614219011,
+        "relative_l2": 0.0006647099998360116
+      },
+      "distance_over_vt_tau": {
+        "rmse": 0.0005047049887265481,
+        "max_error": 0.0008656539220277537,
+        "relative_l2": 0.00023987202423615057
+      }
+    },
+    "independent_residual_rms": 0.0013468688834305316,
+    "training": {
+      "termination": "budget_exhausted",
+      "best_step": 770,
+      "best_audit_loss": 1.691503527556234e-06,
+      "completed_steps": 820,
+      "checkpoint_kind": "trained",
+      "seconds": 2.842501025000047
+    },
+    "tolerances": {
+      "relative_l2": 0.03,
+      "residual_rms": 0.03
+    }
+  },
+  {
+    "case_id": "V02",
+    "outcome": "passed",
+    "evidence": "numerical_verification",
+    "details": "Physics-only ODE PINN; supplied analytical CSV held out.",
+    "metrics": {
+      "fluid_u": {
+        "rmse": 0.0001808945402761626,
+        "max_error": 0.00029136256624046064,
+        "relative_l2": 0.0009646903734508469
+      },
+      "particle_v": {
+        "rmse": 0.0007235781611046545,
+        "max_error": 0.001165450264962009,
+        "relative_l2": 0.002381949471607388
+      },
+      "total_momentum": {
+        "rmse": 0.0,
+        "max_error": 0.0,
+        "relative_l2": 0.0
+      }
+    },
+    "independent_residual_rms": 0.006120223892691081,
+    "training": {
+      "termination": "budget_exhausted",
+      "best_step": 820,
+      "best_audit_loss": 3.6554667692292836e-05,
+      "completed_steps": 820,
+      "checkpoint_kind": "trained",
+      "seconds": 3.2403306109999903
+    },
+    "tolerances": {
+      "relative_l2": 0.03,
+      "residual_rms": 0.03
+    }
+  },
+  {
+    "case_id": "V03",
+    "outcome": "passed",
+    "evidence": "numerical_verification",
+    "details": "2D wall and periodic-seam kernels; constant field sampling.",
+    "max_error": 8.43769498715119e-15
+  },
+  {
+    "case_id": "V04",
+    "outcome": "passed",
+    "evidence": "numerical_verification",
+    "details": "Independent 3D product quadrature against supplied free-space array.",
+    "metrics": {
+      "rmse": 4.486411882663595e-17,
+      "max_error": 1.0061396160665481e-16,
+      "relative_l2": 1.2919319371857377e-15
+    }
+  },
+  {
+    "case_id": "V05",
+    "outcome": "passed",
+    "evidence": "numerical_verification",
+    "details": "Frictionless physical binary impact algebra; not a channel collision validation.",
+    "max_error": 0.0,
+    "velocity_1": [
+      -0.8,
+      0.0
+    ],
+    "velocity_2": [
+      0.8,
+      0.0
+    ],
+    "final_energy": 0.6400000000000001
+  },
+  {
+    "case_id": "V06",
+    "outcome": "passed",
+    "evidence": "numerical_verification",
+    "details": "Frictionless physical binary impact algebra; not a channel collision validation.",
+    "max_error": 0.0,
+    "velocity_1": [
+      -1.0,
+      0.5
+    ],
+    "velocity_2": [
+      1.0,
+      -0.5
+    ],
+    "final_energy": 1.25
+  },
+  {
+    "case_id": "V07",
+    "outcome": "passed",
+    "evidence": "numerical_verification",
+    "details": "Physical wall restitution algebra.",
+    "outgoing_velocity": [
+      2.0,
+      1.8000000000000007
+    ]
+  },
+  {
+    "case_id": "V08",
+    "outcome": "passed",
+    "evidence": "numerical_verification",
+    "details": "Frozen-rate Poisson group counts and hard-sphere impact-normal sampler. Does not verify an evolving collision gas.",
+    "repetitions": 500000,
+    "expected_physical_count": 0.17575651578708898,
+    "observed_physical_count": 0.164,
+    "mean_ci95": [
+      0.13043406693580872,
+      0.20356724227213627
+    ],
+    "five_standard_errors": 0.09374340397785035,
+    "expected_group_count": 0.00017575651578708899,
+    "impact_normal_second_moment_error": 0.0010071599179007906
+  },
+  {
+    "case_id": "V09",
+    "outcome": "passed",
+    "evidence": "numerical_verification",
+    "details": "Coincident 10/50/100-parcel splitting at fixed population 10000. Spatial/statistical refinement remains separate.",
+    "max_force_density_difference": 2.6645352591003757e-15,
+    "physical_counts": [
+      10000.0,
+      10000.0,
+      10000.0
+    ]
+  },
+  {
+    "case_id": "V10",
+    "outcome": "passed",
+    "evidence": "numerical_verification",
+    "details": "Periodic 2D Taylor\u2013Green PINN, nu=.01, t in [0,5], pressure gauge p(0,0,t)=0; analytic solution held out.",
+    "metrics": {
+      "u": {
+        "rmse": 0.0010371164235084664,
+        "max_error": 0.004093582543557017,
+        "relative_l2": 0.002183658002593811
+      },
+      "v": {
+        "rmse": 0.0009019616637128551,
+        "max_error": 0.004582121634451181,
+        "relative_l2": 0.0018698515994722174
+      },
+      "p": {
+        "rmse": 0.0011056287353444889,
+        "max_error": 0.004630632999236828,
+        "relative_l2": 0.0021543776369157904
+      }
+    },
+    "independent_residual_rms": 0.0007381208346791611,
+    "training": {
+      "termination": "budget_exhausted",
+      "best_step": 1399,
+      "best_audit_loss": 6.313172001800146e-07,
+      "completed_steps": 1400,
+      "checkpoint_kind": "trained",
+      "seconds": 55.392893075000075
+    },
+    "tolerances": {
+      "relative_l2": 0.03,
+      "residual_rms": 0.03
+    }
+  }
+]

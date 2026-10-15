@@ -1,0 +1,33 @@
+{
+  "case": "high_loading",
+  "seed": 7,
+  "directory": "cases/high_loading_seed7",
+  "residuals": {
+    "momentum": 0.669874651569817,
+    "continuity": 0.022410629623588613,
+    "position": 0.04426468785327578,
+    "particle": 0.8983941102539013,
+    "confinement": 0.0
+  },
+  "max_slip_re": 0.37067704614930014,
+  "max_volume_fraction": 0.0011727733042573014,
+  "quality_criteria_met": false,
+  "training": {
+    "termination": "budget_exhausted",
+    "best_step": 392,
+    "best_audit_loss": 0.07445423459280373,
+    "completed_steps": 400,
+    "checkpoint_kind": "trained",
+    "seconds": 17.958788715000082
+  },
+  "physical": {
+    "diameter": 0.01341640786499874,
+    "physical_mass": 0.0012644666515873309,
+    "multiplicity": 59.31354528476474,
+    "represented_mass": 0.075,
+    "stokes": 0.2,
+    "loading": 0.15
+  },
+  "max_momentum_balance_residual": 0.8340505037195435,
+  "max_energy_balance_residual": 2.6997702891884723
+}

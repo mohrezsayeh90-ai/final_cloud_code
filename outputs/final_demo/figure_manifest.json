@@ -1,0 +1,421 @@
+[
+  {
+    "title": "Coupled PINN",
+    "caption": "Two separate fully connected tanh networks, both with 3 hidden layers of width 32. Trainable outputs are coupled through normalized Gaussian quadrature; reference arrays are used only after training.",
+    "files": [
+      "figures/architecture.png",
+      "figures/architecture.pdf",
+      "figures/architecture.svg"
+    ]
+  },
+  {
+    "title": "Stokes response",
+    "caption": "V01: independent reduced-model verification. Analytical targets were excluded from PINN training. Errors and acceptance criteria are in verification.json; a plot is not a pass verdict.",
+    "files": [
+      "validation/V01.png",
+      "validation/V01.pdf",
+      "validation/V01.svg"
+    ]
+  },
+  {
+    "title": "Momentum exchange",
+    "caption": "V02: independent reduced-model verification. Analytical targets were excluded from PINN training. Errors and acceptance criteria are in verification.json; a plot is not a pass verdict.",
+    "files": [
+      "validation/V02.png",
+      "validation/V02.pdf",
+      "validation/V02.svg"
+    ]
+  },
+  {
+    "title": "Gaussian overlap",
+    "caption": "V04: independent reduced-model verification. Analytical targets were excluded from PINN training. Errors and acceptance criteria are in verification.json; a plot is not a pass verdict.",
+    "files": [
+      "validation/V04.png",
+      "validation/V04.pdf",
+      "validation/V04.svg"
+    ]
+  },
+  {
+    "title": "Taylor\u2013Green flow",
+    "caption": "V10: independent reduced-model verification. Analytical targets were excluded from PINN training. Errors and acceptance criteria are in verification.json; a plot is not a pass verdict.",
+    "files": [
+      "validation/V10.png",
+      "validation/V10.pdf",
+      "validation/V10.svg"
+    ]
+  },
+  {
+    "title": "Verification overview",
+    "caption": "Pass/fail classifications are implementation checks using declared project tolerances. They do not certify the 51 literature benchmarks.",
+    "files": [
+      "figures/verification_overview.png",
+      "figures/verification_overview.pdf",
+      "figures/verification_overview.svg"
+    ]
+  },
+  {
+    "title": "Training history",
+    "caption": "low_inertia_seed7: no smoothing or loss truncation beyond the positive logarithmic floor. Checkpoint uses minimum fixed-audit loss.",
+    "files": [
+      "cases/low_inertia_seed7/training.png",
+      "cases/low_inertia_seed7/training.pdf",
+      "cases/low_inertia_seed7/training.svg"
+    ]
+  },
+  {
+    "title": "Flow fields",
+    "caption": "low_inertia_seed7: direct PINN fields at t=1. Vorticity computed by plotting-grid differences. Uncertainty and residuals must be checked before quantitative interpretation.",
+    "files": [
+      "cases/low_inertia_seed7/fields.png",
+      "cases/low_inertia_seed7/fields.pdf",
+      "cases/low_inertia_seed7/fields.svg"
+    ]
+  },
+  {
+    "title": "Channel profile",
+    "caption": "low_inertia_seed7: final profile at channel midpoint. The dashed initial unladen profile is not a two-way validation target.",
+    "files": [
+      "cases/low_inertia_seed7/profile.png",
+      "cases/low_inertia_seed7/profile.pdf",
+      "cases/low_inertia_seed7/profile.svg"
+    ]
+  },
+  {
+    "title": "Speed surface",
+    "caption": "low_inertia_seed7: height encodes speed over the solved x\u2013y plane; the vertical axis is a field value, not a third spatial coordinate.",
+    "files": [
+      "cases/low_inertia_seed7/speed_surface.png",
+      "cases/low_inertia_seed7/speed_surface.pdf",
+      "cases/low_inertia_seed7/speed_surface.svg"
+    ]
+  },
+  {
+    "title": "Transport snapshots",
+    "caption": "low_inertia_seed7: four direct evaluations of PINN fluid and parcel states. Marker radii are illustrative. Colors use one common speed scale.",
+    "files": [
+      "cases/low_inertia_seed7/snapshots.png",
+      "cases/low_inertia_seed7/snapshots.pdf",
+      "cases/low_inertia_seed7/snapshots.svg"
+    ]
+  },
+  {
+    "title": "Parcel paths",
+    "caption": "low_inertia_seed7: direct PINN parcel trajectories; open markers denote initial states and filled markers denote final states. No boundary clipping is applied.",
+    "files": [
+      "cases/low_inertia_seed7/paths.png",
+      "cases/low_inertia_seed7/paths.pdf",
+      "cases/low_inertia_seed7/paths.svg"
+    ]
+  },
+  {
+    "title": "Channel view",
+    "caption": "low_inertia_seed7: extruded illustration of a 2D solution; every particle has z=0. Display depth contains no solved physics.",
+    "files": [
+      "cases/low_inertia_seed7/channel_view.png",
+      "cases/low_inertia_seed7/channel_view.pdf",
+      "cases/low_inertia_seed7/channel_view.svg"
+    ]
+  },
+  {
+    "title": "Parcel velocities",
+    "caption": "low_inertia_seed7: PINN velocity outputs. Kinematic consistency with position derivatives is audited separately.",
+    "files": [
+      "cases/low_inertia_seed7/velocities.png",
+      "cases/low_inertia_seed7/velocities.pdf",
+      "cases/low_inertia_seed7/velocities.svg"
+    ]
+  },
+  {
+    "title": "Conservation diagnostics",
+    "caption": "low_inertia_seed7: driven channel includes wall viscous and pressure tractions, body force and particle gravity. Total momentum and energy need not be constant. Quadrature errors enter global balances. Contact cases omit unsupported global balances.",
+    "files": [
+      "cases/low_inertia_seed7/budgets.png",
+      "cases/low_inertia_seed7/budgets.pdf",
+      "cases/low_inertia_seed7/budgets.svg"
+    ]
+  },
+  {
+    "title": "Parcel transport",
+    "caption": "low_inertia_seed7: PINN positions, periodic wrapping in x. Marker sizes are illustrative, not physical radii.",
+    "files": [
+      "cases/low_inertia_seed7/transport.gif",
+      "cases/low_inertia_seed7/transport.mp4"
+    ]
+  },
+  {
+    "title": "Training history",
+    "caption": "baseline_seed7: no smoothing or loss truncation beyond the positive logarithmic floor. Checkpoint uses minimum fixed-audit loss.",
+    "files": [
+      "cases/baseline_seed7/training.png",
+      "cases/baseline_seed7/training.pdf",
+      "cases/baseline_seed7/training.svg"
+    ]
+  },
+  {
+    "title": "Flow fields",
+    "caption": "baseline_seed7: direct PINN fields at t=1. Vorticity computed by plotting-grid differences. Uncertainty and residuals must be checked before quantitative interpretation.",
+    "files": [
+      "cases/baseline_seed7/fields.png",
+      "cases/baseline_seed7/fields.pdf",
+      "cases/baseline_seed7/fields.svg"
+    ]
+  },
+  {
+    "title": "Channel profile",
+    "caption": "baseline_seed7: final profile at channel midpoint. The dashed initial unladen profile is not a two-way validation target.",
+    "files": [
+      "cases/baseline_seed7/profile.png",
+      "cases/baseline_seed7/profile.pdf",
+      "cases/baseline_seed7/profile.svg"
+    ]
+  },
+  {
+    "title": "Speed surface",
+    "caption": "baseline_seed7: height encodes speed over the solved x\u2013y plane; the vertical axis is a field value, not a third spatial coordinate.",
+    "files": [
+      "cases/baseline_seed7/speed_surface.png",
+      "cases/baseline_seed7/speed_surface.pdf",
+      "cases/baseline_seed7/speed_surface.svg"
+    ]
+  },
+  {
+    "title": "Transport snapshots",
+    "caption": "baseline_seed7: four direct evaluations of PINN fluid and parcel states. Marker radii are illustrative. Colors use one common speed scale.",
+    "files": [
+      "cases/baseline_seed7/snapshots.png",
+      "cases/baseline_seed7/snapshots.pdf",
+      "cases/baseline_seed7/snapshots.svg"
+    ]
+  },
+  {
+    "title": "Parcel paths",
+    "caption": "baseline_seed7: direct PINN parcel trajectories; open markers denote initial states and filled markers denote final states. No boundary clipping is applied.",
+    "files": [
+      "cases/baseline_seed7/paths.png",
+      "cases/baseline_seed7/paths.pdf",
+      "cases/baseline_seed7/paths.svg"
+    ]
+  },
+  {
+    "title": "Channel view",
+    "caption": "baseline_seed7: extruded illustration of a 2D solution; every particle has z=0. Display depth contains no solved physics.",
+    "files": [
+      "cases/baseline_seed7/channel_view.png",
+      "cases/baseline_seed7/channel_view.pdf",
+      "cases/baseline_seed7/channel_view.svg"
+    ]
+  },
+  {
+    "title": "Parcel velocities",
+    "caption": "baseline_seed7: PINN velocity outputs. Kinematic consistency with position derivatives is audited separately.",
+    "files": [
+      "cases/baseline_seed7/velocities.png",
+      "cases/baseline_seed7/velocities.pdf",
+      "cases/baseline_seed7/velocities.svg"
+    ]
+  },
+  {
+    "title": "Conservation diagnostics",
+    "caption": "baseline_seed7: driven channel includes wall viscous and pressure tractions, body force and particle gravity. Total momentum and energy need not be constant. Quadrature errors enter global balances. Contact cases omit unsupported global balances.",
+    "files": [
+      "cases/baseline_seed7/budgets.png",
+      "cases/baseline_seed7/budgets.pdf",
+      "cases/baseline_seed7/budgets.svg"
+    ]
+  },
+  {
+    "title": "Parcel transport",
+    "caption": "baseline_seed7: PINN positions, periodic wrapping in x. Marker sizes are illustrative, not physical radii.",
+    "files": [
+      "cases/baseline_seed7/transport.gif",
+      "cases/baseline_seed7/transport.mp4"
+    ]
+  },
+  {
+    "title": "Training history",
+    "caption": "high_loading_seed7: no smoothing or loss truncation beyond the positive logarithmic floor. Checkpoint uses minimum fixed-audit loss.",
+    "files": [
+      "cases/high_loading_seed7/training.png",
+      "cases/high_loading_seed7/training.pdf",
+      "cases/high_loading_seed7/training.svg"
+    ]
+  },
+  {
+    "title": "Flow fields",
+    "caption": "high_loading_seed7: direct PINN fields at t=1. Vorticity computed by plotting-grid differences. Uncertainty and residuals must be checked before quantitative interpretation.",
+    "files": [
+      "cases/high_loading_seed7/fields.png",
+      "cases/high_loading_seed7/fields.pdf",
+      "cases/high_loading_seed7/fields.svg"
+    ]
+  },
+  {
+    "title": "Channel profile",
+    "caption": "high_loading_seed7: final profile at channel midpoint. The dashed initial unladen profile is not a two-way validation target.",
+    "files": [
+      "cases/high_loading_seed7/profile.png",
+      "cases/high_loading_seed7/profile.pdf",
+      "cases/high_loading_seed7/profile.svg"
+    ]
+  },
+  {
+    "title": "Speed surface",
+    "caption": "high_loading_seed7: height encodes speed over the solved x\u2013y plane; the vertical axis is a field value, not a third spatial coordinate.",
+    "files": [
+      "cases/high_loading_seed7/speed_surface.png",
+      "cases/high_loading_seed7/speed_surface.pdf",
+      "cases/high_loading_seed7/speed_surface.svg"
+    ]
+  },
+  {
+    "title": "Transport snapshots",
+    "caption": "high_loading_seed7: four direct evaluations of PINN fluid and parcel states. Marker radii are illustrative. Colors use one common speed scale.",
+    "files": [
+      "cases/high_loading_seed7/snapshots.png",
+      "cases/high_loading_seed7/snapshots.pdf",
+      "cases/high_loading_seed7/snapshots.svg"
+    ]
+  },
+  {
+    "title": "Parcel paths",
+    "caption": "high_loading_seed7: direct PINN parcel trajectories; open markers denote initial states and filled markers denote final states. No boundary clipping is applied.",
+    "files": [
+      "cases/high_loading_seed7/paths.png",
+      "cases/high_loading_seed7/paths.pdf",
+      "cases/high_loading_seed7/paths.svg"
+    ]
+  },
+  {
+    "title": "Channel view",
+    "caption": "high_loading_seed7: extruded illustration of a 2D solution; every particle has z=0. Display depth contains no solved physics.",
+    "files": [
+      "cases/high_loading_seed7/channel_view.png",
+      "cases/high_loading_seed7/channel_view.pdf",
+      "cases/high_loading_seed7/channel_view.svg"
+    ]
+  },
+  {
+    "title": "Parcel velocities",
+    "caption": "high_loading_seed7: PINN velocity outputs. Kinematic consistency with position derivatives is audited separately.",
+    "files": [
+      "cases/high_loading_seed7/velocities.png",
+      "cases/high_loading_seed7/velocities.pdf",
+      "cases/high_loading_seed7/velocities.svg"
+    ]
+  },
+  {
+    "title": "Conservation diagnostics",
+    "caption": "high_loading_seed7: driven channel includes wall viscous and pressure tractions, body force and particle gravity. Total momentum and energy need not be constant. Quadrature errors enter global balances. Contact cases omit unsupported global balances.",
+    "files": [
+      "cases/high_loading_seed7/budgets.png",
+      "cases/high_loading_seed7/budgets.pdf",
+      "cases/high_loading_seed7/budgets.svg"
+    ]
+  },
+  {
+    "title": "Parcel transport",
+    "caption": "high_loading_seed7: PINN positions, periodic wrapping in x. Marker sizes are illustrative, not physical radii.",
+    "files": [
+      "cases/high_loading_seed7/transport.gif",
+      "cases/high_loading_seed7/transport.mp4"
+    ]
+  },
+  {
+    "title": "Training history",
+    "caption": "high_inertia_seed7: no smoothing or loss truncation beyond the positive logarithmic floor. Checkpoint uses minimum fixed-audit loss.",
+    "files": [
+      "cases/high_inertia_seed7/training.png",
+      "cases/high_inertia_seed7/training.pdf",
+      "cases/high_inertia_seed7/training.svg"
+    ]
+  },
+  {
+    "title": "Flow fields",
+    "caption": "high_inertia_seed7: direct PINN fields at t=1. Vorticity computed by plotting-grid differences. Uncertainty and residuals must be checked before quantitative interpretation.",
+    "files": [
+      "cases/high_inertia_seed7/fields.png",
+      "cases/high_inertia_seed7/fields.pdf",
+      "cases/high_inertia_seed7/fields.svg"
+    ]
+  },
+  {
+    "title": "Channel profile",
+    "caption": "high_inertia_seed7: final profile at channel midpoint. The dashed initial unladen profile is not a two-way validation target.",
+    "files": [
+      "cases/high_inertia_seed7/profile.png",
+      "cases/high_inertia_seed7/profile.pdf",
+      "cases/high_inertia_seed7/profile.svg"
+    ]
+  },
+  {
+    "title": "Speed surface",
+    "caption": "high_inertia_seed7: height encodes speed over the solved x\u2013y plane; the vertical axis is a field value, not a third spatial coordinate.",
+    "files": [
+      "cases/high_inertia_seed7/speed_surface.png",
+      "cases/high_inertia_seed7/speed_surface.pdf",
+      "cases/high_inertia_seed7/speed_surface.svg"
+    ]
+  },
+  {
+    "title": "Transport snapshots",
+    "caption": "high_inertia_seed7: four direct evaluations of PINN fluid and parcel states. Marker radii are illustrative. Colors use one common speed scale.",
+    "files": [
+      "cases/high_inertia_seed7/snapshots.png",
+      "cases/high_inertia_seed7/snapshots.pdf",
+      "cases/high_inertia_seed7/snapshots.svg"
+    ]
+  },
+  {
+    "title": "Parcel paths",
+    "caption": "high_inertia_seed7: direct PINN parcel trajectories; open markers denote initial states and filled markers denote final states. No boundary clipping is applied.",
+    "files": [
+      "cases/high_inertia_seed7/paths.png",
+      "cases/high_inertia_seed7/paths.pdf",
+      "cases/high_inertia_seed7/paths.svg"
+    ]
+  },
+  {
+    "title": "Channel view",
+    "caption": "high_inertia_seed7: extruded illustration of a 2D solution; every particle has z=0. Display depth contains no solved physics.",
+    "files": [
+      "cases/high_inertia_seed7/channel_view.png",
+      "cases/high_inertia_seed7/channel_view.pdf",
+      "cases/high_inertia_seed7/channel_view.svg"
+    ]
+  },
+  {
+    "title": "Parcel velocities",
+    "caption": "high_inertia_seed7: PINN velocity outputs. Kinematic consistency with position derivatives is audited separately.",
+    "files": [
+      "cases/high_inertia_seed7/velocities.png",
+      "cases/high_inertia_seed7/velocities.pdf",
+      "cases/high_inertia_seed7/velocities.svg"
+    ]
+  },
+  {
+    "title": "Conservation diagnostics",
+    "caption": "high_inertia_seed7: driven channel includes wall viscous and pressure tractions, body force and particle gravity. Total momentum and energy need not be constant. Quadrature errors enter global balances. Contact cases omit unsupported global balances.",
+    "files": [
+      "cases/high_inertia_seed7/budgets.png",
+      "cases/high_inertia_seed7/budgets.pdf",
+      "cases/high_inertia_seed7/budgets.svg"
+    ]
+  },
+  {
+    "title": "Parcel transport",
+    "caption": "high_inertia_seed7: PINN positions, periodic wrapping in x. Marker sizes are illustrative, not physical radii.",
+    "files": [
+      "cases/high_inertia_seed7/transport.gif",
+      "cases/high_inertia_seed7/transport.mp4"
+    ]
+  },
+  {
+    "title": "Parameter effects",
+    "caption": "Parcel-mean velocities by case. Multiple-seed shading, when present, is \u00b11 sample standard deviation; it is not a confidence bound or a discretization error estimate.",
+    "files": [
+      "figures/parameter_effects.png",
+      "figures/parameter_effects.pdf",
+      "figures/parameter_effects.svg"
+    ]
+  }
+]

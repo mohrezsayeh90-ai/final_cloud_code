@@ -1,0 +1,21 @@
+{
+  "reference_samples": 501,
+  "compared_samples": 501,
+  "sample_coverage_fraction": 1.0,
+  "independent_span_coverage_fraction": 1.0,
+  "comparison_start": 0.0,
+  "comparison_end": 5.0,
+  "RMSE": 0.020000000000000007,
+  "MAE": 0.020000000000000007,
+  "max_absolute_error": 0.020000000000000018,
+  "bias": 0.020000000000000007,
+  "relative_L2": 0.023865861017812358,
+  "normalized_RMSE": 0.020000000000000007,
+  "normalization_scale": 1.0,
+  "all_points_within_tolerance": null,
+  "tolerance_scope": null,
+  "reference": "data/analytic_stokes.csv",
+  "simulation": "examples/synthetic_demo_simulation.csv",
+  "independent_variable": "time_over_tau",
+  "dependent_variable": "v_over_vt"
+}

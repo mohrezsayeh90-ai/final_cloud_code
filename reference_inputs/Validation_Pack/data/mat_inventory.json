@@ -1,0 +1,1418 @@
+[
+  {
+    "file": "data/sphere_original/G144/cp_on_great_circles_G144.mat",
+    "source_id": "P05",
+    "variables": {
+      "time": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "cp1": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "cp2": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "theta1": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "theta2": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/sphere_original/G144/relvel_deficit_axis_G144.mat",
+    "source_id": "P05",
+    "variables": {
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "u_rpar_upstream": {
+        "shape": [
+          54
+        ],
+        "dtype": "float64"
+      },
+      "u_rpar_downstream": {
+        "shape": [
+          342
+        ],
+        "dtype": "float64"
+      },
+      "x_ppar_upstream": {
+        "shape": [
+          54
+        ],
+        "dtype": "float64"
+      },
+      "x_ppar_downstream": {
+        "shape": [
+          342
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/sphere_original/G144/cross_profiles_along_xpperp_G144.mat",
+    "source_id": "P05",
+    "variables": {
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "downstream_distance_vec": {
+        "shape": [
+          4
+        ],
+        "dtype": "int16"
+      },
+      "xpperp": {
+        "shape": [
+          180
+        ],
+        "dtype": "float64"
+      },
+      "upar_along_xpperp": {
+        "shape": [
+          180,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "uperp_along_xpperp": {
+        "shape": [
+          180,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "uHzperp_along_xpperp": {
+        "shape": [
+          180,
+          4
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/sphere_original/G144/cross_profiles_along_xpHzperp_G144.mat",
+    "source_id": "P05",
+    "variables": {
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "downstream_distance_vec": {
+        "shape": [
+          4
+        ],
+        "dtype": "int16"
+      },
+      "xpHzperp": {
+        "shape": [
+          216
+        ],
+        "dtype": "float64"
+      },
+      "upar_along_xpHzperp": {
+        "shape": [
+          216,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "uHzperp_along_xpHzperp": {
+        "shape": [
+          216,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "uperp_along_xpHzperp": {
+        "shape": [
+          216,
+          4
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/sphere_original/G250/pdf_particle_vel_G250.mat",
+    "source_id": "P05",
+    "variables": {
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "bins_uv": {
+        "shape": [
+          50
+        ],
+        "dtype": "float64"
+      },
+      "bins_uh": {
+        "shape": [
+          50
+        ],
+        "dtype": "float64"
+      },
+      "bins_omv": {
+        "shape": [
+          50
+        ],
+        "dtype": "float64"
+      },
+      "bins_omh": {
+        "shape": [
+          50
+        ],
+        "dtype": "float64"
+      },
+      "pdf_uv": {
+        "shape": [
+          50
+        ],
+        "dtype": "float64"
+      },
+      "pdf_uh": {
+        "shape": [
+          50
+        ],
+        "dtype": "float64"
+      },
+      "pdf_omv": {
+        "shape": [
+          50
+        ],
+        "dtype": "float64"
+      },
+      "pdf_omh": {
+        "shape": [
+          50
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/sphere_original/G250/autocorr_particle_vel_G250.mat",
+    "source_id": "P05",
+    "variables": {
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "corr_uv": {
+        "shape": [
+          667
+        ],
+        "dtype": "float64"
+      },
+      "inc_uv": {
+        "shape": [
+          667
+        ],
+        "dtype": "float64"
+      },
+      "corr_uh": {
+        "shape": [
+          667
+        ],
+        "dtype": "float64"
+      },
+      "inc_uh": {
+        "shape": [
+          667
+        ],
+        "dtype": "float64"
+      },
+      "corr_omv": {
+        "shape": [
+          667
+        ],
+        "dtype": "float64"
+      },
+      "inc_omv": {
+        "shape": [
+          667
+        ],
+        "dtype": "float64"
+      },
+      "corr_omh": {
+        "shape": [
+          667
+        ],
+        "dtype": "float64"
+      },
+      "inc_omh": {
+        "shape": [
+          667
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/sphere_original/G190/cp_on_great_circles_G190_t3.mat",
+    "source_id": "P05",
+    "variables": {
+      "time_snapshot": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "cp1": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "cp2": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "theta1": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "theta2": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/sphere_original/G190/cp_on_great_circles_G190_t2.mat",
+    "source_id": "P05",
+    "variables": {
+      "time_snapshot": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "cp1": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "cp2": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "theta1": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "theta2": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/sphere_original/G190/cp_on_great_circles_G190_t4.mat",
+    "source_id": "P05",
+    "variables": {
+      "time_snapshot": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "cp1": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "cp2": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "theta1": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "theta2": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/sphere_original/G190/cp_on_great_circles_G190_t5.mat",
+    "source_id": "P05",
+    "variables": {
+      "time_snapshot": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "cp1": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "cp2": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "theta1": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "theta2": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/sphere_original/G190/cp_on_great_circles_G190_t1.mat",
+    "source_id": "P05",
+    "variables": {
+      "time_snapshot": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "cp1": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "cp2": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "theta1": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "theta2": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/sphere_original/G190/partvel_time_evol_G190.mat",
+    "source_id": "P05",
+    "variables": {
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "uv": {
+        "shape": [
+          5799
+        ],
+        "dtype": "float64"
+      },
+      "uh": {
+        "shape": [
+          5799
+        ],
+        "dtype": "float64"
+      },
+      "omh": {
+        "shape": [
+          5799
+        ],
+        "dtype": "float64"
+      },
+      "time_evol": {
+        "shape": [
+          5799
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/sphere_original/G178/cp_on_great_circles_G178.mat",
+    "source_id": "P05",
+    "variables": {
+      "time": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "cp1": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "cp2": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "theta1": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      },
+      "theta2": {
+        "shape": [
+          201
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/sphere_original/G178/cross_profiles_along_xpHzperp_G178.mat",
+    "source_id": "P05",
+    "variables": {
+      "galileo": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "downstream_distance_vec": {
+        "shape": [
+          4
+        ],
+        "dtype": "int16"
+      },
+      "xpHzperp": {
+        "shape": [
+          216
+        ],
+        "dtype": "float64"
+      },
+      "upar_along_xpHzperp": {
+        "shape": [
+          216,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "uHzperp_along_xpHzperp": {
+        "shape": [
+          216,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "uperp_along_xpHzperp": {
+        "shape": [
+          216,
+          4
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/sphere_original/G178/relvel_deficit_axis_G178.mat",
+    "source_id": "P05",
+    "variables": {
+      "galileo": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "u_rpar_upstream": {
+        "shape": [
+          54
+        ],
+        "dtype": "float64"
+      },
+      "u_rpar_downstream": {
+        "shape": [
+          342
+        ],
+        "dtype": "float64"
+      },
+      "x_ppar_upstream": {
+        "shape": [
+          54
+        ],
+        "dtype": "float64"
+      },
+      "x_ppar_downstream": {
+        "shape": [
+          342
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/sphere_original/G178/cross_profiles_along_xpperp_G178.mat",
+    "source_id": "P05",
+    "variables": {
+      "galileo": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "downstream_distance_vec": {
+        "shape": [
+          4
+        ],
+        "dtype": "int16"
+      },
+      "xpperp": {
+        "shape": [
+          180
+        ],
+        "dtype": "float64"
+      },
+      "upar_along_xpperp": {
+        "shape": [
+          180,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "uperp_along_xpperp": {
+        "shape": [
+          180,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "uHzperp_along_xpperp": {
+        "shape": [
+          180,
+          4
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/spheroid_original/B11-M100/cross_profiles_along_xpperp_chi11_G115.mat",
+    "source_id": "P06",
+    "variables": {
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "downstream_distance_vec": {
+        "shape": [
+          4
+        ],
+        "dtype": "int16"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "uHzperp_along_xpperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "upar_along_xpperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "uperp_along_xpperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "xpperp": {
+        "shape": [
+          334
+        ],
+        "dtype": "float64"
+      },
+      "chi": {
+        "shape": [],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/spheroid_original/B11-M100/upar_along_xpa_chi11_G115.mat",
+    "source_id": "P06",
+    "variables": {
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "upar_along_xppar": {
+        "shape": [
+          1001
+        ],
+        "dtype": "float64"
+      },
+      "xppar": {
+        "shape": [
+          1001
+        ],
+        "dtype": "float64"
+      },
+      "chi": {
+        "shape": [],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/spheroid_original/B11-M100/cross_profiles_along_xpHzperp_chi11_G115.mat",
+    "source_id": "P06",
+    "variables": {
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "downstream_distance_vec": {
+        "shape": [
+          4
+        ],
+        "dtype": "int16"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "uHzperp_along_xpHzperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "upar_along_xpHzperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "uperp_along_xpHzperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "xpHzperp": {
+        "shape": [
+          334
+        ],
+        "dtype": "float64"
+      },
+      "chi": {
+        "shape": [],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/spheroid_original/D11-M100/autocorr_particle_vel_chi11_Ga200.mat",
+    "source_id": "P06",
+    "variables": {
+      "corr_omh": {
+        "shape": [
+          18467
+        ],
+        "dtype": "float64"
+      },
+      "corr_omv": {
+        "shape": [
+          18467
+        ],
+        "dtype": "float64"
+      },
+      "corr_uh": {
+        "shape": [
+          18467
+        ],
+        "dtype": "float64"
+      },
+      "corr_uv": {
+        "shape": [
+          18467
+        ],
+        "dtype": "float64"
+      },
+      "tau": {
+        "shape": [
+          18467
+        ],
+        "dtype": "float64"
+      },
+      "chi": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      }
+    }
+  },
+  {
+    "file": "data/spheroid_original/D11-M100/pdf_particle_vel_chi11_Ga200.mat",
+    "source_id": "P06",
+    "variables": {
+      "bins_omh": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      },
+      "bins_omv": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      },
+      "bins_uh": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      },
+      "bins_uv": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      },
+      "chi": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "pdf_omh": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      },
+      "pdf_omv": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      },
+      "pdf_uh": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      },
+      "pdf_uv": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/spheroid_original/A11-M100/cross_profiles_along_xpHzperp_chi11_G100.mat",
+    "source_id": "P06",
+    "variables": {
+      "chi": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "downstream_distance_vec": {
+        "shape": [
+          4
+        ],
+        "dtype": "int16"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "uHzperp_along_xpHzperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "upar_along_xpHzperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "uperp_along_xpHzperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "xpHzperp": {
+        "shape": [
+          334
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/spheroid_original/A11-M100/upar_along_xpa_chi11_G100.mat",
+    "source_id": "P06",
+    "variables": {
+      "chi": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "upar_along_xppar": {
+        "shape": [
+          1001
+        ],
+        "dtype": "float64"
+      },
+      "xppar": {
+        "shape": [
+          1001
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/spheroid_original/A11-M100/cp_on_ellipse_chi11_Ga100.mat",
+    "source_id": "P06",
+    "variables": {
+      "chi": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "cp": {
+        "shape": [
+          2002
+        ],
+        "dtype": "float64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "th": {
+        "shape": [
+          2002
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/spheroid_original/A11-M100/cross_profiles_along_xpperp_chi11_G100.mat",
+    "source_id": "P06",
+    "variables": {
+      "chi": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "downstream_distance_vec": {
+        "shape": [
+          4
+        ],
+        "dtype": "int16"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "uHzperp_along_xpperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "upar_along_xpperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "uperp_along_xpperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "xpperp": {
+        "shape": [
+          334
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/spheroid_original/D15-M500/pdf_particle_vel_chi15_Ga220.mat",
+    "source_id": "P06",
+    "variables": {
+      "bins_omh": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      },
+      "bins_omv": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      },
+      "bins_uh": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      },
+      "bins_uv": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      },
+      "chi": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "pdf_omh": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      },
+      "pdf_omv": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      },
+      "pdf_uh": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      },
+      "pdf_uv": {
+        "shape": [
+          59
+        ],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/spheroid_original/D15-M500/autocorr_particle_vel_chi15_Ga220.mat",
+    "source_id": "P06",
+    "variables": {
+      "corr_omh": {
+        "shape": [
+          25300
+        ],
+        "dtype": "float64"
+      },
+      "corr_omv": {
+        "shape": [
+          25300
+        ],
+        "dtype": "float64"
+      },
+      "corr_uh": {
+        "shape": [
+          25300
+        ],
+        "dtype": "float64"
+      },
+      "corr_uv": {
+        "shape": [
+          25300
+        ],
+        "dtype": "float64"
+      },
+      "tau": {
+        "shape": [
+          25300
+        ],
+        "dtype": "float64"
+      },
+      "chi": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      }
+    }
+  },
+  {
+    "file": "data/spheroid_original/B15-M075/cross_profiles_along_xpperp_chi15_G110.mat",
+    "source_id": "P06",
+    "variables": {
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "downstream_distance_vec": {
+        "shape": [
+          4
+        ],
+        "dtype": "int16"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "uHzperp_along_xpperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "upar_along_xpperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "uperp_along_xpperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "xpperp": {
+        "shape": [
+          334
+        ],
+        "dtype": "float64"
+      },
+      "chi": {
+        "shape": [],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/spheroid_original/B15-M075/cross_profiles_along_xpHzperp_chi15_G110.mat",
+    "source_id": "P06",
+    "variables": {
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "downstream_distance_vec": {
+        "shape": [
+          4
+        ],
+        "dtype": "int16"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "uHzperp_along_xpHzperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "upar_along_xpHzperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "uperp_along_xpHzperp": {
+        "shape": [
+          334,
+          4
+        ],
+        "dtype": "float64"
+      },
+      "xpHzperp": {
+        "shape": [
+          334
+        ],
+        "dtype": "float64"
+      },
+      "chi": {
+        "shape": [],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/spheroid_original/B15-M075/upar_along_xpa_chi15_G110.mat",
+    "source_id": "P06",
+    "variables": {
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "upar_along_xppar": {
+        "shape": [
+          1001
+        ],
+        "dtype": "float64"
+      },
+      "xppar": {
+        "shape": [
+          1001
+        ],
+        "dtype": "float64"
+      },
+      "chi": {
+        "shape": [],
+        "dtype": "float64"
+      }
+    }
+  },
+  {
+    "file": "data/spheroid_original/C15-M075/partkin_time_evol_chi15_Ga150.mat",
+    "source_id": "P06",
+    "variables": {
+      "omHzp": {
+        "shape": [
+          2323
+        ],
+        "dtype": "float64"
+      },
+      "t": {
+        "shape": [
+          2323
+        ],
+        "dtype": "float64"
+      },
+      "upH": {
+        "shape": [
+          2323
+        ],
+        "dtype": "float64"
+      },
+      "upV": {
+        "shape": [
+          2323
+        ],
+        "dtype": "float64"
+      },
+      "chi": {
+        "shape": [],
+        "dtype": "float64"
+      },
+      "galileo": {
+        "shape": [],
+        "dtype": "int64"
+      },
+      "domain_diameter_D_Omega": {
+        "shape": [],
+        "dtype": "float64"
+      }
+    }
+  }
+]

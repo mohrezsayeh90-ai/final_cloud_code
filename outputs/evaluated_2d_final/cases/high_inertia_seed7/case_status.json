@@ -1,0 +1,33 @@
+{
+  "case": "high_inertia",
+  "seed": 7,
+  "directory": "cases/high_inertia_seed7",
+  "residuals": {
+    "momentum": 0.04074007051322668,
+    "continuity": 0.005733002054705726,
+    "position": 0.0006812950374503231,
+    "particle": 0.001654749982082115,
+    "confinement": 0.0
+  },
+  "max_slip_re": 0.6420314771301412,
+  "max_volume_fraction": 0.00037661733292754365,
+  "quality_criteria_met": false,
+  "training": {
+    "termination": "budget_exhausted",
+    "best_step": 1400,
+    "best_audit_loss": 0.0013559232450046491,
+    "completed_steps": 1400,
+    "checkpoint_kind": "trained",
+    "seconds": 96.40613383499976
+  },
+  "physical": {
+    "diameter": 0.023237900077244498,
+    "physical_mass": 0.006570361455077247,
+    "multiplicity": 3.8049657040833353,
+    "represented_mass": 0.025000000000000005,
+    "stokes": 0.6,
+    "loading": 0.05000000000000001
+  },
+  "max_momentum_balance_residual": 0.028039049667119204,
+  "max_energy_balance_residual": 0.0375156423414702
+}

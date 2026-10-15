@@ -1,0 +1,33 @@
+{
+  "case": "baseline",
+  "seed": 7,
+  "directory": "cases/baseline_seed7",
+  "residuals": {
+    "momentum": 0.24994312824984463,
+    "continuity": 0.024133503597868273,
+    "position": 0.010270614487413858,
+    "particle": 0.03669674090407869,
+    "confinement": 0.0
+  },
+  "max_slip_re": 0.37067704614930014,
+  "max_volume_fraction": 0.0003746226526823111,
+  "quality_criteria_met": false,
+  "training": {
+    "termination": "budget_exhausted",
+    "best_step": 479,
+    "best_audit_loss": 0.09726276810924675,
+    "completed_steps": 480,
+    "checkpoint_kind": "trained",
+    "seconds": 47.96036046800009
+  },
+  "physical": {
+    "diameter": 0.01341640786499874,
+    "physical_mass": 0.0012644666515873309,
+    "multiplicity": 19.771181761588252,
+    "represented_mass": 0.025000000000000005,
+    "stokes": 0.2,
+    "loading": 0.05000000000000001
+  },
+  "max_momentum_balance_residual": 0.625223844995167,
+  "max_energy_balance_residual": 0.8024055437808686
+}

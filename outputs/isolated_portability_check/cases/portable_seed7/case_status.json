@@ -1,0 +1,33 @@
+{
+  "case": "portable",
+  "seed": 7,
+  "directory": "cases/portable_seed7",
+  "residuals": {
+    "momentum": 0.5698137134418236,
+    "continuity": 0.004941856017717595,
+    "position": 0.012754128508933154,
+    "particle": 4.309946954052664,
+    "confinement": 0.0
+  },
+  "max_slip_re": 0.34241803642323293,
+  "max_volume_fraction": 0.0005625281298312304,
+  "quality_criteria_met": false,
+  "training": {
+    "termination": "training_error: FloatingPointError: nonfinite loss at step 1",
+    "best_step": 0,
+    "best_audit_loss": 18.800845717799316,
+    "completed_steps": 0,
+    "checkpoint_kind": "initialized",
+    "seconds": 0.04098897099993337
+  },
+  "physical": {
+    "diameter": 0.01341640786499874,
+    "physical_mass": 0.0012644666515873309,
+    "multiplicity": 59.31354528476476,
+    "represented_mass": 0.07500000000000001,
+    "stokes": 0.2,
+    "loading": 0.05000000000000001
+  },
+  "max_momentum_balance_residual": 0.06315796836729891,
+  "max_energy_balance_residual": 1.0826321787994742
+}
