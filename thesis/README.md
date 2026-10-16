@@ -8,13 +8,13 @@ The study order is: the baseline particle problem; Gaussian parcels in a straigh
 
 - `Particle_Transport_Thesis.pdf`: compiled manuscript.
 - `thesis.tex`, `metadata.tex`, `references.tex`, `chapters/`: editable LaTeX.
-- `figures/`: nineteen core figures and eight additional figures in Appendix C, in PDF, SVG and PNG, including five plots of the computed Gaussian parcel response.
+- `figures/`: nineteen core figures and eight additional figures in Appendix B, in PDF, SVG and PNG, including five plots of the computed Gaussian parcel response.
 - `assets/`: the English university seal and its upstream license.
 - `assets/gaussian_coupled_architecture.png`: the coupled neural architecture in Figure 5.1; PDF and SVG exports embed this artwork. Its provenance is recorded in `generated/coupled_architecture_provenance.json`. Solid paths show the evaluated two-way model; a dashed branch shows the optional unit-multiplicity contact extension. Algorithm 5.1 describes the shared residual computation and joint training sequence. Numerical result plots continue to use the archived arrays.
 - `template/SHARIF_STYLE_SOURCES.md`, `generated/formatting_provenance.json`: inspected template sources, styling choices and seal provenance.
 - `evidence/`: unmodified copies of selected numerical records and relevant method definitions; the original manifest is preserved, and `appendix_manifest.json` registers the supplementary inputs.
 - `generated/`: numerical macros, tables, figure provenance and numerical audit.
-- `generated/citation_plan.json`: the 36 contextual citation placements and metadata provenance for the earlier 25-reference addition. The manuscript now has 41 references, including the Couette comparison source in Appendix C.
+- `generated/citation_plan.json`: the 36 contextual citation placements and metadata provenance for the earlier 25-reference addition. The manuscript now has 41 references, including the Couette comparison source in Appendix B.
 - `generated/citation_order.json`: numerical references ordered by first citation, checked against the compiled LaTeX record.
 - `generated/appendix_validation.json`, `generated/appendix_revision_scope.json`: numerical checks for all eight supplementary figures and hashes confirming the original chapter sources are preserved.
 - `build_thesis.py`: build and validation command.

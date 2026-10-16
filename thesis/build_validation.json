@@ -1,6 +1,6 @@
 {
   "compiler_exit_code": 0,
-  "pages": 80,
+  "pages": 77,
   "figures": 27,
   "algorithms": 1,
   "references": 41,
@@ -13,7 +13,7 @@
   "reference_order": "verified against first citations in compiled auxiliary file",
   "first_reference_number": 1,
   "additional_appendix_figures": 8,
-  "original_chapter_sources": "byte-for-byte preserved",
+  "original_chapter_sources": "preserved except removal of the reference to the deleted appendix",
   "citation_plan_placements": 36,
   "added_references": 25,
   "measured_errors_and_acceptance_outcomes": "preserved",
@@ -27,5 +27,5 @@
   "diagnostic_parcel_figures": 5,
   "parcel_postprocessing_checks": "passed; complete coupled screen remains unmet",
   "numerical_result_files_modified": false,
-  "sha256": "974f9ee25a391f18378731ca7763d355a8ab1c8c26ae99a4b7a1605f3da10f0d"
+  "sha256": "d10099d705c46c2981d60ad96384001e4787f5dd2622edee0bc45ea5fd761247"
 }

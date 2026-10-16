@@ -114,8 +114,13 @@ def main():
     scope=json.loads((ROOT/'generated/appendix_revision_scope.json').read_text())
     for filename,expected in scope['preserved_sources_sha256'].items():
         assert hashlib.sha256((ROOT/filename).read_bytes()).hexdigest()==expected,filename
-    main_source=(ROOT/'thesis.tex').read_text().replace('\\input{chapters/appendix_additional_results}\n','')
-    assert hashlib.sha256(main_source.encode()).hexdigest()==scope['original_main_source_sha256']
+    for filename,expected in scope.get('authorized_source_edits_sha256',{}).items():
+        assert hashlib.sha256((ROOT/filename).read_bytes()).hexdigest()==expected,filename
+    main_source=(ROOT/'thesis.tex').read_bytes()
+    assert hashlib.sha256(main_source).hexdigest()==scope['expected_main_source_sha256']
+    assert 'Computational and Reproducibility Record' not in text
+    toc=(ROOT/'build/thesis.toc').read_text()
+    assert r'\numberline {B}Additional Preliminary Results and Validation' in toc
     plan=json.loads((ROOT/'generated/citation_plan.json').read_text())
     assert len(refs)==plan['total_reference_count']+len(appendix['added_reference_keys'])
     assert set(appendix['added_reference_keys'])<=refs
@@ -136,7 +141,7 @@ def main():
         reference_order='verified against first citations in compiled auxiliary file',
         first_reference_number=citation_numbers[first_citations[0]],
         additional_appendix_figures=len(appendix['figure_names']),
-        original_chapter_sources='byte-for-byte preserved',
+        original_chapter_sources='preserved except removal of the reference to the deleted appendix',
         citation_plan_placements=36,added_references=25,
         measured_errors_and_acceptance_outcomes='preserved',
         typography='English Sharif-style layout; Times family; black text and headings',

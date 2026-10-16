@@ -1,26 +1,25 @@
 {
-  "baseline_commit": "a22e0d5805bfae81f386aff18443598765f7a625",
+  "baseline_commit": "113110db7e2ca14142e93b3feb81521bc6fb72a2",
   "permitted_document_changes": [
-    "Bibliography numbering by first citation",
-    "Appendix C and its supporting figure inputs"
+    "Remove Computational and Reproducibility Record appendix and its contents entry",
+    "Renumber unchanged additional results appendix from C to B"
   ],
   "preserved_sources_sha256": {
     "chapters/01_introduction.tex": "9ff91684bdd93b0d7c893caa93e3f639a1b7e73a0ab5c63c50691cf409924a85",
     "chapters/02_literature.tex": "c07087831d97745145eff153f5e89075a316a16c051175a316da5aada4903d02",
     "chapters/03_framework.tex": "d121f437e460097281e8c3cd090797000e2f7f20a55847924c326b70bbda82ff",
-    "chapters/04_basic.tex": "23a5c759dd00e06e4fc2d384aeb8a2c3f7906a473ee7842d1c044bcfe1328377",
     "chapters/05_gaussian.tex": "f17bc2119375f3efa47890c5985ed7c434662860f2676b93c33b0f95056d6fff",
     "chapters/06_constriction.tex": "8aa3895f0a91089b387d617ce7c9ee77c137b784368115c75978135d19aeec75",
     "chapters/07_discussion.tex": "680d64db4cd9e0e1df04aad41d76bdcdb76b0c97528fee006725f5acdf829ee8",
     "chapters/08_conclusions.tex": "86318cb74d06b6e07d0d55c418d10b2d8110663f46db6732c11da6445b14306b",
     "chapters/appendix_derivations.tex": "2f6e92a0c2c5de1fbb247e511d4e00a07cd79da754bc897270ab8f6520df7e3d",
-    "chapters/appendix_reproducibility.tex": "1638e1faace6dbcdbe8aa09dce6b42a8928be70d96211e1d309c911971084755",
     "metadata.tex": "3edf3ec31255b9130025dde22f4873ad680e9aa623ae290e4ab4487c3b92b435",
     "generated/values.tex": "c1e96198db60803144210cd7ab0a6c451253625f4abb1a8198223f4977928556",
-    "generated/tables.tex": "152a28a4aa5c00db9b359cc819a5f37b8be4eefb51631f3dae313ddda6b22fa9"
+    "generated/tables.tex": "152a28a4aa5c00db9b359cc819a5f37b8be4eefb51631f3dae313ddda6b22fa9",
+    "chapters/appendix_additional_results.tex": "c31a061245b24edd24df6068064924ed1888f41c5ce6c4d61eae5ad54f46dc2d"
   },
-  "original_main_source_sha256": "569c2e419522766abde154b5a218eaa17ae396d9be61fd7d36b32e7272032dd8",
-  "main_source_change": "Only one input line for the additional final appendix",
+  "original_main_source_sha256": "093ae70f92c9a5895a06f527f08d378815d4ed45ea2a9a92b3dbac0a4c655630",
+  "main_source_change": "Only removal of appendix_reproducibility input line",
   "core_figure_files_sha256": {
     "figures/17_gaussian_clouds.pdf": "51e84404a7db8e491bde02975b16951e2da20ffb76b8735a44ba1a38e91e68d4",
     "figures/08_gaussian_architecture.pdf": "c7c6595fed1dafbddf937c53729ebfec387ecfbe39cc2edf5a44cf65a971733a",
@@ -79,5 +78,11 @@
     "figures/12_kernel_verification.pdf": "dd65273c5ca561d2334cf943eaa6a49b23b146ec2f7e0f3cc64700bea5b7ad41",
     "figures/07_flux.svg": "9cd98e666f5634216b8344f7bcab4e306162a317121ae4ff11940fd073d84331",
     "figures/10_two_way_response.png": "bbbb309701a0c7a24135d961566792945eb9eab306d984e242b43582b30860cc"
-  }
+  },
+  "expected_main_source_sha256": "07265ed7080a64b269a2553e52d025f94f6042f7da993d26b1cd72bd65323f71",
+  "removed_appendix": "Computational and Reproducibility Record",
+  "authorized_source_edits_sha256": {
+    "chapters/04_basic.tex": "8e0d6b0b3faaf5818a49e5fae7556d922c2e9ba8ae30fd6b631a27c07a69453a"
+  },
+  "cross_reference_cleanup": "Only the sentence referring to app:reproducibility was removed; all other text in chapter 4 is unchanged."
 }
