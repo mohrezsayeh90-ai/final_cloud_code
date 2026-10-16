@@ -1,14 +1,9 @@
 {
   "baseline_commit": "757ed9a8998353f0189cf54f2b5d660782d2a764",
-  "numerical_values_and_screen_outcomes": [
+  "unchanged_numerical_tables": [
     {
       "file": "generated/values.tex",
       "sha256": "c1e96198db60803144210cd7ab0a6c451253625f4abb1a8198223f4977928556",
-      "matches_previous_version": true
-    },
-    {
-      "file": "generated/coupled_scope.tex",
-      "sha256": "c7801137cd6a17d791a2e03398e14d726702f2da9bb9cd670470e2aea35ce858",
       "matches_previous_version": true
     },
     {
@@ -17,7 +12,35 @@
       "matches_previous_version": true
     }
   ],
+  "coupled_table_presentation": "Binary verdict labels replaced by momentum RMS / original reference criterion; measured residual columns preserved.",
+  "coupled_table_ratios_verified": [
+    {
+      "case": "low_inertia",
+      "momentum_rms": 0.38542093538478867,
+      "reference_criterion": 0.03,
+      "momentum_to_criterion_ratio": 12.847364512826289
+    },
+    {
+      "case": "baseline",
+      "momentum_rms": 0.13722980811571592,
+      "reference_criterion": 0.03,
+      "momentum_to_criterion_ratio": 4.574326937190531
+    },
+    {
+      "case": "high_loading",
+      "momentum_rms": 0.352579473343454,
+      "reference_criterion": 0.03,
+      "momentum_to_criterion_ratio": 11.752649111448468
+    },
+    {
+      "case": "high_inertia",
+      "momentum_rms": 0.04074007051322668,
+      "reference_criterion": 0.03,
+      "momentum_to_criterion_ratio": 1.3580023504408893
+    }
+  ],
   "evidence_files_unchanged": 46,
   "new_simulation_results_claimed": false,
-  "acceptance_thresholds_changed": false
+  "acceptance_thresholds_changed": false,
+  "underlying_acceptance_outcomes_changed": false
 }

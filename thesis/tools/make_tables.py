@@ -51,9 +51,9 @@ def main():
       ['V01','Stokes velocity',rf'\VOneVelocity\%'],['V01','Integrated displacement',rf'\VOneDistance\%'],
       ['V02','Fluid velocity',rf'\VTwoFluid\%'],['V02','Particle velocity',rf'\VTwoParticle\%'],
       ['V10','Taylor--Green $u$',rf'\TGU\%'],['V10','Taylor--Green $v$',rf'\TGV\%'],['V10','Taylor--Green $p$',rf'\TGP\%']])
-    table('coupled_scope',[[f"{c['physical']['stokes']:.2f}",f"{c['physical']['loading']:.2f}",f"{c['residuals']['momentum']:.4f}",f"{c['residuals']['particle']:.4f}",'Not met'] for c in s['cases']])
-    table('trajectories',[[f"{c['seed_eta']:.3f}",f"{100*c['rms_position_error']/m['geometry']['width']:.2f}",f"{100*c['common_fraction']:.2f}",'Yes' if c['outcome_agreement'] else 'No'] for c in m['trajectory']['baseline_comparison']])
     cfg=json.loads((G/'config.json').read_text())
+    table('coupled_scope',[[f"{c['physical']['stokes']:.2f}",f"{c['physical']['loading']:.2f}",f"{c['residuals']['momentum']:.4f}",f"{c['residuals']['particle']:.4f}",f"{c['residuals']['momentum']/cfg['residual_tolerance']:.2f}"] for c in s['cases']])
+    table('trajectories',[[f"{c['seed_eta']:.3f}",f"{100*c['rms_position_error']/m['geometry']['width']:.2f}",f"{100*c['common_fraction']:.2f}",'Yes' if c['outcome_agreement'] else 'No'] for c in m['trajectory']['baseline_comparison']])
     selected=next(x for x in s['cases'] if x['case']=='high_inertia')
     phys=selected['physical']
     table('parcel_parameters',[

@@ -1,15 +1,13 @@
 {
   "status": "passed",
   "independent_extracted_bundle": true,
-  "all_figures_regenerated": true,
-  "all_numerical_checks_repeated": true,
-  "parcel_postprocessing_checks_repeated": true,
-  "data_availability_section_removed": true,
+  "source_compilation_repeated": true,
+  "evidence_hashes_verified": 46,
   "compiler_exit_code": 0,
-  "pages": 70,
+  "pages": 69,
   "figures": 19,
   "references": 40,
   "citation_plan_placements": 36,
-  "evidence_inputs": 46,
-  "measured_errors_and_acceptance_outcomes": "preserved"
+  "measured_errors_and_acceptance_outcomes": "preserved",
+  "binary_verdict_labels_replaced_by": "numerical comparisons to the original criteria"
 }
