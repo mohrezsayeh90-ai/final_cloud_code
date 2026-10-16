@@ -4,8 +4,9 @@
   "source_compilation_repeated": true,
   "evidence_hashes_verified": 46,
   "compiler_exit_code": 0,
-  "pages": 68,
+  "pages": 70,
   "figures": 19,
+  "algorithms": 1,
   "references": 40,
   "citation_plan_placements": 36,
   "measured_errors_and_acceptance_outcomes": "preserved",
@@ -13,5 +14,6 @@
   "submission_dates_absent": true,
   "pdf_timestamp_metadata_absent": true,
   "portable_pdf_sha256_matches": true,
-  "concept_illustration_asset_included": true
+  "coupled_architecture_asset_included": true,
+  "optional_contact_scope": "unit-multiplicity soft-sphere branch; reported Gaussian cases collision-free"
 }

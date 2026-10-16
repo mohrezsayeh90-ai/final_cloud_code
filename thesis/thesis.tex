@@ -17,6 +17,15 @@
 \usepackage{xurl,hyperref}
 \usepackage[nameinlink,noabbrev]{cleveref}
 \usepackage{bookmark,titlesec,placeins}
+\usepackage{float}
+\floatstyle{ruled}
+\newfloat{algorithm}{tbp}{loa}[chapter]
+\floatname{algorithm}{Algorithm}
+\crefname{algorithm}{algorithm}{algorithms}
+\Crefname{algorithm}{Algorithm}{Algorithms}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
 \input{metadata}
 \input{generated/values}
 \input{generated/tables}

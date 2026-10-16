@@ -1,7 +1,8 @@
 {
   "compiler_exit_code": 0,
-  "pages": 68,
+  "pages": 70,
   "figures": 19,
+  "algorithms": 1,
   "references": 40,
   "evidence_files_verified": 46,
   "recomputed_metrics": 13,
@@ -22,5 +23,5 @@
   "diagnostic_parcel_figures": 5,
   "parcel_postprocessing_checks": "passed; complete coupled screen remains unmet",
   "numerical_result_files_modified": false,
-  "sha256": "888033e9bb2ba9c69047e3acb8e0bcfd6367454dba5aa12c6354df20c222bf2d"
+  "sha256": "f42ce040d582acbef644280d9d25442996391f61682b63c7527fa165cc177bb5"
 }

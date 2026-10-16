@@ -1,0 +1,32 @@
+{
+  "figure": "08_gaussian_architecture",
+  "kind": "coupled neural architecture schematic",
+  "artwork_asset": "assets/gaussian_coupled_architecture.png",
+  "creation_method": "Image generation tool, with a second pass correcting planar vector outputs and shared optimizer wiring",
+  "image_sha256": "7ddd61b267298d5994b090e31a0502c477f701252bfd59be603594e6aa3a4bac",
+  "source_references": [
+    "evidence/gaussian/parcel_pinn/model.py",
+    "evidence/gaussian/parcel_pinn/physics.py",
+    "evidence/gaussian/parcel_pinn/config.py"
+  ],
+  "reported_configuration": {
+    "dimension": 2,
+    "hidden_layers_per_network": 3,
+    "units_per_hidden_layer": 32,
+    "activation": "tanh",
+    "parcel_count": 6,
+    "collision": "none"
+  },
+  "interpretation": {
+    "fluid_fluid": "Navier–Stokes differential operator, not neural recurrence",
+    "fluid_to_parcel": "Gaussian fluid velocity interpolation",
+    "parcel_to_fluid": "Negative hydrodynamic drag spreading with shared normalization",
+    "particle_particle": "Optional soft-sphere pair contact with multiplicity fixed to one, shown dashed",
+    "parcel_output_vectors": "All planar parcel positions and velocities, not six scalar 3D components",
+    "training": "Both networks feed common automatic differentiation and weighted loss, with joint parameter updates"
+  },
+  "four_way_scope": "Optional contact extension; no four-way result is claimed for the collision-free Gaussian runs",
+  "algorithm_label": "alg:coupled_training",
+  "numerical_results_modified": false,
+  "figure_exports": "PDF and SVG embed original raster artwork; PNG is also supplied"
+}

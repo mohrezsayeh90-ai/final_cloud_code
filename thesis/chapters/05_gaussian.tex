@@ -144,20 +144,89 @@ $\dot{\vect{q}}_i-\vect{v}_i$ in the objective.
 The weighted mean-square residual objective assigns weights 1 to fluid
 momentum, 2 to continuity, 5 to parcel kinematics, 1 to parcel acceleration,
 and 100 to center confinement. All calculations in this formulation use
-float64. \Cref{fig:gaussian_architecture} illustrates the carrier flow and
-Gaussian sampling neighborhoods used to couple the representations.
+float64. \Cref{fig:gaussian_architecture} shows the two neural representations,
+their shared transfer, and the common training objective.
 The default calculations are
 collision-free; independently tested impact primitives are not treated as
 a validated collisional suspension model.
 
-\ResultFigure[.96]{08_gaussian_architecture}{Conceptual illustration of
-Gaussian fluid--parcel coupling. Blue ribbons represent carrier flow;
-amber points and diffuse halos represent parcel centers and regularized
-sampling neighborhoods. The same normalized kernel samples fluid velocity
-and spreads parcel reaction to the fluid. The perspective and connecting
-amber curve are visual guides for the planar coupling model; the figure
-is a schematic rather than a numerical result.}
+\ResultFigure[.99]{08_gaussian_architecture}{Coupled PINN architecture and
+interaction pathways. The fluid and parcel networks exchange sampled
+velocity and hydrodynamic reaction through the same normalized Gaussian.
+Both feed a common residual objective and receive joint parameter updates.
+The outer loops denote interaction operators, not recurrent neural layers.
+Solid paths describe the evaluated two-way Gaussian model; the dashed
+particle--particle branch is the optional unit-multiplicity contact
+extension. Neuron symbols are representative, and the parcel outputs
+collect all planar positions and velocities.}
 {fig:gaussian_architecture}
+
+\subsection{Interaction pathways and joint training}
+Fluid--fluid interaction enters through the Navier--Stokes differential
+operator, while fluid--parcel and parcel--fluid exchange use the paired
+Gaussian transfer in \cref{eq:shared_transfer}. Adding direct
+particle--particle interaction to two-way exchange gives the four-way
+extension of this hierarchy \citep{elghobashi1994,balachandar2010}.
+The optional \texttt{soft\_sphere} branch evaluates pair and wall contact
+for physical spheres with $N_i=1$. The reported Gaussian-parcel cases
+use \texttt{collision=none}; their contact acceleration is zero.
+This distinction is shown by the dashed branch in
+\cref{fig:gaussian_architecture}.
+
+\Cref{alg:coupled_training} gives the computational sequence. Let
+$\vect{r}_m$, $r_d$, $\vect{r}_q$, $\vect{r}_v$, and $r_c$ denote
+momentum, divergence, kinematic, acceleration, and confinement residuals.
+Let $\mathcal{M}(r)$ denote the mean squared value over every sample and
+component of a residual array. The implemented objective is
+\begin{equation}
+ \mathcal{L}(\theta,\phi)=
+ \mathcal{M}(\vect{r}_m)
+ +2\mathcal{M}(r_d)
+ +5\mathcal{M}(\vect{r}_q)
+ +\mathcal{M}(\vect{r}_v)
+ +100\mathcal{M}(r_c).
+ \label{eq:coupled_joint_loss}
+\end{equation}
+Automatic differentiation propagates through both networks, the
+position-dependent Gaussian weights, interpolation, and reaction spreading.
+
+\begin{algorithm}[!htbp]
+\caption{Joint PINN training with an optional contact branch}
+\label{alg:coupled_training}
+\begingroup\small\setstretch{1.08}
+\begin{enumerate}[leftmargin=1.8em,label=\arabic*.,itemsep=5pt]
+\item Select the interaction mode and initialize $\theta$, $\phi$, and
+$(\vect{x}_a,\Delta A_a)$. For physical-sphere contact, set $N_i=1$
+when computing $m_i$. Apply the
+Fourier features and constrained ansatzes in
+\cref{eq:fluid_ansatz,eq:parcel_ansatz}.
+\item At sampled times, evaluate $(\vect{u},p)$ and all
+$(\vect{q}_i,\vect{v}_i)$. Compute $G_{ai}$, $Z_i$, and $W_{ai}$
+on the fixed quadrature using \cref{eq:normalized_kernel}.
+\item Interpolate $\vect{U}_i$ and compute
+$\vect{F}_i=m_i(\vect{U}_i-\vect{v}_i)/\St_i$.
+Spread its negative reaction to fluid evaluation points with the same
+normalizers $Z_i$.
+\item Set $\vect{a}_i^{c}=0$ for the Gaussian-parcel model.
+If physical-sphere contact is selected, compute
+$\vect{a}_i^{c}$ from the clipped spring--dashpot pair and wall forces
+divided by the physical sphere mass.
+\item Differentiate the fields and histories to form the fluid,
+kinematic, confinement, and acceleration residuals, with
+\[
+ \vect{r}_{v,i}=\dot{\vect{v}}_i
+ -\frac{\vect{U}_i-\vect{v}_i}{\St_i}
+ -\vect{g}_{\mathrm{eff}}-\vect{a}_i^{c}.
+\]
+The fluid reaction contains hydrodynamic drag only.
+\item Assemble \cref{eq:coupled_joint_loss} and update
+$(\theta,\phi)$ jointly. Use fresh batches during Adam and a fixed
+batch during L-BFGS; select the saved checkpoint using the fixed audit
+objective. Evaluate held-out residuals separately from training.
+\end{enumerate}
+\endgroup
+\end{algorithm}
+\FloatBarrier
 
 \section{Reduced Stokes-response verification}
 The first reduced test, V01, solves the constant-forcing relaxation problem

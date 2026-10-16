@@ -54,7 +54,9 @@
     "kind": "schematic",
     "inputs": [
       "evidence/gaussian/parcel_pinn/model.py",
-      "assets/gaussian_coupling_concept.png"
+      "evidence/gaussian/parcel_pinn/physics.py",
+      "evidence/gaussian/parcel_pinn/config.py",
+      "assets/gaussian_coupled_architecture.png"
     ]
   },
   {

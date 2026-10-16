@@ -225,12 +225,13 @@ def basic_results(checks):
     checks.append(dict(metric='drag_1000_plot_samples',recomputed=rel(np.c_[d['predicted_x'],d['predicted_y']],np.c_[d['exact_x'],d['exact_y']]),recorded=None))
 
 def gaussian_architecture():
-    artwork=plt.imread(ROOT/'assets/gaussian_coupling_concept.png')
+    artwork=plt.imread(ROOT/'assets/gaussian_coupled_architecture.png')
     height,width=artwork.shape[:2]
     fig,ax=plt.subplots(figsize=(7.4,7.4*height/width),layout='constrained')
     ax.imshow(artwork);ax.axis('off')
     save(fig,'08_gaussian_architecture','schematic',[
-        'gaussian/parcel_pinn/model.py','assets/gaussian_coupling_concept.png'])
+        'gaussian/parcel_pinn/model.py','gaussian/parcel_pinn/physics.py',
+        'gaussian/parcel_pinn/config.py','assets/gaussian_coupled_architecture.png'])
 
 def gaussian_results(checks):
     v1=csv(G/'validation/V01/comparison.csv');v2=csv(G/'validation/V02/comparison.csv')

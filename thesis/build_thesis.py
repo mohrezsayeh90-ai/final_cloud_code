@@ -77,6 +77,9 @@ def main():
     labels=set(re.findall(r'\\newlabel\{(fig:[^}]+)\}',aux))
     labels={x for x in labels if not x.endswith('@cref')}
     assert len(labels)==len(figures),(len(labels),len(figures))
+    algorithms=set(re.findall(r'\\newlabel\{(alg:[^}]+)\}',aux))
+    algorithms={x for x in algorithms if not x.endswith('@cref')}
+    assert algorithms=={'alg:coupled_training'},algorithms
     text=subprocess.check_output(['pdftotext',str(ROOT/'build/thesis.pdf'),'-'],text=True)
     for marker in ['[TO WRITE:', 'Your Full Name', 'Writing guide', 'as requested by',
                    'as an AI', 'ChatGPT', 'TODO']:
@@ -106,7 +109,7 @@ def main():
     assert not re.search(r'^(?:CreationDate|ModDate):',info,re.M)
     pages=int(re.search(r'^Pages:\s+(\d+)',info,re.M).group(1))
     pdf=ROOT/'Particle_Transport_Thesis.pdf';shutil.copy2(ROOT/'build/thesis.pdf',pdf)
-    checks=dict(compiler_exit_code=0,pages=pages,figures=len(figures),references=len(refs),
+    checks=dict(compiler_exit_code=0,pages=pages,figures=len(figures),algorithms=len(algorithms),references=len(refs),
         evidence_files_verified=len(manifest['inputs']),recomputed_metrics=len(numerical['recomputed_metrics']),
         unresolved_references=[],overfull_boxes=[],missing_glyphs=[],
         citation_coverage='all references cited; all citations defined',
