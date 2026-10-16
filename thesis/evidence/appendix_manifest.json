@@ -1,0 +1,123 @@
+{
+  "scope": "Supplementary evidence for Appendix C; core evidence manifest and recorded data remain unchanged",
+  "source_revisions": {
+    "basic": "c3eb0efe76bcd62a3299dcd6c28922dbfa4c667a",
+    "gaussian": "a22e0d5805bfae81f386aff18443598765f7a625"
+  },
+  "inputs": [
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/data/relaxation.csv",
+      "archived_path": "evidence/basic/results/final_study/data/relaxation.csv",
+      "sha256": "84d56802fecc87a59d7fd57e48dc364b6d07bd78f51b6cb5f0a267463093b199"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/data/trajectories.csv",
+      "archived_path": "evidence/basic/results/final_study/data/trajectories.csv",
+      "sha256": "8660fd76b2829a4967f337d0bcd6bf6de264543bbb4ee7582dcf3f1e243675b2"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/data/flow_loss_seed_43.csv",
+      "archived_path": "evidence/basic/results/final_study/data/flow_loss_seed_43.csv",
+      "sha256": "ce610a2d21066100da17bce1c31a382761e7b16cf9d0027743f1988dd68706f8"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/couette_validation/summary.json",
+      "archived_path": "evidence/gaussian/outputs/couette_validation/summary.json",
+      "sha256": "cc8aa22a9c1754eb68db7d3f7ad5a4c368dac7cd539e15982ba9d9133d301ce3"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/couette_validation/comparison.csv",
+      "archived_path": "evidence/gaussian/outputs/couette_validation/comparison.csv",
+      "sha256": "af66e6aa972ae07e5d4fe875165ec8f8ba545a4f2e848e7f4300a7705ed473bf"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/couette_validation/fields_CO01.csv",
+      "archived_path": "evidence/gaussian/outputs/couette_validation/fields_CO01.csv",
+      "sha256": "1c9e2be037169115a8b1bf808f18dfc5e28e820bb415d2c273a0d58ee4825f6b"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/couette_validation/fields_CO02.csv",
+      "archived_path": "evidence/gaussian/outputs/couette_validation/fields_CO02.csv",
+      "sha256": "22700fafee8aa728da9d0317aebf8b16f1b0dfb567df991e622475dbe27bb6a9"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/couette_validation/CO01/pinn/metrics.json",
+      "archived_path": "evidence/gaussian/outputs/couette_validation/CO01/pinn/metrics.json",
+      "sha256": "774893b53b2e340a466eacbd67d8cca3d7507d1bf70ce1927f5525ac5d10bcec"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/couette_validation/CO02/pinn/metrics.json",
+      "archived_path": "evidence/gaussian/outputs/couette_validation/CO02/pinn/metrics.json",
+      "sha256": "f7fdbafad85dc33c433d20e5047bb1fe2fe9c390c228ee5f40ef5fd6ead21d52"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/couette_validation/CO01/pinn/settings.json",
+      "archived_path": "evidence/gaussian/outputs/couette_validation/CO01/pinn/settings.json",
+      "sha256": "f90712c72e429935555d90404714f88339ec30c1e9c56708ac6e029242a61718"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/couette_validation/CO02/pinn/settings.json",
+      "archived_path": "evidence/gaussian/outputs/couette_validation/CO02/pinn/settings.json",
+      "sha256": "0ad3628774f3bdea6fd394716328b2d68789549d1125e3787fa9d9e964bddefb"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/couette_validation/CO01/fem_fine/fem_metrics.json",
+      "archived_path": "evidence/gaussian/outputs/couette_validation/CO01/fem_fine/fem_metrics.json",
+      "sha256": "50bcb62a174cd4452e8b31990caed1c080cf817c73d282208a160947ac2022e1"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/couette_validation/CO02/fem_fine/fem_metrics.json",
+      "archived_path": "evidence/gaussian/outputs/couette_validation/CO02/fem_fine/fem_metrics.json",
+      "sha256": "1e7c7f59502327141eae593e5213f144b7fa2a68eaeebc9721e0b70ebf38481b"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/couette_validation/CO01/fem_coarse/fem_metrics.json",
+      "archived_path": "evidence/gaussian/outputs/couette_validation/CO01/fem_coarse/fem_metrics.json",
+      "sha256": "e49ea4bd1f5f156ed38c12cb392ed8423775524b882b19ae1e85e87f1f5ac99d"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/couette_validation/CO02/fem_coarse/fem_metrics.json",
+      "archived_path": "evidence/gaussian/outputs/couette_validation/CO02/fem_coarse/fem_metrics.json",
+      "sha256": "021150fdcd9c6e6d3acb121470c82cbfd7c0f46de0538b15e61facc67e12f4a0"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "reference_inputs/Validation_Pack/data/couette_equilibrium.csv",
+      "archived_path": "evidence/gaussian/reference_inputs/Validation_Pack/data/couette_equilibrium.csv",
+      "sha256": "1345879c66ce879ea9ed49bd2403bf5f37da09b6465b53eb689a85ac081daa96"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "reference_inputs/Validation_Pack/sources.json",
+      "archived_path": "evidence/gaussian/reference_inputs/Validation_Pack/sources.json",
+      "sha256": "85a91acfda504ceb9c0c09c5cd362d07e13a50d3880f4f83dbf9e1e6169020a5"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "literature_validation/couette.py",
+      "archived_path": "evidence/gaussian/literature_validation/couette.py",
+      "sha256": "4ed8c882305a5f56194328ab6745148d597f910e6efd73c4cfd266464bf92d1a"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "literature_validation/report.py",
+      "archived_path": "evidence/gaussian/literature_validation/report.py",
+      "sha256": "f538c69ab5ae245e5f5c9f82f7dd41f821e2ede4ad5e7dfd363fbd4131db8604"
+    }
+  ]
+}

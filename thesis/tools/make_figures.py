@@ -311,6 +311,8 @@ def main():
     route();architecture();basic_results(checks);gaussian_architecture();gaussian_results(checks);constriction()
     from parcel_figures import make_parcel_figures
     make_parcel_figures(ROOT,save,panel)
+    from appendix_figures import make_appendix_figures
+    make_appendix_figures(ROOT,save,panel)
     (ROOT/'generated/figure_manifest.json').write_text(json.dumps(REGISTER,indent=2)+'\n')
     (ROOT/'generated/numerical_validation.json').write_text(json.dumps(dict(
         passed=True,recomputed_metrics=checks,schematics_are_not_results=True),indent=2)+'\n')

@@ -139,5 +139,75 @@
       "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/diagnostics.csv",
       "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/case_status.json"
     ]
+  },
+  {
+    "name": "20_baseline_relaxation",
+    "kind": "additional verification result",
+    "inputs": [
+      "evidence/basic/results/final_study/data/relaxation.csv",
+      "evidence/basic/results/final_study/metrics.json#relaxation"
+    ]
+  },
+  {
+    "name": "21_drag_isolation",
+    "kind": "additional verification result",
+    "inputs": [
+      "evidence/basic/results/final_study/data/trajectories.csv",
+      "evidence/basic/results/final_study/metrics.json#force_trajectory_isolation",
+      "evidence/basic/particle_pinn/geometry.py"
+    ]
+  },
+  {
+    "name": "22_baseline_training",
+    "kind": "optimization history",
+    "inputs": [
+      "evidence/basic/results/final_study/data/flow_loss_seed_42.csv",
+      "evidence/basic/results/final_study/data/flow_loss_seed_43.csv",
+      "evidence/basic/results/final_study/data/force_loss.csv"
+    ]
+  },
+  {
+    "name": "23_verification_errors",
+    "kind": "additional verification result",
+    "inputs": [
+      "evidence/gaussian/outputs/evaluated_2d_final/validation/V01/comparison.csv",
+      "evidence/gaussian/outputs/evaluated_2d_final/validation/V02/comparison.csv",
+      "evidence/gaussian/outputs/evaluated_2d_final/validation/V10/comparison.csv",
+      "evidence/gaussian/outputs/evaluated_2d_final/validation/verification.json"
+    ]
+  },
+  {
+    "name": "24_parcel_splitting",
+    "kind": "additional verification result",
+    "inputs": [
+      "evidence/gaussian/outputs/evaluated_2d_final/validation/V09.csv",
+      "evidence/gaussian/outputs/evaluated_2d_final/validation/verification.json"
+    ]
+  },
+  {
+    "name": "25_impact_checks",
+    "kind": "standalone component verification",
+    "inputs": [
+      "evidence/gaussian/outputs/evaluated_2d_final/validation/verification.json",
+      "evidence/gaussian/parcel_pinn/physics.py",
+      "evidence/gaussian/parcel_pinn/verification.py"
+    ]
+  },
+  {
+    "name": "26_couette_rotation",
+    "kind": "preliminary resolved-cylinder comparison",
+    "inputs": [
+      "evidence/gaussian/outputs/couette_validation/summary.json",
+      "evidence/gaussian/reference_inputs/Validation_Pack/data/couette_equilibrium.csv"
+    ]
+  },
+  {
+    "name": "27_couette_fields",
+    "kind": "preliminary resolved-cylinder comparison",
+    "inputs": [
+      "evidence/gaussian/outputs/couette_validation/fields_CO01.csv",
+      "evidence/gaussian/outputs/couette_validation/fields_CO02.csv",
+      "evidence/gaussian/outputs/couette_validation/summary.json"
+    ]
   }
 ]

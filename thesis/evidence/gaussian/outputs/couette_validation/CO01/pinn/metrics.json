@@ -1,0 +1,17 @@
+{
+  "omega": -0.4597400596372318,
+  "momentum_rms": 0.003321720479152776,
+  "continuity_rms": 0.0011749726465183357,
+  "torque_normalized": -8.72060267319806e-06,
+  "torque_normalized_256": -8.720602673191122e-06,
+  "torque_offset_1e5": -8.037780173801232e-06,
+  "cylinder_boundary_max_error": 3.2612801348363973e-16,
+  "wall_boundary_max_error": 0.0,
+  "reference_omega_magnitude": 0.4608,
+  "predicted_omega_magnitude": 0.4597400596372318,
+  "relative_error": 0.002300217801146237,
+  "reference_sha256": "1345879c66ce879ea9ed49bd2403bf5f37da09b6465b53eb689a85ac081daa96",
+  "scope": "Conditional equilibrium-spin validation at prescribed symmetry-plane center. No migration trajectory validation; no validation of the original point-parcel closure.",
+  "comparison_within_tolerance": true,
+  "physics_criteria_met": true
+}

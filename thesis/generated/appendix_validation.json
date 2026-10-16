@@ -1,0 +1,205 @@
+{
+  "passed": true,
+  "added_reference_keys": [
+    "garcia2023"
+  ],
+  "figure_names": [
+    "20_baseline_relaxation",
+    "21_drag_isolation",
+    "22_baseline_training",
+    "23_verification_errors",
+    "24_parcel_splitting",
+    "25_impact_checks",
+    "26_couette_rotation",
+    "27_couette_fields"
+  ],
+  "numerical_checks": {
+    "baseline_integrator": {
+      "samples": 150,
+      "tau": 0.03472222222222223,
+      "max_absolute_error": 1.535075400127539e-10
+    },
+    "drag_isolation": {
+      "paths": 7,
+      "endpoint_classes_matching": 7,
+      "max_rms_position_percent_width": 0.4278938539290021,
+      "minimum_common_time_percent": 99.86193122133898,
+      "all_recorded_metrics_recomputed": true
+    },
+    "training_histories": {
+      "flow": {
+        "42": {
+          "logged_points": 379,
+          "initial": 6.9735517501831055,
+          "final": 0.0027526910416781902
+        },
+        "43": {
+          "logged_points": 380,
+          "initial": 7.274971961975098,
+          "final": 0.0030780816450715065
+        }
+      },
+      "force_logged_points": 101,
+      "smoothing": false
+    },
+    "independent_verification_errors": {
+      "V01": {
+        "samples": 501,
+        "observables": {
+          "v_over_vt": {
+            "relative_l2": 0.0006647099998360116,
+            "max_absolute_error": 0.0008920755614219011
+          },
+          "distance_over_vt_tau": {
+            "relative_l2": 0.00023987202423615057,
+            "max_absolute_error": 0.0008656539220277537
+          }
+        }
+      },
+      "V02": {
+        "samples": 401,
+        "observables": {
+          "fluid_u": {
+            "relative_l2": 0.0009646903734508469,
+            "max_absolute_error": 0.00029136256624046064
+          },
+          "particle_v": {
+            "relative_l2": 0.002381949471607388,
+            "max_absolute_error": 0.001165450264962009
+          }
+        }
+      },
+      "V10": {
+        "samples": 768,
+        "observables": {
+          "u": {
+            "relative_l2": 0.002183658002593811,
+            "max_absolute_error": 0.004093582543557017
+          },
+          "v": {
+            "relative_l2": 0.0018698515994722174,
+            "max_absolute_error": 0.004582121634451181
+          },
+          "p": {
+            "relative_l2": 0.0021543776369157904,
+            "max_absolute_error": 0.004630632999236828
+          }
+        }
+      }
+    },
+    "parcel_splitting": {
+      "counts": [
+        10,
+        50,
+        100
+      ],
+      "population": [
+        10000.0,
+        10000.0,
+        10000.0
+      ],
+      "max_force_difference": 2.6645352591003757e-15
+    },
+    "impact_algebra": {
+      "V05": {
+        "input_velocities": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            0.0
+          ]
+        ],
+        "output_velocities": [
+          [
+            -0.8,
+            0.0
+          ],
+          [
+            0.8,
+            0.0
+          ]
+        ],
+        "energy_ratio": 0.6400000000000001,
+        "momentum_error": 0.0
+      },
+      "V06": {
+        "input_velocities": [
+          [
+            1.0,
+            0.5
+          ],
+          [
+            -1.0,
+            -0.5
+          ]
+        ],
+        "output_velocities": [
+          [
+            -1.0,
+            0.5
+          ],
+          [
+            1.0,
+            -0.5
+          ]
+        ],
+        "energy_ratio": 1.0,
+        "momentum_error": 0.0
+      },
+      "V07": {
+        "incoming": [
+          2.0,
+          -3.0
+        ],
+        "outgoing": [
+          2.0,
+          1.8000000000000007
+        ]
+      }
+    },
+    "couette_rotation": [
+      {
+        "case_id": "CO01",
+        "Rep": 1.0,
+        "reference_spin": 0.4608,
+        "FEM_spin": 0.4601793022048495,
+        "PINN_spin": 0.4597400596372318,
+        "PINN_error_percent": 0.23002178011462365,
+        "FEM_error_percent": 0.1347000423503699,
+        "PINN_velocity_relative_L2": 0.0016823018877016862
+      },
+      {
+        "case_id": "CO02",
+        "Rep": 2.0,
+        "reference_spin": 0.4281,
+        "FEM_spin": 0.4273350988882795,
+        "PINN_spin": 0.42727548873788407,
+        "PINN_error_percent": 0.19259781876101667,
+        "FEM_error_percent": 0.17867346688168798,
+        "PINN_velocity_relative_L2": 0.0020378539485929525
+      }
+    ],
+    "couette_fields": [
+      {
+        "case": "CO01",
+        "visualization_samples": 12733,
+        "visualization_grid_velocity_relative_l2": 0.0014537459280481158,
+        "independent_assessment_relative_l2": 0.0016823018877016862,
+        "maximum_visualization_velocity_difference": 0.0016854153086119734
+      },
+      {
+        "case": "CO02",
+        "visualization_samples": 12733,
+        "visualization_grid_velocity_relative_l2": 0.0016250496149300463,
+        "independent_assessment_relative_l2": 0.0020378539485929525,
+        "maximum_visualization_velocity_difference": 0.0021532482478296786
+      }
+    ]
+  },
+  "new_simulations_run": false,
+  "raw_numerical_values_modified": false,
+  "selection_scope": "Supplementary verification, fixed-field drag isolation, and completed matched equilibrium Couette comparisons; excludes unsupported coupled transport trends."
+}

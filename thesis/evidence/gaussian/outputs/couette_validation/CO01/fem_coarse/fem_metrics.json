@@ -1,0 +1,11 @@
+{
+  "particle_re": 1.0,
+  "omega": -0.46020538560240287,
+  "mesh_vertices": 889,
+  "mesh_triangles": 1596,
+  "unknowns": 6948,
+  "residual": 2.8011336783388036e-16,
+  "spacing": 0.07,
+  "circle_points": 96,
+  "method": "P2/P1 Taylor-Hood, symmetric viscous stress, periodic constraints, free-rotation virtual-work equation"
+}

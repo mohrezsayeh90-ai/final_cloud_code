@@ -17,6 +17,8 @@ def run(command,**kwargs):
 
 def evidence_check():
     manifest=json.loads((ROOT/'evidence/manifest.json').read_text())
+    supplement=json.loads((ROOT/'evidence/appendix_manifest.json').read_text())
+    manifest['inputs']=manifest['inputs']+supplement['inputs']
     for record in manifest['inputs']:
         p=ROOT/record['archived_path']
         assert p.is_file(),f'Missing evidence: {p}'
@@ -50,11 +52,14 @@ def main():
     if args.regenerate:
         run([sys.executable,'tools/make_tables.py'])
         run([sys.executable,'tools/make_figures.py'])
+        run([sys.executable,'tools/order_references.py'])
     figures=json.loads((ROOT/'generated/figure_manifest.json').read_text())
     numerical=json.loads((ROOT/'generated/numerical_validation.json').read_text())
     parcel=json.loads((ROOT/'generated/parcel_validation.json').read_text())
     assert numerical['passed']
     assert parcel['passed'] and not parcel['complete_coupled_screen_met']
+    appendix=json.loads((ROOT/'generated/appendix_validation.json').read_text())
+    assert appendix['passed'] and len(appendix['figure_names'])==8
     assert len([x for x in figures if x['kind']=='diagnostic coupled prediction'])==5
     for item in figures:
         assert (ROOT/'figures'/(item['name']+'.pdf')).is_file()
@@ -97,8 +102,23 @@ def main():
     for p in [ROOT/'thesis.tex',*(ROOT/'chapters').glob('*.tex')]:
         for group in re.findall(r'\\cite\w*\{([^}]+)\}',p.read_text()):cited.update(group.split(','))
     assert cited==refs,dict(uncited=sorted(refs-cited),undefined=sorted(cited-refs))
+    bib_order=re.findall(r'\\bibitem\{([^}]+)\}',(ROOT/'references.tex').read_text())
+    first_citations=[]
+    for group in re.findall(r'\\citation\{([^}]+)\}',aux):
+        for key in group.split(','):
+            if key not in first_citations:first_citations.append(key)
+    assert first_citations==bib_order,'References are not in first-citation order'
+    citation_numbers={key:int(number) for key,number in
+                      re.findall(r'\\bibcite\{([^}]+)\}\{\{(\d+)\}',aux)}
+    assert [citation_numbers[key] for key in first_citations]==list(range(1,len(refs)+1))
+    scope=json.loads((ROOT/'generated/appendix_revision_scope.json').read_text())
+    for filename,expected in scope['preserved_sources_sha256'].items():
+        assert hashlib.sha256((ROOT/filename).read_bytes()).hexdigest()==expected,filename
+    main_source=(ROOT/'thesis.tex').read_text().replace('\\input{chapters/appendix_additional_results}\n','')
+    assert hashlib.sha256(main_source.encode()).hexdigest()==scope['original_main_source_sha256']
     plan=json.loads((ROOT/'generated/citation_plan.json').read_text())
-    assert len(refs)==plan['total_reference_count']==40
+    assert len(refs)==plan['total_reference_count']+len(appendix['added_reference_keys'])
+    assert set(appendix['added_reference_keys'])<=refs
     assert len(plan['placements'])==36
     for placement in plan['placements']:
         source=(ROOT/placement['file']).read_text()
@@ -113,6 +133,10 @@ def main():
         evidence_files_verified=len(manifest['inputs']),recomputed_metrics=len(numerical['recomputed_metrics']),
         unresolved_references=[],overfull_boxes=[],missing_glyphs=[],
         citation_coverage='all references cited; all citations defined',
+        reference_order='verified against first citations in compiled auxiliary file',
+        first_reference_number=citation_numbers[first_citations[0]],
+        additional_appendix_figures=len(appendix['figure_names']),
+        original_chapter_sources='byte-for-byte preserved',
         citation_plan_placements=36,added_references=25,
         measured_errors_and_acceptance_outcomes='preserved',
         typography='English Sharif-style layout; Times family; black text and headings',

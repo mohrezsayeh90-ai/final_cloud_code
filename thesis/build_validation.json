@@ -1,15 +1,19 @@
 {
   "compiler_exit_code": 0,
-  "pages": 70,
-  "figures": 19,
+  "pages": 80,
+  "figures": 27,
   "algorithms": 1,
-  "references": 40,
-  "evidence_files_verified": 46,
+  "references": 41,
+  "evidence_files_verified": 65,
   "recomputed_metrics": 13,
   "unresolved_references": [],
   "overfull_boxes": [],
   "missing_glyphs": [],
   "citation_coverage": "all references cited; all citations defined",
+  "reference_order": "verified against first citations in compiled auxiliary file",
+  "first_reference_number": 1,
+  "additional_appendix_figures": 8,
+  "original_chapter_sources": "byte-for-byte preserved",
   "citation_plan_placements": 36,
   "added_references": 25,
   "measured_errors_and_acceptance_outcomes": "preserved",
@@ -23,5 +27,5 @@
   "diagnostic_parcel_figures": 5,
   "parcel_postprocessing_checks": "passed; complete coupled screen remains unmet",
   "numerical_result_files_modified": false,
-  "sha256": "f42ce040d582acbef644280d9d25442996391f61682b63c7527fa165cc177bb5"
+  "sha256": "974f9ee25a391f18378731ca7763d355a8ab1c8c26ae99a4b7a1605f3da10f0d"
 }

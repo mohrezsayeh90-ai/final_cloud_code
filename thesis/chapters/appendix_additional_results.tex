@@ -1,0 +1,188 @@
+\chapter{Additional Preliminary Results and Validation}
+\label{app:additional_results}
+
+The nineteen figures in the core study are supplemented here by eight
+additional figures. These examine integrator accuracy, the isolated drag
+approximation, optimization histories, independent verification errors,
+and parcel bookkeeping. A separate resolved-cylinder calculation supplies
+a preliminary comparison with published equilibrium-rotation values.
+Each comparison retains its own physical model, reference, and scope.
+
+\newcommand{\AppendixResultFigure}[4]{%
+\begin{figure}[!htbp]\centering
+\includegraphics[width=.99\textwidth,height=.66\textheight,keepaspectratio]{figures/#1.pdf}
+\caption[#2]{#3}\label{#4}\end{figure}}
+
+\section{Independent Stokes-relaxation integrator check}
+The baseline particle integrator is checked in a uniform carrier field
+against $v(t)=1-\exp(-t/\tau)$, with $v(0)=0$ and
+$\tau=0.0347222$. The stored Radau integration uses relative and absolute
+tolerances $10^{-9}$ and $10^{-11}$. Across all 150 saved times over
+$0\leq t/\tau\leq6$, the largest absolute velocity discrepancy is
+$1.5351\times10^{-10}$. This is an independent check of the ODE
+integration and prescribed Stokes acceleration.
+
+\AppendixResultFigure{20_baseline_relaxation}{Baseline Stokes-relaxation integrator check}{
+Uniform-flow relaxation from the baseline record. The left panel compares
+the stored numerical solution with the analytical response; markers are
+subsampled for readability. The right panel retains the signed error at
+every saved time. This test concerns the ODE integrator and exact Stokes
+law, separately from neural-field and learned-drag errors.}
+{fig:additional_relaxation}
+\FloatBarrier
+
+\section{Drag approximation with the carrier field held fixed}
+The recorded isolation study compares PINN--ForceNet trajectories with
+trajectories using analytical Stokes drag in the same PINN carrier field.
+All seven baseline initial conditions are retained. Their endpoint classes
+agree, common-time coverage is at least $99.8619\%$, and the largest RMS
+position discrepancy divided by channel width is $0.4279\%$.
+Holding the carrier field fixed isolates the effect of the drag
+approximation within this comparison. The independent PINN--FEM
+trajectory assessment in \cref{tab:path_limits} addresses a broader error.
+
+\AppendixResultFigure{21_drag_isolation}{Seven-path drag isolation in a fixed carrier field}{
+Learned and analytical drag in the same carrier field, with matching
+colors for each initial position. The spatial panel displays the stored
+paths; the lower panels show RMS position discrepancy normalized by
+$W=0.3$ and the coverage of the shared physical-time interval. Every
+initial position in the isolation record is included. The comparison
+supports the drag approximation within the fixed learned field.}
+{fig:additional_drag_isolation}
+\FloatBarrier
+
+\section{Recorded optimization histories}
+The archived histories retain the optimization of both baseline flow
+seeds and the ForceNet training and validation losses.
+\Cref{fig:additional_training} shows all logged records on logarithmic
+axes, without smoothing or replacing the original sequences. The flow
+monitor falls from its initial scale to $2.75\times10^{-3}$ and
+$3.08\times10^{-3}$ for the two seeds. Independent field and drag comparisons provide the
+accuracy assessment alongside these optimization diagnostics.
+
+\AppendixResultFigure{22_baseline_training}{Baseline flow and drag optimization histories}{
+Recorded flow-monitor histories for seeds 42 and 43, and the ForceNet
+training and validation objectives. The horizontal coordinate is the
+stored epoch or optimization counter; it is not elapsed runtime. Curves
+use every logged sample. The loss conventions of the flow and drag
+models differ, so their vertical magnitudes are interpreted separately.}
+{fig:additional_training}
+\FloatBarrier
+
+\section{Pointwise errors in the Gaussian verification problems}
+The reduced Stokes and uniform two-way tests supply full temporal arrays,
+while the Taylor--Green comparison supplies 768 independently evaluated
+space--time points. Plotting prediction minus reference makes the error
+structure visible in addition to the solution comparisons in
+\cref{fig:stokes_response,fig:two_way_response,fig:taylor_green}.
+All supplied comparison samples are retained in
+\cref{fig:additional_verification_errors}. These are dimensionless
+absolute discrepancies in the indicated observables.
+
+\AppendixResultFigure{23_verification_errors}{Pointwise errors in V01, V02 and V10}{
+Signed prediction-minus-reference discrepancies for the reduced Stokes
+response, uniform two-way relaxation, and Taylor--Green carrier test.
+The Taylor--Green panel plots each saved error against its sampled time;
+the spatial coordinates vary between samples. Pressure uses the common
+gauge of the original verification. These component tests retain the
+initial constraints and independent-reference scope described in
+\cref{ch:gaussian}.}
+{fig:additional_verification_errors}
+\FloatBarrier
+
+\section{Population-preserving parcel splitting}
+Test V09 divides a fixed population of 10,000 particles into 10, 50, or
+100 coincident parcels with adjusted multiplicities. The deposited force
+density differs by at most $2.6645\times10^{-15}$ from the ten-parcel
+reference. \Cref{fig:additional_splitting} shows both the preserved
+population and the associated floating-point-scale discrepancy.
+This is a linearity and population-bookkeeping check at coincident
+positions; spatial and statistical refinement have separate meanings.
+
+\AppendixResultFigure{24_parcel_splitting}{Population and force invariance under coincident parcel splitting}{
+V09 parcel-splitting check. The physical population remains 10,000 in
+all three representations. Force-density differences are measured
+relative to the ten-parcel representation and are shown on a linear
+scale in units of $10^{-15}$, including the exact zero of that reference.
+The coincident positions and fixed total population define the scope
+of this algebraic transfer test.}
+{fig:additional_splitting}
+\FloatBarrier
+
+\section{Standalone impact-algebra checks}
+The optional interaction framework includes separately tested binary
+impact and wall-restitution operations. Tests V05 and V06 use equal
+unit masses, with restitution coefficients 0.8 and 1.0. Test V07 uses
+a stationary wall and restitution 0.6. Their stored outgoing velocities
+agree with the corresponding impulse and reflection formulas.
+\Cref{fig:additional_impact} compares the before/after velocity components.
+These are impulsive component checks, distinct from a time-resolved
+soft-contact or collision-coupled channel calculation.
+
+\AppendixResultFigure{25_impact_checks}{Standalone binary-impact and wall-restitution checks}{
+Velocity-component comparisons for V05, V06 and V07. Paired bars show
+incoming and recorded outgoing values. The inelastic equal-mass impact retains 64\% of its initial
+kinetic energy; the elastic oblique impact preserves kinetic energy;
+the wall operation preserves tangential velocity and reverses the
+normal component with restitution 0.6. All values come from the
+recorded primitive tests.}
+{fig:additional_impact}
+\FloatBarrier
+
+\section{Preliminary resolved-cylinder Couette comparison}
+A separate extension resolves the surface of a circular cylinder in
+planar Couette flow. The domain is $[0,2]\times[0,1]$, the diameter is
+0.25, and the prescribed center is $(1,0.5)$. In the translating frame,
+the wall velocities are $(-0.5,0)$ and $(0.5,0)$, with periodicity in $x$.
+The viscosity is $1/(64\Rey_p)$ for the two evaluated conditions
+$\Rey_p=1$ and 2. The cylinder angular velocity is determined by a
+torque-free condition. Published finest-grid equilibrium values provide
+the scalar reference \citep{garcia2023}.
+
+The neural calculation uses independently generated FEM velocity anchors;
+it is therefore a FEM-assisted PINN. The published angular velocities
+are reserved for comparison. Their magnitudes are 0.4608 and 0.4281;
+the corresponding PINN values are 0.459740 and 0.427275. Relative
+differences are $0.2300\%$ and $0.1926\%$. The independent FEM values
+differ from the published values by $0.1347\%$ and $0.1787\%$.
+The two-mesh changes in FEM angular velocity are $0.00567\%$ and
+$0.00787\%$.
+
+\AppendixResultFigure{26_couette_rotation}{Preliminary equilibrium-rotation comparison in Couette flow}{
+Published numerical equilibrium values, independent FEM, and FEM-assisted
+PINN at the two evaluated particle Reynolds numbers. The second panel
+shows the relative angular-velocity differences against the published
+table. Both operating conditions in the completed comparison are
+included; small horizontal marker offsets distinguish the three methods.
+The comparison concerns equilibrium rotation at a prescribed
+symmetry-plane center; the reference is a numerical study.}
+{fig:additional_couette_rotation}
+\FloatBarrier
+
+\section{Resolved-cylinder fields and independent diagnostics}
+The stored comparison fields supply the velocity distributions in
+\cref{fig:additional_couette_fields}. The circular body is masked using
+the stored fluid sampling locations. For the independent assessment
+samples, PINN--FEM relative velocity errors are $0.1682\%$ and
+$0.2038\%$. The momentum RMS values are 0.003322 and 0.002612, and
+the continuity RMS values are 0.001175 and 0.001195. Normalized torque
+residual magnitudes are $8.72\times10^{-6}$ and $5.73\times10^{-6}$.
+The exact boundary construction gives zero recorded wall-velocity error
+and surface errors below $3.5\times10^{-16}$.
+
+These results support the stated equilibrium comparison for a resolved
+cylinder with FEM-assisted training. The Gaussian point-parcel model
+and the proposed constricted channel retain their own definitions and
+evaluation requirements. The stored steady equilibrium fields also
+have a different scope from a transient migration trajectory.
+
+\AppendixResultFigure{27_couette_fields}{Resolved-cylinder Couette fields and velocity discrepancies}{
+Stored FEM and FEM-assisted PINN speed fields for CO01 and CO02, with
+the norm of their local velocity difference. A common speed scale is
+used in all four field panels and a common discrepancy scale in both
+error panels. The circular solid is excluded from the plotted fluid
+domain. These are the recorded visualization-grid samples; the
+independent evaluation errors quoted in the text use their separate
+assessment set.}
+{fig:additional_couette_fields}
+\FloatBarrier
