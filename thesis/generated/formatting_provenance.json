@@ -1,0 +1,42 @@
+{
+  "style_reference": "https://github.com/momeni/sharif-thesis",
+  "reference_commit": "c331ebe5941355b9b77692996eb010a4fbdbed17",
+  "reference_class": "sharifthesis.cls",
+  "reference_guide": "resources/Guide_Theses-98.pdf",
+  "implementation": "English-only report adaptation, not the original Persian XeLaTeX class",
+  "english_font": "Times family via mathptmx (Nimbus Roman); Times-style mathematical symbols",
+  "paper": "A4",
+  "margins_mm": {
+    "left": 30,
+    "right": 25,
+    "top": 30,
+    "bottom": 25
+  },
+  "binding_adaptation": "Larger binding margin placed on the left for the English document",
+  "chapter_heading": "Centered, bold, black, 18 pt; 51 pt opening space and 40 pt closing space",
+  "section_heading_pt": 16,
+  "subsection_heading_pt": 14,
+  "text_and_link_color": "black",
+  "figure_text": "STIX Times-style serif, black; scientific data colors retained",
+  "submission_date": null,
+  "bibliographic_publication_years": "retained",
+  "pdf_timestamp_metadata": "omitted",
+  "logo": {
+    "local_path": "assets/sharif-logo-en.pdf",
+    "source_url": "https://github.com/momeni/sharif-thesis/blob/c331ebe5941355b9b77692996eb010a4fbdbed17/img/logo-en.pdf",
+    "source_path": "img/logo-en.pdf",
+    "modified": false,
+    "sha256": "8cf670928cab4a2fb07869587c43d9be864dd8f2fb42d1da7a72d14cbf981e9f",
+    "upstream_license_copy": "assets/SHARIF_LOGO_LICENSE.txt"
+  },
+  "user_template_links": [
+    {
+      "url": "https://latex.sharif.edu/templates/63a97572ab56c300a159dda9",
+      "access_result": "HTTP proxy tunnel 403"
+    },
+    {
+      "url": "https://www.overleaf.com/latex/templates/sharif-university-of-technology-thesis-template/twcmptrdxqss",
+      "access_result": "HTTP proxy tunnel 403"
+    }
+  ]
+}

@@ -1,15 +1,19 @@
 \documentclass[12pt,a4paper,oneside]{report}
+\pdfinfoomitdate=1
+\pdfsuppressptexinfo=15
+\pdftrailerid{}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\usepackage{lmodern}
-\usepackage[left=32mm,right=25mm,top=27mm,bottom=27mm]{geometry}
+\usepackage{mathptmx}
+\usepackage[left=30mm,right=25mm,top=30mm,bottom=25mm,footskip=10mm]{geometry}
 \usepackage{setspace}
 \onehalfspacing
 \usepackage{microtype,amsmath,amssymb,bm}
 \usepackage{graphicx,booktabs,tabularx,longtable,array}
 \usepackage{enumitem,xcolor,fancyhdr,caption}
 \usepackage[numbers,sort&compress]{natbib}
+\renewcommand{\bibfont}{\small}
 \usepackage{xurl,hyperref}
 \usepackage[nameinlink,noabbrev]{cleveref}
 \usepackage{bookmark,titlesec,placeins}
@@ -17,23 +21,23 @@
 \input{generated/values}
 \input{generated/tables}
 \newcommand{\EvidenceRows}[1]{\csname Evidence#1\endcsname}
-\definecolor{ThesisBlue}{HTML}{173F5F}
-\definecolor{ThesisTeal}{HTML}{087F8C}
-\definecolor{ThesisGrey}{HTML}{738390}
-\hypersetup{colorlinks=true,linkcolor=ThesisBlue,citecolor=ThesisBlue,urlcolor=ThesisBlue,
+\hypersetup{colorlinks=true,allcolors=black,
  pdftitle={\ThesisTitle: \ThesisSubtitle},pdfauthor={\AuthorName},
  pdfsubject={Master of Science thesis manuscript on physics-informed particle transport}}
 \setcounter{secnumdepth}{2}\setcounter{tocdepth}{1}
 \setlength{\headheight}{16pt}
 \pagestyle{fancy}\fancyhf{}
-\fancyhead[L]{\small\nouppercase{\leftmark}}\fancyfoot[C]{\thepage}
-\renewcommand{\headrulewidth}{0.3pt}
+\fancyhead[L]{\small\itshape\nouppercase{\leftmark}}\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.45pt}
 \fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
-\titleformat{\chapter}[display]{\normalfont\raggedright\color{ThesisBlue}}{\Large\chaptertitlename\ \thechapter}{8pt}{\huge\bfseries}
-\titlespacing*{\chapter}{0pt}{-10pt}{22pt}
-\titleformat{\section}{\large\bfseries\color{ThesisBlue}}{\thesection}{.7em}{}
-\titleformat{\subsection}{\normalsize\bfseries\color{ThesisTeal}}{\thesubsection}{.7em}{}
+\titleformat{\chapter}[display]{\normalfont\centering\bfseries}
+ {\fontsize{18}{22}\selectfont\chaptertitlename\ \thechapter}{10pt}{\fontsize{18}{23}\selectfont}
+\titlespacing*{\chapter}{0pt}{51pt}{40pt}
+\titleformat{\section}{\fontsize{16}{20}\selectfont\bfseries}{\thesection}{.7em}{}
+\titleformat{\subsection}{\fontsize{14}{18}\selectfont\bfseries}{\thesubsection}{.7em}{}
+\titlespacing*{\section}{0pt}{18pt plus 3pt minus 2pt}{8pt}
+\titlespacing*{\subsection}{0pt}{12pt plus 2pt minus 2pt}{6pt}
 \captionsetup{font=small,labelfont=bf,labelsep=period}
 \renewcommand{\arraystretch}{1.18}
 \setlist[itemize]{topsep=4pt,itemsep=2pt,parsep=0pt}
@@ -70,25 +74,31 @@
 \setlength{\emergencystretch}{2em}
 \setlength{\parskip}{2pt}
 \begin{document}
+\raggedbottom
+\date{}
 \hypersetup{pageanchor=false}
 \begin{titlepage}
 \centering
-\vspace*{3mm}
-{\Large\UniversityName\par}
-\vspace{3mm}{\large\DepartmentName\par}
-\vspace{19mm}
-{\Huge\bfseries\color{ThesisBlue}\ThesisTitle\par}
-\vspace{7mm}
-{\Large\color{ThesisTeal}\ThesisSubtitle\par}
-\vspace{14mm}
-{\Large\AuthorName\par}
+\setstretch{1.15}
+\vspace*{2mm}
+\includegraphics[width=32mm]{assets/sharif-logo-en.pdf}\par
+\vspace{5mm}
+{\fontsize{14}{18}\selectfont\bfseries\UniversityName\par}
+\vspace{2mm}{\normalsize\bfseries\DepartmentName\par}
+\vspace{17mm}
+{\large\bfseries\DegreeName\ Thesis\par}
+\vspace{20mm}
+{\fontsize{18}{24}\selectfont\bfseries\ThesisCoverTitle\par}
+\vspace{5mm}
+{\fontsize{13}{18}\selectfont\ThesisSubtitle\par}
+\vspace{17mm}
+{\normalsize By\par}
+\vspace{3mm}{\large\bfseries\AuthorName\par}
 \vspace{12mm}
-{\large Master's Thesis\par}
-\vspace{3mm}{\large\DegreeName\par}
-\vspace{12mm}
-{\large Supervisor: \SupervisorName\par}
+{\normalsize Supervisor\par}
+\vspace{3mm}{\large\bfseries\SupervisorName\par}
 \vfill
-{\normalsize\UniversityCity\par\SubmissionDate\par}
+{\normalsize\UniversityCity\par}
 \end{titlepage}
 \pagenumbering{roman}\hypersetup{pageanchor=true}
 \FrontChapter{Abstract}

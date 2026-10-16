@@ -2,13 +2,15 @@
 
 English thesis manuscript by **Mohammad Reza Sayah**, supervisor **Mohammad Ali Bijarchi**, Sharif University of Technology.
 
-The study order is: the baseline particle problem; Gaussian parcels in a straight channel; a proposed smooth constriction. The document follows the uploaded template's report format, margins, typography and chapter structure. The original template is preserved under `template/` as a reference file, not as manuscript content.
+The study order is: the baseline particle problem; Gaussian parcels in a straight channel; a proposed smooth constriction. The presentation is an English adaptation of the public Sharif thesis template: English university seal, formal centered title page, Times-family typography, black chapter and section headings, and A4 margins with a left binding allowance. Submission dates are omitted; publication years remain in references. The original uploaded example is preserved under `template/` as a reference file, not as manuscript content.
 
 ## Files
 
 - `Particle_Transport_Thesis.pdf`: compiled manuscript.
 - `thesis.tex`, `metadata.tex`, `references.tex`, `chapters/`: editable LaTeX.
 - `figures/`: nineteen redesigned figures in PDF, SVG and PNG, including five plots of the computed Gaussian parcel response.
+- `assets/`: the English university seal and its upstream license.
+- `template/SHARIF_STYLE_SOURCES.md`, `generated/formatting_provenance.json`: inspected template sources, styling choices and seal provenance.
 - `evidence/`: unmodified copies of selected numerical records and relevant method definitions.
 - `generated/`: numerical macros, tables, figure provenance and numerical audit.
 - `generated/citation_plan.json`: the 36 contextual citation placements and metadata provenance for the 25 added references (40 references in total).
@@ -23,7 +25,7 @@ Upload the source bundle to Overleaf and select `thesis.tex` as the main documen
 latexmk -pdf -pdflatex='pdflatex -no-shell-escape %O %S' -interaction=nonstopmode -halt-on-error -outdir=build thesis.tex
 ```
 
-Typical packages: `texlive-latex-base`, `texlive-latex-recommended`, `texlive-latex-extra`, `texlive-fonts-recommended`, `lmodern`, and `latexmk`. Use a complete TeX Live installation or Overleaf if package names differ on your operating system. Figures and numerical tables are already included; training is not required.
+Typical packages: `texlive-latex-base`, `texlive-latex-recommended`, `texlive-latex-extra`, `texlive-fonts-recommended`, and `latexmk`. The standard `mathptmx` package supplies Times-family text and mathematics. Use a complete TeX Live installation or Overleaf if package names differ on your operating system. Figures and numerical tables are already included; training is not required.
 
 ## Rebuild and audit the manuscript
 

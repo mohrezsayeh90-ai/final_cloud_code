@@ -24,7 +24,7 @@ def evidence_check():
     return manifest
 
 def bundle(destination):
-    directories=['chapters','figures','generated','evidence','template','tools']
+    directories=['chapters','figures','generated','evidence','template','tools','assets']
     files=[ROOT/name for name in ['thesis.tex','metadata.tex','references.tex',
         'README.md','DELIVERY_NOTES_FA.md','build_thesis.py','build_validation.json',
         'Particle_Transport_Thesis.pdf']]
@@ -43,6 +43,9 @@ def main():
     parser.add_argument('--bundle',action='store_true')
     args=parser.parse_args()
     manifest=evidence_check()
+    style=json.loads((ROOT/'generated/formatting_provenance.json').read_text())
+    logo=ROOT/style['logo']['local_path']
+    assert hashlib.sha256(logo.read_bytes()).hexdigest()==style['logo']['sha256']
     (ROOT/'build').mkdir(exist_ok=True)
     if args.regenerate:
         run([sys.executable,'tools/make_tables.py'])
@@ -80,6 +83,8 @@ def main():
         assert marker.lower() not in text.lower(),f'Unwanted manuscript marker: {marker}'
     assert 'Mohammad Reza Sayah' in text
     assert 'Mohammad Ali Bijarchi' in text
+    assert not re.search(r'\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}\b',text)
+    assert not re.search(r'[\u0600-\u06ff]',text),'Non-English manuscript text'
     assert not re.search(r'data\s+(?:and\s+)?availability',text,re.I)
     assert 'github.com/mohrezsayeh90-ai' not in text
     for number in ['1.510','0.863','0.717','0.066','0.238','0.218']:
@@ -98,6 +103,7 @@ def main():
         for key in placement['keys']:
             assert re.search(r'\\cite\w*\{[^}]*\b'+re.escape(key)+r'\b[^}]*\}',source),(placement['id'],key)
     info=subprocess.check_output(['pdfinfo',str(ROOT/'build/thesis.pdf')],text=True)
+    assert not re.search(r'^(?:CreationDate|ModDate):',info,re.M)
     pages=int(re.search(r'^Pages:\s+(\d+)',info,re.M).group(1))
     pdf=ROOT/'Particle_Transport_Thesis.pdf';shutil.copy2(ROOT/'build/thesis.pdf',pdf)
     checks=dict(compiler_exit_code=0,pages=pages,figures=len(figures),references=len(refs),
@@ -106,6 +112,9 @@ def main():
         citation_coverage='all references cited; all citations defined',
         citation_plan_placements=36,added_references=25,
         measured_errors_and_acceptance_outcomes='preserved',
+        typography='English Sharif-style layout; Times family; black text and headings',
+        submission_date_removed=True,pdf_timestamp_metadata_removed=True,
+        english_university_logo_included=True,
         template_and_conversation_markers='absent',constricted_channel_results_claimed=False,
         data_availability_section_removed=True,diagnostic_parcel_figures=5,
         parcel_postprocessing_checks='passed; complete coupled screen remains unmet',

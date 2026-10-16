@@ -25,11 +25,11 @@ G=ROOT/'evidence/gaussian/outputs/evaluated_2d_final'
 F=ROOT/'figures'
 NAVY='#173F5F'; TEAL='#087F8C'; GOLD='#D49A38'; INK='#233747'
 CORAL='#B95745'; PALE='#EBF2F6'; GREY='#738390'
-plt.rcParams.update({'font.family':'DejaVu Sans', 'font.size':9,
+plt.rcParams.update({'font.family':'STIXGeneral', 'mathtext.fontset':'stix', 'font.size':9,
  'axes.labelsize':9,'axes.titlesize':10,'axes.titleweight':'medium',
  'axes.spines.top':False,'axes.spines.right':False,'axes.edgecolor':'#A5B2BC',
- 'axes.labelcolor':INK,'xtick.color':INK,'ytick.color':INK,
- 'text.color':INK,'grid.color':'#DDE5EB','grid.alpha':.7,
+ 'axes.labelcolor':'black','axes.titlecolor':'black','xtick.color':'black','ytick.color':'black',
+ 'text.color':'black','grid.color':'#DDE5EB','grid.alpha':.7,
  'lines.linewidth':1.6,'legend.frameon':False,'legend.fontsize':8,
  'pdf.fonttype':42,'svg.fonttype':'none','savefig.dpi':240,
  'figure.constrained_layout.use':True})
@@ -38,8 +38,14 @@ REGISTER=[]
 def csv(p): return np.genfromtxt(p,delimiter=',',names=True,encoding='utf8')
 def rel(a,b): return float(np.linalg.norm(a-b)/np.linalg.norm(b))
 def save(fig,name,kind,inputs):
+    for label in fig.findobj(match=matplotlib.text.Text):
+        label.set_color('black')
     for ext in ['pdf','png','svg']:
-        fig.savefig(F/f'{name}.{ext}',bbox_inches='tight',facecolor='white')
+        metadata={'CreationDate':None,'ModDate':None} if ext=='pdf' else {'Date':None} if ext=='svg' else None
+        fig.savefig(F/f'{name}.{ext}',bbox_inches='tight',facecolor='white',metadata=metadata)
+        if ext=='svg':
+            target=F/f'{name}.{ext}'
+            target.write_text('\n'.join(line.rstrip() for line in target.read_text().splitlines())+'\n')
     plt.close(fig)
     resolved=[]
     for source in inputs:
