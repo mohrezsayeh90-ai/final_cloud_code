@@ -10,6 +10,7 @@ The study order is: the baseline particle problem; Gaussian parcels in a straigh
 - `thesis.tex`, `metadata.tex`, `references.tex`, `chapters/`: editable LaTeX.
 - `figures/`: nineteen redesigned figures in PDF, SVG and PNG, including five plots of the computed Gaussian parcel response.
 - `assets/`: the English university seal and its upstream license.
+- `assets/gaussian_coupling_concept.png`: the original conceptual illustration used in Figure 5.1; PDF and SVG exports embed this artwork. Its provenance is recorded in `generated/concept_illustration_provenance.json`. The illustration is a schematic; numerical result plots continue to use the archived arrays.
 - `template/SHARIF_STYLE_SOURCES.md`, `generated/formatting_provenance.json`: inspected template sources, styling choices and seal provenance.
 - `evidence/`: unmodified copies of selected numerical records and relevant method definitions.
 - `generated/`: numerical macros, tables, figure provenance and numerical audit.

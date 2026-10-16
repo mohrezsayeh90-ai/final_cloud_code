@@ -1,0 +1,17 @@
+{
+  "figure": "08_gaussian_architecture",
+  "kind": "conceptual schematic",
+  "artwork_asset": "assets/gaussian_coupling_concept.png",
+  "creation_method": "Image generation tool; scientific conceptual illustration, not simulated or measured data",
+  "image_sha256": "94c8af796f5699b77147ba09f5a3bd22089479afbcac7753af098e5a2ecd3bd6",
+  "model_reference": "evidence/gaussian/parcel_pinn/model.py",
+  "interpretation": {
+    "blue_ribbons": "symbolic carrier flow",
+    "amber_centers_and_halos": "symbolic parcel centers and Gaussian sampling neighborhoods",
+    "amber_connecting_curve": "visual guide, not a computed trajectory or an interparcel force",
+    "perspective": "illustrative; the mathematical coupling model is planar"
+  },
+  "numerical_results_modified": false,
+  "original_artwork_preserved": true,
+  "figure_exports": "PDF and SVG embed the raster artwork; PNG is also supplied"
+}

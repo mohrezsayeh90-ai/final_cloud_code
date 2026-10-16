@@ -144,17 +144,19 @@ $\dot{\vect{q}}_i-\vect{v}_i$ in the objective.
 The weighted mean-square residual objective assigns weights 1 to fluid
 momentum, 2 to continuity, 5 to parcel kinematics, 1 to parcel acceleration,
 and 100 to center confinement. All calculations in this formulation use
-float64. \Cref{fig:gaussian_architecture} emphasizes the common quadrature
-that couples the representations. The default calculations are
+float64. \Cref{fig:gaussian_architecture} illustrates the carrier flow and
+Gaussian sampling neighborhoods used to couple the representations.
+The default calculations are
 collision-free; independently tested impact primitives are not treated as
 a validated collisional suspension model.
 
-\ResultFigure[.96]{08_gaussian_architecture}{Coupled Gaussian formulation.
-The two stylized network symbols indicate distinct MLPs, each with three
-32-unit hidden layers; their radial arrangement is illustrative and does
-not specify literal layer connectivity. Shared quadrature transfers sampled
-fluid velocity to parcels and hydrodynamic reaction to the fluid. The
-complete objective includes fluid and parcel residuals.}
+\ResultFigure[.96]{08_gaussian_architecture}{Conceptual illustration of
+Gaussian fluid--parcel coupling. Blue ribbons represent carrier flow;
+amber points and diffuse halos represent parcel centers and regularized
+sampling neighborhoods. The same normalized kernel samples fluid velocity
+and spreads parcel reaction to the fluid. The perspective and connecting
+amber curve are visual guides for the planar coupling model; the figure
+is a schematic rather than a numerical result.}
 {fig:gaussian_architecture}
 
 \section{Reduced Stokes-response verification}

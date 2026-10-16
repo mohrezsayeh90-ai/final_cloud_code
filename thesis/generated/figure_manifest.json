@@ -53,7 +53,8 @@
     "name": "08_gaussian_architecture",
     "kind": "schematic",
     "inputs": [
-      "evidence/gaussian/parcel_pinn/model.py"
+      "evidence/gaussian/parcel_pinn/model.py",
+      "assets/gaussian_coupling_concept.png"
     ]
   },
   {

@@ -54,6 +54,8 @@ def save(fig,name,kind,inputs):
             path='evidence/basic/results/final_study/'+path.removeprefix('basic/')
         elif path.startswith('gaussian/validation/') or path.startswith('gaussian/cases/'):
             path='evidence/gaussian/outputs/evaluated_2d_final/'+path.removeprefix('gaussian/')
+        elif path.startswith('assets/'):
+            pass
         else:path='evidence/'+path
         assert (ROOT/path).is_file(),path
         resolved.append(path+('#'+field if sep else ''))
@@ -223,30 +225,12 @@ def basic_results(checks):
     checks.append(dict(metric='drag_1000_plot_samples',recomputed=rel(np.c_[d['predicted_x'],d['predicted_y']],np.c_[d['exact_x'],d['exact_y']]),recorded=None))
 
 def gaussian_architecture():
-    fig=plt.figure(figsize=(7.4,5.0));gs=fig.add_gridspec(2,1,height_ratios=[1.7,1])
-    ax=fig.add_subplot(gs[0]);ax.set_aspect('equal');ax.set(xlim=(-3.8,3.8),ylim=(-1.9,1.9));ax.axis('off')
-    for center,color,title,label in [((-2.1,.1),NAVY,'Fluid network',r'$(x,y,t)\mapsto(u,v,p)$'),((2.1,.1),TEAL,'Parcel network',r'$t\mapsto(\mathbf{q}_i,\mathbf{v}_i)$')]:
-        cx,cy=center
-        rings=[]
-        for radius,n in [(.35,6),(.68,10),(1.02,14)]:
-            angle=np.linspace(0,2*np.pi,n,endpoint=False)
-            points=np.c_[cx+radius*np.cos(angle),cy+radius*np.sin(angle)];rings.append(points)
-            ax.scatter(*points.T,s=12,c=color,zorder=3)
-        for r0,r1 in zip(rings[:-1],rings[1:]):
-            for i,p in enumerate(r0):
-                for j in [i%len(r1),(i+3)%len(r1)]:ax.plot([p[0],r1[j,0]],[p[1],r1[j,1]],color=color,lw=.6,alpha=.17)
-        ax.text(cx,-1.22,title,ha='center',weight='bold',color=color,fontsize=11)
-        ax.text(cx,-1.58,label,ha='center',fontsize=10)
-    ax.text(0,.45,r'$W_{ai}$',ha='center',fontsize=18,color=GOLD)
-    ax.text(0,-.02,'shared Gaussian\nquadrature',ha='center',va='center',fontsize=9)
-    for a,b,rad,c in [((-1.02,.4),(1.02,.4),-.55,NAVY),((1.02,-.25),(-1.02,-.25),-.55,TEAL)]:
-        ax.annotate('',xy=b,xytext=a,arrowprops=dict(arrowstyle='->',color=c,lw=1.6,connectionstyle=f'arc3,rad={rad}'))
-    ax.text(0,1.32,r'$\mathbf{U}_i=\sum_aW_{ai}\mathbf{u}_a\Delta A_a$',ha='center',fontsize=10)
-    ax=fig.add_subplot(gs[1]);ax.axis('off')
-    ax.text(.5,.78,'Residuals bind the two networks',ha='center',weight='bold',fontsize=11)
-    ax.text(.5,.38,r'Fluid momentum  ·  incompressibility  ·  parcel kinematics  ·  parcel acceleration',ha='center',fontsize=9)
-    ax.text(.5,.02,'Three hidden layers × 32 tanh units per network · float64',ha='center',fontsize=9,color=GREY)
-    save(fig,'08_gaussian_architecture','schematic',['gaussian/parcel_pinn/model.py'])
+    artwork=plt.imread(ROOT/'assets/gaussian_coupling_concept.png')
+    height,width=artwork.shape[:2]
+    fig,ax=plt.subplots(figsize=(7.4,7.4*height/width),layout='constrained')
+    ax.imshow(artwork);ax.axis('off')
+    save(fig,'08_gaussian_architecture','schematic',[
+        'gaussian/parcel_pinn/model.py','assets/gaussian_coupling_concept.png'])
 
 def gaussian_results(checks):
     v1=csv(G/'validation/V01/comparison.csv');v2=csv(G/'validation/V02/comparison.csv')
