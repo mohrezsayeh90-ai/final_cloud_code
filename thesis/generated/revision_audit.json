@@ -1,0 +1,23 @@
+{
+  "baseline_commit": "757ed9a8998353f0189cf54f2b5d660782d2a764",
+  "numerical_values_and_screen_outcomes": [
+    {
+      "file": "generated/values.tex",
+      "sha256": "c1e96198db60803144210cd7ab0a6c451253625f4abb1a8198223f4977928556",
+      "matches_previous_version": true
+    },
+    {
+      "file": "generated/coupled_scope.tex",
+      "sha256": "c7801137cd6a17d791a2e03398e14d726702f2da9bb9cd670470e2aea35ce858",
+      "matches_previous_version": true
+    },
+    {
+      "file": "generated/trajectories.tex",
+      "sha256": "018cc871bf47fc3bebfb80edd75c1f1f2a19c5303737e7ea9fb6899702365955",
+      "matches_previous_version": true
+    }
+  ],
+  "evidence_files_unchanged": 46,
+  "new_simulation_results_claimed": false,
+  "acceptance_thresholds_changed": false
+}

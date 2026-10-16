@@ -53,6 +53,22 @@ def main():
       ['V10','Taylor--Green $u$',rf'\TGU\%'],['V10','Taylor--Green $v$',rf'\TGV\%'],['V10','Taylor--Green $p$',rf'\TGP\%']])
     table('coupled_scope',[[f"{c['physical']['stokes']:.2f}",f"{c['physical']['loading']:.2f}",f"{c['residuals']['momentum']:.4f}",f"{c['residuals']['particle']:.4f}",'Not met'] for c in s['cases']])
     table('trajectories',[[f"{c['seed_eta']:.3f}",f"{100*c['rms_position_error']/m['geometry']['width']:.2f}",f"{100*c['common_fraction']:.2f}",'Yes' if c['outcome_agreement'] else 'No'] for c in m['trajectory']['baseline_comparison']])
+    cfg=json.loads((G/'config.json').read_text())
+    selected=next(x for x in s['cases'] if x['case']=='high_inertia')
+    phys=selected['physical']
+    table('parcel_parameters',[
+      [r'$\Rey_H,\ R,\ b$',rf"${cfg['reynolds']:g},\ {cfg['density_ratio']:g},\ {cfg['depth_ratio']:g}$"],
+      [r'$\beta$, parcel count, seed',rf"${phys['loading']:.2f},\ {cfg['nparcels']},\ {cfg['seed']}$"],
+      [r'$\sigma,\ T$',rf"${cfg['width']:g},\ {cfg['final_time']:g}$"],
+      [r'$\vect{g}_{\rm eff}$',rf"$({cfg['gravity'][0]:g},\ {cfg['gravity'][1]:g})$"],
+      [r'$\St,\ d/H$',rf"${phys['stokes']:.2f},\ {phys['diameter']:.6f}$"],
+      [r'Multiplicity $N_i$',f"${phys['multiplicity']:.6f}$"],
+      [r'Represented mass $m_i$',f"${phys['represented_mass']:.6f}$"],
+      [r'Single-sphere mass in the planar scale',f"${phys['physical_mass']:.8f}$"],
+      [r'Initial parcel velocity',r'$(0,0)$']])
+    initial=[r for r in rows(G/'cases/high_inertia_seed7/particles.csv') if float(r['time'])==0]
+    assert len(initial)==6
+    table('parcel_initial_centers',[[f"P{int(r['particle'])+1}",f"{float(r['x_unwrapped']):.6f}",f"{float(r['y']):.6f}"] for r in initial])
     (T/'tables.tex').write_text(''.join(TABLES))
-    print('Generated six tables and numerical macros.')
+    print(f'Generated {len(TABLES)} tables and numerical macros.')
 if __name__=='__main__':main()

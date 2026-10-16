@@ -1,4 +1,4 @@
-\chapter{Extension to a Constricted Channel}\label{ch:constriction}
+\chapter{Proposed Constricted-Channel Study}\label{ch:constriction}
 
 \section{Purpose and status of the extension}
 A constriction introduces a varying gap, a changing cross-sectional mean
@@ -105,7 +105,8 @@ Periodic Fourier features in the streamwise direction would impose the
 wrong structure for the proposed open domain. They must be replaced by
 nonperiodic coordinate features. A wall-distance factor can enforce the
 stationary wall velocity, but it must be consistent with the nonzero inlet
-condition and with the mapped derivatives. A divergence-free streamfunction
+condition and with the mapped derivatives \citep{sukumar2022}. % Citation-plan C27
+ A divergence-free streamfunction
 ansatz is a possible alternative, provided that its boundary and pressure
 conditions are verified. These are implementation choices to evaluate,
 rather than capabilities already established by the straight-channel model.
@@ -128,8 +129,10 @@ remain valid on the new quadrature.
 actual domain. Some Gaussian support intersects the wall region near the
 throat. Removing those points without updating $Z_i$ would lose force.
 Renormalizing restores the integrated force, but changes the shape of the
-sampling operator. It still does not supply missing lubrication or
-undisturbed-velocity corrections.
+sampling operator, an issue related to coarse-graining choices
+\citep{sun2015}. Physical wall corrections \citep{goldman1967,brenner1961}
+and undisturbed-velocity recovery \citep{horwitz2016,ireland2017} remain
+separate modeling requirements. % Citation-plan C28
 
 \ResultFigure[.95]{14_boundary_kernel}{Illustration of a Gaussian centered
 near the upper throat wall. Shading is a prescribed kernel shape restricted
@@ -147,7 +150,9 @@ where $\Delta_{\mathrm{quad}}$ denotes a local quadrature-spacing measure.
 The first concerns physical confinement; the second concerns regularization
 relative to the gap; the third concerns the numerical resolution of that
 regularization. They address different questions and should be varied
-separately. If physical wall effects dominate, the present unbounded
+separately, with coarse-graining and transfer-resolution studies providing
+related context \citep{sun2015,capecelatro2013}. % Citation-plan C29
+ If physical wall effects dominate, the present unbounded
 Stokes closure may need replacement before more accurate training is useful.
 
 \section{Particle and parcel wall conditions}
@@ -168,7 +173,10 @@ particles, splits parcels, or uses a separately justified population-level
 wall model. No capture efficiency is assigned before making that choice.
 
 \section{Controlled evaluation sequence}
-The extension should be evaluated in the following order.
+The extension uses staged verification consistent with the distinction
+between solving equations and establishing physical validity
+\citep{oberkampf2002}. The following sequence is the study design adopted
+here. % Citation-plan C30
 \begin{enumerate}
 \item Recover the straight, unladen open-channel solution at $\delta=0$
 with the new inlet and outlet conditions. Verify pressure gauge, wall
@@ -250,8 +258,10 @@ the fixed-flux design. Keeping these operating conditions separate is
 essential for a meaningful comparison of unblocked and constricted cases.
 
 \section{Chapter conclusions}
-The constricted-channel stage is fully specified at the level of geometry,
-governing conditions, transfer consistency, and evaluation requirements.
+The constricted-channel stage is defined at the study-design level through
+its geometry, boundary-condition choices, transfer consistency, and
+evaluation requirements. The outlet traction and its reference value must
+be fixed before executing the matched solvers.
 It extends the study in a controlled direction while preserving the
 distinction between mathematical consequences, proposed experiments, and
 completed numerical findings. Its next milestone is a verified unladen

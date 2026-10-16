@@ -63,6 +63,50 @@ when this identity is evaluated numerically. Wall tractions still enter
 the momentum budget; they must not be omitted merely because wall work
 vanishes in the energy budget.
 
+\subsection{Definitions of the plotted balance discrepancies}
+The plotted diagnostics use the same midpoint weights $\Delta A=3/256$
+as the transfer. Define the discrete total momentum and energy by
+\begin{equation}
+ \vect{M}=\sum_a\vect{u}_a\Delta A+\sum_i m_i\vect{v}_i,\qquad
+ K=\frac12\sum_a|\vect{u}_a|^2\Delta A
+       +\frac12\sum_i m_i|\vect{v}_i|^2.
+\end{equation}
+The signed energy discrepancy in \cref{fig:parcel_balances} is
+\begin{equation}
+ r_E=\frac{dK}{dt}+D_\nu+D_{\rm drag}
+             -W_{\rm drive}-W_g,
+ \label{eq:energy_discrepancy}
+\end{equation}
+with
+\begin{align}
+ D_\nu&=\frac{1}{\Rey_H}\sum_a
+              |\nabla\vect{u}_a|^2\Delta A,&
+ D_{\rm drag}&=\sum_i\frac{m_i}{\St_i}|\vect{U}_i-\vect{v}_i|^2,\\
+ W_{\rm drive}&=\sum_a\vect{u}_a\cdot\vect{f}_d\Delta A,&
+ W_g&=\sum_i m_i\vect{v}_i\cdot\vect{g}_{\rm eff}.
+\end{align}
+For momentum, the plotted quantity is the Euclidean norm of
+\begin{equation}
+ \vect{r}_M=\frac{d\vect{M}}{dt}-\vect{T}_\nu-\vect{F}_p
+                -|\Omega|\vect{f}_d-\sum_i m_i\vect{g}_{\rm eff}.
+ \label{eq:momentum_discrepancy}
+\end{equation}
+Here $\vect{T}_\nu=\Rey_H^{-1}\int_{\partial\Omega_w}
+\partial_n\vect{u}\,ds$ is the viscous wall-flux contribution for the
+Laplacian form of the momentum equation, and
+$\vect{F}_p=-\int_{\partial\Omega_w}p\vect{n}\,ds$ is wall-pressure
+force. Opposite periodic-face terms cancel. Wall integrals use midpoint
+sampling along the walls. Internal drag cancels between the two phases.
+
+The time derivatives of $K$ and $\vect{M}$ are obtained by automatic
+differentiation of the neural fields and parcel states at fixed spatial
+quadrature points. They are instantaneous derivative discrepancies,
+not cumulative integration errors. The plots contain 41 stored times
+over $0\leq t\leq1$. All terms use the Gaussian channel's nondimensional
+inertial convention; their absolute magnitudes are not percentages.
+The separate $0.03$ screen concerns held-out differential-residual RMS,
+not these integrated balance curves.
+
 \section{A limiting pressure-drop estimate}
 For slowly varying plane walls and negligible inertia, the local
 lubrication approximation gives the dimensional velocity
@@ -85,7 +129,7 @@ hydraulic resistance estimate is
 This is a limiting analytical check, not a simulation result for the
 proposed severity values. Its reliability requires sufficiently small wall
 slope and inertial effects; a full Navier--Stokes solution is needed when
-those assumptions fail \citep{batchelor1967}.
+those assumptions fail \citep{batchelor1967}. % Citation-plan C36
 
 \section{Baseline trajectory criteria}\label{sec:trajectory_appendix}
 \Cref{tab:path_limits} retains the seven baseline comparisons associated

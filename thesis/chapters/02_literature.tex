@@ -6,12 +6,14 @@ levels of resolution. A particle-resolved method imposes boundary conditions
 on each particle surface. It can represent the disturbance flow, finite-size
 effects, and surface stresses when these are sufficiently resolved. Direct
 forcing immersed-boundary methods provide one established route to such
-calculations \citep{uhlmann2005}. Their additional resolution requirements
+calculations \citep{uhlmann2005,mittal2005}. % Citation-plan C04
+ Their additional resolution requirements
 are justified when particle-scale flow is itself an essential part of the
 problem.
 
 A point-particle model instead advances particle centers using a force law
-obtained under specified physical assumptions. The classical equation of
+obtained under specified physical assumptions \citep{subramaniam2013}. % Citation-plan C05
+ The classical equation of
 motion for a small rigid sphere includes effects beyond steady drag
 \citep{maxey1983}. The heavy-particle, low-slip-Reynolds-number approximation
 used here retains a much narrower description. It is appropriate to assess
@@ -28,19 +30,23 @@ important when a channel becomes narrow relative to particle diameter
 
 \section{One-way and two-way coupling}
 In one-way coupling, the fluid field determines the particle force but the
-particle reaction is neglected in the fluid equations. This separation is
+particle reaction is neglected in the fluid equations \citep{balachandar2010,elghobashi1994}. % Citation-plan C06
+ This separation is
 useful for studying dilute transport because the fluid solution can be
 evaluated independently of particle initial conditions. Small particle
 volume fraction is a necessary consideration, although it does not alone
 guarantee negligible feedback when the particle density is high. Mass
-loading and the relevant time scales also matter.
+loading and the relevant time scales also matter
+\citep{balachandar2010,subramaniam2013}. These broad multiphase-flow
+classifications provide modeling context; turbulence-based regime maps
+are not imposed as universal thresholds for this laminar channel. % Citation-plan C07
 
 Two-way coupling includes the hydrodynamic reaction in the carrier-fluid
 momentum balance. The coupling must specify how a particle samples the fluid
 and how its reaction is distributed to the Eulerian field. Treating either
 operation independently can generate an inconsistent power exchange even
 when the integrated force is correct. A shared transfer operator provides a
-direct means to avoid this particular inconsistency.
+direct means to avoid this particular inconsistency \citep{peskin2002}. % Citation-plan C08
 
 Regularized point-particle methods provide a principled context for this
 transfer. In the exact regularized point-particle method, the treatment of
@@ -48,15 +54,21 @@ the disturbance and its regularization is tied to the governing flow
 equations \citep{gualtieri2015}. A generic normalized Gaussian deposition
 does not inherit all of that method's properties. In particular, sampling
 the disturbed velocity at a force source is not equivalent to recovering
-the undisturbed velocity required by an isolated-particle drag law.
+the undisturbed velocity required by an isolated-particle drag law
+\citep{horwitz2016,ireland2017}. % Citation-plan C09
 
 \section{Gaussian parcels and represented populations}
 A parcel represents a population of physical particles through a
-multiplicity. Its represented mass must scale with that multiplicity, and
+multiplicity \citep{subramaniam2013}. The planar mass convention used
+here is specified in \cref{eq:parcel_mass}. % Citation-plan C10
+ Its represented mass must scale with that multiplicity, and
 its reaction force must use the same convention. A Gaussian kernel spreads
 that force over a finite region, avoiding a singular source in the carrier
 equations. The width of the kernel is a modeling parameter with a direct
-effect on the spatial distribution of forcing.
+effect on the spatial distribution of forcing
+\citep{sun2015,capecelatro2013}. These coarse-graining and Euler--Lagrange
+methods supply background for transfer and resolution; their algorithms
+are distinct from the neural representation used here. % Citation-plan C11
 
 Three lengths must be kept distinct: the physical diameter, the numerical
 or model regularization width, and the local channel height. Equating the
@@ -69,20 +81,24 @@ solved.
 Near a wall, a free-space Gaussian is truncated by the fluid domain. A
 discrete normalization can preserve its integrated weight on the chosen
 quadrature. That normalization establishes a transfer identity; it does
-not derive a wall-corrected drag law. This distinction carries directly into
+not derive a wall-corrected drag law \citep{goldman1967,brenner1961}. % Citation-plan C12
+ This distinction carries directly into
 the constricted-channel extension developed later.
 
 \section{Physics-informed representations}
 Physics-informed neural networks approximate solution fields with
 differentiable functions and train those functions using equation and
-boundary residuals \citep{raissi2019}. They provide continuous field values
+boundary residuals \citep{raissi2019,lu2021,cai2021}. % Citation-plan C14
+ They provide continuous field values
 without a separate spatial interpolant. Automatic differentiation also
 allows the same representation to supply the derivatives entering the
-equations. These features are useful for particle transport, where the
+equations \citep{baydin2018}. These features are useful for particle transport, % Citation-plan C13
+ where the
 evaluation locations move continuously.
 
 Physics information in the objective is not a guarantee that optimization
-finds a sufficiently accurate solution. Residual terms can have different
+finds a sufficiently accurate solution \citep{krishnapriyan2021}. % Citation-plan C15
+ Residual terms can have different
 scales and different optimization behavior. Gradient imbalance and training
 difficulties are documented limitations of PINNs
 \citep{wang2021,wang2022}. A weighted objective may decrease while a
@@ -92,7 +108,9 @@ predictions considered here.
 
 Hard constraints offer an additional design choice. An ansatz can impose an
 initial condition, periodicity, or homogeneous wall velocity exactly, leaving
-the network to represent a correction that respects those conditions. This
+the network to represent a correction that respects those conditions
+\citep{lagaris1998,sukumar2022}. % Citation-plan C16
+ This
 reduces the number of requirements enforced through a penalty. It does not
 remove the need to evaluate momentum, continuity, and particle-motion
 residuals at independent points.
@@ -114,7 +132,8 @@ from those of the neural representation. It must still be evaluated for
 nonlinear convergence, incompressibility, and mesh sensitivity.
 
 Verification and physical validation address different questions
-\citep{roache1998}. Agreement with an analytical solution tests whether a
+\citep{roache1998,oberkampf2002}. Agreement with an analytical solution % Citation-plan C17
+ tests whether a
 specified mathematical problem is solved correctly. Agreement with another
 numerical solver tests consistency for a matched model and boundary-value
 problem. Experimental validation additionally requires suitable
@@ -143,7 +162,8 @@ the two solutions reach the same endpoint class.
 Confinement adds a physical limitation to this numerical sensitivity. When
 the local channel height approaches the particle diameter, the unbounded
 Stokes law becomes a questionable description even if the numerical
-trajectory is well resolved. A study of narrowing should therefore track
+trajectory is well resolved \citep{goldman1967,brenner1961}. % Citation-plan C18
+ A study of narrowing should therefore track
 both numerical agreement and the changing ratio of particle diameter to
 local gap. A dilute regularized model cannot be used to infer dense
 blockage merely because a narrow geometry is drawn.

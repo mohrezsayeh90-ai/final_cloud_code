@@ -26,7 +26,10 @@ The flow network maps five input slots to velocity and pressure:
  \longmapsto (u,v,p_v).
  \label{eq:flownet}
 \end{equation}
-It has five hidden layers with 70 tanh units per layer. The spatial inputs
+Velocity--pressure PINN formulations for incompressible flow provide
+related methodological background \citep{jin2021}. The present network
+has five hidden layers with 70 tanh units per layer. % Citation-plan C19
+ The spatial inputs
 are centered and scaled, and the pressure output is scaled with a
 channel-based pressure magnitude. The geometry and Reynolds inputs are
 fixed within an individual trained model. Their presence does not establish
@@ -93,7 +96,7 @@ reference has a nonlinear residual of approximately
 $1.60\times10^{-10}$. Its reported divergence norm is not identically zero;
 the mixed discretization enforces incompressibility weakly. The mesh
 differences are sensitivity indicators, not a formal uncertainty estimate
-or a grid-convergence index \citep{roache1998}.
+or a grid-convergence index \citep{roache1998,celik2008}. % Citation-plan C20
 
 \begin{table}[htbp]\centering\small
 \caption{Reference-mesh assessment. Velocity differences are measured
@@ -186,7 +189,9 @@ test's points.
 
 The drag comparison supports the network's approximation of the retained
 creeping-flow law. It cannot establish the accuracy of neglected lift,
-history, lubrication, or wall corrections. Direct analytical Stokes drag
+history, lubrication, or wall corrections
+\citep{maxey1983,goldman1967,brenner1961}. % Citation-plan C21
+ Direct analytical Stokes drag
 also remains an essential baseline for judging the value of a learned
 approximation of this known relation.
 
@@ -237,7 +242,11 @@ agreement.}{fig:flux}
 
 \section{Particle-transport interpretation}
 The baseline evaluation completes 119 particle or tracer integrations
-without a recorded integration failure. The reference velocity
+without a recorded integration failure: 49 use PINN with ForceNet, 49 use
+FEM with exact Stokes drag, seven use PINN with exact Stokes drag, and
+14 are tracer integrations split equally between the PINN and FEM fields.
+These counts include the parameter-study cases; the primary endpoint
+comparison concerns seven initial conditions. The reference velocity
 interpolator differs from direct finite-element evaluation by
 \InterpolationDifference\% on its assessment samples. These are useful
 computational checks, but neither alone proves accurate particle outcomes.
@@ -245,8 +254,9 @@ computational checks, but neither alone proves accurate particle outcomes.
 Among the seven baseline particle initial positions, six endpoint classes
 agree with the reference. The largest width-normalized RMS position
 discrepancy is approximately 34.97\%, and the lowest common-time coverage
-is approximately 73.55\%. The endpoint, position, and time-coverage
-criteria therefore do not all pass. Detailed values are retained in
+is approximately 73.55\%. Three initial conditions meet all endpoint,
+position-error and common-time criteria; six meet the endpoint criterion
+alone. Detailed values are retained in
 \cref{tab:path_limits} so that the scope of the carrier-flow findings is
 unambiguous. Particle deposition maps and parameter-sweep trajectories are
 not used as accepted results in this chapter.
@@ -257,6 +267,14 @@ components, but their combination is not enough to certify wall-sensitive
 transport. The justified baseline conclusion is that the carrier and drag
 components agree well with their stated references, while the full
 trajectory prediction remains an improvement target.
+
+The present comparisons do not isolate a single cause for the trajectory
+differences. Carrier-field approximation, ForceNet error, reference
+interpolation, ODE integration, and event handling are separate candidates.
+The recorded integrator uses relative and absolute tolerances
+$2\times10^{-6}$ and $2\times10^{-8}$, with RK45 or Radau chosen according
+to the response scale. A factorial comparison holding the integrator and
+wall-event rule fixed is needed to attribute the discrepancies.
 
 \section{Chapter conclusions}
 The baseline establishes a reproducible carrier-flow and drag foundation

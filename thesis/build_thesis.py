@@ -89,6 +89,14 @@ def main():
     for p in [ROOT/'thesis.tex',*(ROOT/'chapters').glob('*.tex')]:
         for group in re.findall(r'\\cite\w*\{([^}]+)\}',p.read_text()):cited.update(group.split(','))
     assert cited==refs,dict(uncited=sorted(refs-cited),undefined=sorted(cited-refs))
+    plan=json.loads((ROOT/'generated/citation_plan.json').read_text())
+    assert len(refs)==plan['total_reference_count']==40
+    assert len(plan['placements'])==36
+    for placement in plan['placements']:
+        source=(ROOT/placement['file']).read_text()
+        assert source.count(placement['marker'])==1,placement['id']
+        for key in placement['keys']:
+            assert re.search(r'\\cite\w*\{[^}]*\b'+re.escape(key)+r'\b[^}]*\}',source),(placement['id'],key)
     info=subprocess.check_output(['pdfinfo',str(ROOT/'build/thesis.pdf')],text=True)
     pages=int(re.search(r'^Pages:\s+(\d+)',info,re.M).group(1))
     pdf=ROOT/'Particle_Transport_Thesis.pdf';shutil.copy2(ROOT/'build/thesis.pdf',pdf)
@@ -96,6 +104,8 @@ def main():
         evidence_files_verified=len(manifest['inputs']),recomputed_metrics=len(numerical['recomputed_metrics']),
         unresolved_references=[],overfull_boxes=[],missing_glyphs=[],
         citation_coverage='all references cited; all citations defined',
+        citation_plan_placements=36,added_references=25,
+        measured_errors_and_acceptance_outcomes='preserved',
         template_and_conversation_markers='absent',constricted_channel_results_claimed=False,
         data_availability_section_removed=True,diagnostic_parcel_figures=5,
         parcel_postprocessing_checks='passed; complete coupled screen remains unmet',

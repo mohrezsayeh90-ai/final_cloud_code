@@ -2,7 +2,8 @@
 
 \section{Motivation}
 Particle-laden channel flows connect local hydrodynamics with transport
-outcomes. A particle can follow the carrier flow closely, cross a streamline
+outcomes \citep{balachandar2010,subramaniam2013}. % Citation-plan C01
+ A particle can follow the carrier flow closely, cross a streamline
 because of inertia, or approach a wall closely enough to change its final
 destination. In a narrow passage, these outcomes depend on both the flow
 field and the force closure. A small average velocity error can coexist
@@ -15,7 +16,8 @@ the incompressible Navier--Stokes equations and integrate particle motion
 \citep{ferziger2002,clift1978}. Physics-informed neural networks offer a
 different representation: a differentiable network approximates the
 solution, while differential equations and boundary conditions constrain
-its parameters \citep{raissi2019,karniadakis2021}. This representation is
+its parameters \citep{raissi2019,karniadakis2021,cai2021,cuomo2022}. % Citation-plan C02
+ This representation is
 attractive when smooth field evaluation and derivatives are needed at
 many moving particle positions. Its utility must nevertheless be established
 by comparison with an independent reference and by checks that are sensitive
@@ -81,8 +83,9 @@ description of a dense particle agglomerate.
 The two-dimensional carrier does not resolve spanwise motion. No inference
 about a finite-depth three-dimensional channel follows from an extruded
 view. Particle rotation, lubrication, history force, and hydrodynamic
-interactions of resolved finite-size bodies lie outside the accepted
-baseline. The constriction is considered as a static wall geometry rather
+interactions of resolved finite-size bodies lie outside the retained
+baseline \citep{maxey1983,goldman1967,brenner1961}. % Citation-plan C03
+ The constriction is considered as a static wall geometry rather
 than a dynamically growing deposit or a biological vessel.
 
 \section{Study sequence and contributions}

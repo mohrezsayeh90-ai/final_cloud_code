@@ -1,19 +1,22 @@
 {
   "compiler_exit_code": 0,
-  "pages": 64,
+  "pages": 70,
   "figures": 19,
-  "references": 15,
+  "references": 40,
   "evidence_files_verified": 46,
   "recomputed_metrics": 13,
   "unresolved_references": [],
   "overfull_boxes": [],
   "missing_glyphs": [],
   "citation_coverage": "all references cited; all citations defined",
+  "citation_plan_placements": 36,
+  "added_references": 25,
+  "measured_errors_and_acceptance_outcomes": "preserved",
   "template_and_conversation_markers": "absent",
   "constricted_channel_results_claimed": false,
   "data_availability_section_removed": true,
   "diagnostic_parcel_figures": 5,
   "parcel_postprocessing_checks": "passed; complete coupled screen remains unmet",
   "numerical_result_files_modified": false,
-  "sha256": "68e9a735771cf6bf1a22ad07ab57246ec57ee9ebed15bec1b5d6229ea8114c91"
+  "sha256": "42170f30e4b74657548487a272afee3e8e34567ef53249c863295cad584e1ccd"
 }

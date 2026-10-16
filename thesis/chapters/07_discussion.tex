@@ -10,15 +10,13 @@ check that is independent of the curved-channel finite-element field.
 Reference-mesh sensitivity and section flux add evidence beyond a single
 parity plot.
 
-The trajectory comparison changes the interpretation of this success.
-The carrier-field results are useful but do not establish that the complete
-particle problem is solved with the same relative accuracy. A particle
-integrates the local field over time, and a small near-wall discrepancy
-can change an endpoint event. Six of seven matching endpoint classes
-therefore indicate a remaining limitation rather than permission to
-generalize deposition trends. This finding supports evaluating the final
-transport quantity directly, instead of treating bulk velocity error as
-its surrogate.
+The trajectory comparison evaluates an additional quantity beyond field
+agreement. Six of seven endpoint classes agree, while three of seven
+trajectories meet the complete position, common-time and endpoint criteria.
+A particle integrates the local field over time; force approximation,
+interpolation and event handling also affect its result. Their individual
+contributions require a controlled comparison. These findings motivate
+direct transport assessment alongside the carrier-field metrics.
 
 The force network also raises a methodological question. Since the
 retained Stokes law is known analytically, its neural approximation is
@@ -61,12 +59,15 @@ baseline momentum RMS directly with the Gaussian momentum RMS would
 ignore different scaling, geometry, and transient content.
 
 Training difficulties in physics-informed learning are well documented
-\citep{wang2021,wang2022}. They motivate focused improvements such as
-component scaling, more informative collocation, and better temporal
-resolution of the response scale. These improvements must be assessed
-using the same independent checks. Lowering a threshold after inspecting
-the results or selecting only a visually attractive field would weaken the
-inference rather than improve the model.
+\citep{wang2021,wang2022,krishnapriyan2021}. They motivate focused improvements such as % Citation-plan C31
+component scaling and more informative collocation. Residual-based
+adaptive sampling \citep{wu2023} and adaptive loss weighting
+\citep{mcclenny2023} are options for a future controlled comparison.
+A further option is better temporal % Citation-plan C32
+resolution of the response scale, including causality-aware training
+for the transient coupled problem \citep{wang2024}. These approaches were
+not part of the recorded runs. Their value must be assessed % Citation-plan C33
+using the same independent checks and the original acceptance criteria.
 
 \section{Regularization and model validity}
 The Gaussian width controls how the represented force is distributed.
@@ -78,7 +79,8 @@ sensitivity must therefore be distinguished from convergence at fixed
 model parameters.
 
 The undisturbed-velocity issue is equally important. The current parcels
-sample the disturbed fluid directly. A reduced Stokes-response test cannot
+sample the disturbed fluid directly \citep{horwitz2016,ireland2017}. % Citation-plan C34
+ A reduced Stokes-response test cannot
 resolve the resulting self-interaction question in a spatially coupled
 flow. Comparison with an independent solver of the same regularized
 equations would test numerical consistency; assessment against a suitable
@@ -125,8 +127,20 @@ channel should be compared with an independent regularized solver at fixed
 width and well-resolved quadrature. Third, the unladen constricted problem
 should be solved before introducing moving populations.
 
-This ordering reduces ambiguity. A failed two-way constricted calculation
-could otherwise reflect carrier approximation, irregular-domain transfer,
-wall geometry, particle closure, or optimization. Establishing the controls
+This ordering separates carrier approximation, irregular-domain transfer,
+wall geometry, particle closure, and optimization. Establishing the controls
 in sequence allows each additional mechanism to be interpreted against a
 known numerical foundation.
+
+\section{Relationship to earlier methods}
+The present contribution is a continuous-time neural representation with
+shared, normalized force transfer and explicitly separated field and
+trajectory assessment. The transfer structure is related to
+Eulerian--Lagrangian methods \citep{peskin2002,capecelatro2013}, while the
+fluid representation belongs to the velocity--pressure PINN framework
+\citep{jin2021}. Undisturbed-velocity recovery is a distinct modeling
+development addressed by Horwitz and Mani \citep{horwitz2016} and Ireland
+and Desjardins \citep{ireland2017}. These
+relationships identify the design choices adopted here; the reported
+comparisons establish performance only for the stated tests and do not
+demonstrate general superiority over those earlier methods.

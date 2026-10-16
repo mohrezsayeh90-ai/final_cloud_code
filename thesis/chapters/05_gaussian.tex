@@ -1,8 +1,11 @@
 \chapter{Gaussian Parcels in a Straight Channel}\label{ch:gaussian}
 
 \section{From individual particles to represented populations}
+Euler--Lagrange methods couple an Eulerian carrier description with
+Lagrangian particle dynamics \citep{capecelatro2013,subramaniam2013}.
 The second stage adds hydrodynamic feedback while retaining a simple
-carrier geometry. A parcel represents $N_i$ identical spherical particles
+carrier geometry. % Citation-plan C22
+ A parcel represents $N_i$ identical spherical particles
 whose centers are approximated by a common planar state. Its mass and
 hydrodynamic reaction are weighted by that multiplicity. The Gaussian
 distribution describes how the represented force interacts with the
@@ -73,6 +76,12 @@ Near a wall, $Z_i$ accounts for the actual bounded-domain quadrature.
 At an arbitrary collocation point, the numerator uses that point, while
 the denominator remains the value from the fixed transfer quadrature.
 
+The evaluated channel uses tensor-product midpoint quadrature. Its points
+are $x_a=(a+1/2)3/16$ and $y_b=(b+1/2)/16$ for $a,b=0,\ldots,15$.
+Thus $\Delta x=0.1875$, $\Delta y=0.0625$, and every point has area weight
+$\Delta A=3/256$. Exact normalization on this grid is a property of the
+discrete operator; spatial resolution is assessed separately.
+
 \subsection{Force and work identities}
 Substituting \cref{eq:shared_transfer} into the quadrature sum gives
 \begin{equation}
@@ -93,7 +102,11 @@ rates is therefore
  =-\sum_i\frac{m_i}{\St_i}|\vect{U}_i-\vect{v}_i|^2\leq0.
  \label{eq:drag_dissipation}
 \end{equation}
-These are semidiscrete properties of the shared transfer. A trained PINN
+These are semidiscrete properties of the shared transfer. Paired
+Eulerian--Lagrangian transfer operators provide related methodological
+background \citep{peskin2002}; the identities above follow specifically
+from \cref{eq:normalized_kernel,eq:shared_transfer}. % Citation-plan C23
+ A trained PINN
 with nonzero residual need not satisfy the complete global momentum or
 energy balance exactly. External driving can also make total kinetic energy
 increase even though the drag contribution is dissipative.
@@ -107,7 +120,10 @@ time, and three periodic Fourier harmonics in $x$. The ansatz is
  +\frac{t}{T}y(1-y)\vect{n}_{u}(\vect{x},t).
  \label{eq:fluid_ansatz}
 \end{equation}
-It enforces the initial velocity and stationary wall velocity. Periodicity
+It enforces the initial velocity and stationary wall velocity, following
+the principle of building constraints into the approximation
+\citep{lagaris1998,sukumar2022}. % Citation-plan C24
+ Periodicity
 follows from the Fourier features. A time-dependent pressure offset is
 removed at $(0,0)$; no independent initial-pressure condition is imposed.
 
@@ -224,8 +240,11 @@ machine precision. The kernels are verified on their declared quadrature;
 neither panel is a flow-field prediction.}{fig:kernel_checks}
 
 \subsection{Unsteady incompressible flow}
-V10 considers the periodic two-dimensional Taylor--Green vortex with
-viscosity $\nu=0.01$ over $0\leq t\leq5$. The exact velocity is
+The Taylor--Green vortex family supplies historical background
+\citep{taylor1937}, while velocity--pressure PINN flow benchmarks provide
+related numerical context \citep{jin2021}. V10 uses the following explicit
+two-dimensional periodic form and pressure gauge, with viscosity % Citation-plan C25
+ $\nu=0.01$ over $0\leq t\leq5$. The exact velocity is
 \begin{equation}
  u=\sin x\cos y\,e^{-2\nu t},\qquad
  v=-\cos x\sin y\,e^{-2\nu t},
@@ -236,8 +255,17 @@ and the gauge-aligned pressure is
  p=\frac{1}{4}(\cos2x+\cos2y-2)e^{-4\nu t}.
  \label{eq:tg_pressure}
 \end{equation}
-The initial field is imposed, while the analytical temporal decay is held
-out of training. Independent sample-relative errors are \TGU\% for $u$,
+The network imposes the initial velocity and initial gauge-aligned pressure through
+\begin{align}
+ u_\theta&=\sin x\cos y+(t/5)n_u,\\
+ v_\theta&=-\cos x\sin y+(t/5)n_v,\\
+ p_\theta&=\tfrac14(\cos2x+\cos2y-2)
+             +(t/5)[n_p(x,y,t)-n_p(0,0,t)].
+\end{align}
+The trainable corrections $n_u,n_v,n_p$ use periodic features; the
+analytical temporal decay is held out of training. This evaluates the
+learned response within the stated constrained representation. Independent
+sample-relative errors are \TGU\% for $u$,
 \TGV\% for $v$, and \TGP\% for pressure. The independent residual RMS is
 approximately $7.38\times10^{-4}$. These results support the unsteady
 carrier implementation for this smooth periodic test.
@@ -258,13 +286,17 @@ Test & Observable & Relative error\\\midrule
 \bottomrule\end{tabularx}
 \end{table}
 
-\section{Status of the coupled straight-channel calculations}
+\section{Coupled computations and accuracy assessment}
 The evaluated coupled channel uses one training seed and four combinations
 of Stokes number and mass loading. The training schedule is 1,200 Adam
 steps followed by a 200-iteration L-BFGS budget; the transfer quadrature
-is $16\times16$. All four calculations produce finite outputs, but none
-meets the complete residual screen. \Cref{tab:coupled_scope} reports the
-momentum and parcel-acceleration RMS values that bound their interpretation.
+is $16\times16$. All four calculations complete with finite trained
+checkpoints and a recorded budget-exhaustion stopping status. The coupled
+implementation is therefore executed, rather than absent. Its numerical
+accuracy is assessed independently: none of the four approximations meets
+the complete residual screen. \Cref{tab:coupled_scope} retains the measured
+momentum and parcel-acceleration RMS values. A residual-screen outcome
+does not by itself establish optimizer divergence or optimizer convergence.
 
 \begin{table}[htbp]\centering\small
 \caption{Coupled straight-channel screening. Every required held-out
@@ -284,11 +316,12 @@ below 0.01, and slip Reynolds number no greater than one. The observed
 maximum slip Reynolds numbers range from approximately $0.234$ to $0.642$.
 These satisfy that loose screening bound but do not establish the
 asymptotically small-slip regime required for accurate Stokes drag.
-Passing the reduced tests therefore does not justify selecting a visually
-smooth coupled-channel field as a validated result. I exclude these
-predictions from quantitative claims about loading effects, sedimentation,
-or deposition. The physical model also samples the disturbed fluid without
-an undisturbed-velocity correction, so successful future residual screening
+The reduced tests and coupled-channel results address different levels
+of the calculation. The coupled figures document computed fields and
+parcel motion; quantitative loading, sedimentation and deposition trends
+require a matched accuracy assessment. The physical model also samples the disturbed fluid without
+an undisturbed-velocity correction \citep{horwitz2016,ireland2017}, % Citation-plan C26
+ so successful future residual screening
 would still require independent assessment of the drag closure.
 
 All ten component tests in the evaluated record pass their individual
@@ -296,8 +329,17 @@ criteria. Tests V05--V08 concern impact algebra and a frozen-rate sampling
 primitive, which are outside the collision-free channel study and are not
 used to validate its dynamics. The literature catalogue likewise supplies
 no matched physical-validation result for the Gaussian channel. These
-scope limits preserve the distinction between tested components and an
-accepted coupled prediction.
+scope limits distinguish component verification from coupled-field accuracy.
+
+The held-out fluid assessment uses nine times and 79 independently drawn
+spatial points per time, giving 711 space--time locations. Four times
+explicitly probe $t/T=0$, $0.01$, $0.05$ and $1$; the remaining times and
+spatial points follow the independent seed 991. Parcel residuals use the
+same nine times and all six parcels. For momentum, RMS is the square root
+of the mean of squared residual components over times, locations and
+the two velocity components. Parcel RMS analogously averages over times,
+parcels and components. The $0.03$ limit applies to these dimensionless
+componentwise RMS values, not to a percentage field error or a mean vector norm.
 
 \section{Computed parcel motion and carrier response}
 The incomplete fluid-residual screen does not prevent examining the actual
@@ -309,6 +351,25 @@ This selection identifies the more internally consistent available
 calculation; it is not evidence of a general advantage of larger Stokes
 number. The complete four-case comparison remains in
 \cref{tab:coupled_scope}.
+
+\begin{table}[htbp]\centering\small
+\caption{Actual settings of the displayed six-parcel computation. Masses
+use the planar convention of \cref{eq:parcel_mass}; quantities are
+dimensionless unless stated otherwise.}\label{tab:parcel_parameters}
+\begin{tabularx}{\textwidth}{@{}Yr@{}}\toprule
+Quantity & Value\\\midrule
+\EvidenceRows{parcel_parameters}
+\bottomrule\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]\centering\small
+\caption{Initial centers of the six displayed parcels, read from the
+stored states. All initial velocities are zero.}\label{tab:parcel_centers}
+\begin{tabular}{@{}lrr@{}}\toprule
+Parcel & $x_0/H$ & $y_0/H$\\\midrule
+\EvidenceRows{parcel_initial_centers}
+\bottomrule\end{tabular}
+\end{table}
 
 For this case the kinematic and acceleration RMS values are approximately
 $6.81\times10^{-4}$ and $1.65\times10^{-3}$, respectively. The carrier
@@ -329,9 +390,9 @@ $\St=0.6$, $\beta=0.05$, seed 7. Background colors show carrier speed
 at four stored times; matching marker colors identify the six parcels.
 Markers are illustrative centers, not physical sphere sizes. Colors
 interpolate the stored $16\times16$ carrier samples using one common scale;
-the wall lines identify the prescribed no-slip boundaries. This is a
-diagnostic coupled prediction with momentum RMS $0.0407$, not an
-independently validated transport result.}{fig:parcel_transport}
+the wall lines identify the prescribed no-slip boundaries. This computed
+response has momentum RMS $0.0407$; the accuracy criterion and all four
+case outcomes are given in \cref{tab:coupled_scope}.}{fig:parcel_transport}
 
 The trajectories and component velocities in \cref{fig:parcel_paths}
 resolve different aspects of this motion. Streamwise parcel velocities
