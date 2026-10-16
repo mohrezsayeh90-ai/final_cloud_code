@@ -1,0 +1,440 @@
+{
+  "original_archive": {
+    "path": "__results___files.rar",
+    "size_bytes": 5390586,
+    "sha256": "f4a15b9156549e713cc9e1c02b92337d46ddc0616ce8ad776f397a467f4fa220"
+  },
+  "image_count": 53,
+  "uncompressed_image_bytes": 5766023,
+  "images": [
+    {
+      "path": "__results___files/__results___0_1.png",
+      "size_bytes": 80108,
+      "sha256": "718c2f0a77c2801ab53961a74887072ccc2fc7b695804bf05acbb6690535baba",
+      "width": 889,
+      "height": 490,
+      "caption": "تاریخچهٔ آموزش با مؤلفه‌های loss"
+    },
+    {
+      "path": "__results___files/__results___0_2.png",
+      "size_bytes": 90443,
+      "sha256": "bc80c60b496e48478bf8d689c750a995134d52280fccd8ccd9f6f521faa2df45",
+      "width": 719,
+      "height": 289,
+      "caption": "میدان جریان با عنوان NACA0012 و Re=200"
+    },
+    {
+      "path": "__results___files/__results___0_3.png",
+      "size_bytes": 52294,
+      "sha256": "7a3d0eaac072f299f5b00bc27799089d3f53f47624e2115343fa9592355f7324",
+      "width": 931,
+      "height": 449,
+      "caption": "گرفتگی با عنوان V3 four-way و دو مسیر نمایان"
+    },
+    {
+      "path": "__results___files/__results___0_4.png",
+      "size_bytes": 31900,
+      "sha256": "cdad0e4621b764c0a3bc7d65f1cbf69acebf9dc3cfa8f01da4792ec32ac1aa42",
+      "width": 690,
+      "height": 440,
+      "caption": "دبی مقطع و مقدار هدف ورودی"
+    },
+    {
+      "path": "__results___files/__results___7_0.png",
+      "size_bytes": 19249,
+      "sha256": "4b34560aa278d490493af34060a20ae702f479fc910ffd3284185ce769246d5a",
+      "width": 942,
+      "height": 376,
+      "caption": "نمای هندسهٔ کانال"
+    },
+    {
+      "path": "__results___files/__results___13_1.png",
+      "size_bytes": 40918,
+      "sha256": "fb625030cd17de049a78b967eee72b48c4667dfc09f0cfd8e73c4b11e00380ed",
+      "width": 1618,
+      "height": 679,
+      "caption": "هندسه و فاصلهٔ گلوگاه"
+    },
+    {
+      "path": "__results___files/__results___13_4.png",
+      "size_bytes": 99823,
+      "sha256": "3dc7571d7044015e0031b78155c455aa9ba4442a2df90245d15360dd78629e55",
+      "width": 2018,
+      "height": 1010,
+      "caption": "ساختار شبکهٔ کوپل‌شده"
+    },
+    {
+      "path": "__results___files/__results___13_7.png",
+      "size_bytes": 71098,
+      "sha256": "d958d1a3f4de4f2a46f97afdf314082d876f94a05378ba560e34130cac1a74a6",
+      "width": 1618,
+      "height": 546,
+      "caption": "پاسخ استوکس"
+    },
+    {
+      "path": "__results___files/__results___13_10.png",
+      "size_bytes": 78943,
+      "sha256": "4b7bcce31f24ddd6b3ce7f1dbfa074c8f388e7334e08916432fad5b40a7b0201",
+      "width": 1618,
+      "height": 546,
+      "caption": "تبادل تکانه"
+    },
+    {
+      "path": "__results___files/__results___13_13.png",
+      "size_bytes": 38821,
+      "sha256": "75ac3ef773a2b506665522f5b37e39f10b7c20e40ce67f250108ce4756ad4807",
+      "width": 818,
+      "height": 546,
+      "caption": "هم‌پوشانی گاوسی"
+    },
+    {
+      "path": "__results___files/__results___13_16.png",
+      "size_bytes": 105301,
+      "sha256": "f1a05343214a566ba2b95a61273c2e49d39ac360615ee9cb242b4eb3a6bff9d2",
+      "width": 2418,
+      "height": 546,
+      "caption": "جریان تیلور–گرین"
+    },
+    {
+      "path": "__results___files/__results___13_19.png",
+      "size_bytes": 23825,
+      "sha256": "fd36d2636c988a734e5c7e432171815db44f28c8568b6770367329474138bd44",
+      "width": 1458,
+      "height": 546,
+      "caption": "نمای کلی بررسی اجزا"
+    },
+    {
+      "path": "__results___files/__results___13_22.png",
+      "size_bytes": 59833,
+      "sha256": "7eab36ef4eb423b3638ed388b80a7efd1a7f0912fd3671ae9fe8bfbf2da06066",
+      "width": 1106,
+      "height": 594,
+      "caption": "تاریخچهٔ آموزش"
+    },
+    {
+      "path": "__results___files/__results___13_25.png",
+      "size_bytes": 205008,
+      "sha256": "ee1f5eed20edfb3913f47a498255a271e52612c0e04e8e394112e2cbe8a49ab8",
+      "width": 1791,
+      "height": 897,
+      "caption": "میدان‌های سیال و کسر حجمی"
+    },
+    {
+      "path": "__results___files/__results___13_28.png",
+      "size_bytes": 49498,
+      "sha256": "1ca1cde3af4f92935d07dbcc9abf253fe1fcc8a72ae69feeabdbb84f3f01e66a",
+      "width": 1058,
+      "height": 626,
+      "caption": "پروفیل گلوگاه"
+    },
+    {
+      "path": "__results___files/__results___13_31.png",
+      "size_bytes": 211709,
+      "sha256": "37d498915607e191f29d78443aa0cbc8a9c3223c600bdf8a2d23c5456419f619",
+      "width": 840,
+      "height": 684,
+      "caption": "سطح سرعت"
+    },
+    {
+      "path": "__results___files/__results___13_34.png",
+      "size_bytes": 107356,
+      "sha256": "6eb0b9bd09f375b8ed49fe6abff9a3a85be68e3cfd837b396191f63b0bf608df",
+      "width": 1698,
+      "height": 812,
+      "caption": "تصاویر زمانی سرعت و پارسل‌ها"
+    },
+    {
+      "path": "__results___files/__results___13_37.png",
+      "size_bytes": 46876,
+      "sha256": "1180deb71e0f0148d4aba7a4f4dbf1f5832110886da78952d972bd5478fc7d2a",
+      "width": 1374,
+      "height": 594,
+      "caption": "مسیر پارسل‌ها"
+    },
+    {
+      "path": "__results___files/__results___13_40.png",
+      "size_bytes": 185963,
+      "sha256": "fbeae54e69006a72e7ffb29601d2dbdb148fef485856e293c1defa8b925dde24",
+      "width": 798,
+      "height": 760,
+      "caption": "نمای عمق‌دار کانال"
+    },
+    {
+      "path": "__results___files/__results___13_43.png",
+      "size_bytes": 152064,
+      "sha256": "f402683cb4b3c1bce0ff0e922aeac2f43ac4334828045b06621e7d053902b025",
+      "width": 1618,
+      "height": 578,
+      "caption": "سرعت پارسل‌ها"
+    },
+    {
+      "path": "__results___files/__results___13_46.png",
+      "size_bytes": 88141,
+      "sha256": "609061e675f166c10ecf1c2a79b1ea45c834b130e86c944347d6142de1d6ba42",
+      "width": 1938,
+      "height": 546,
+      "caption": "موازنه‌های انرژی و تکانه"
+    },
+    {
+      "path": "__results___files/__results___13_49.png",
+      "size_bytes": 109456,
+      "sha256": "3d73283c1eead95bf3f70d79d937753b184586362b290ffe5efe6717664b3459",
+      "width": 1694,
+      "height": 783,
+      "caption": "تصاویر زمانی ابر گاوسی"
+    },
+    {
+      "path": "__results___files/__results___13_52.png",
+      "size_bytes": 71446,
+      "sha256": "692c43702574a9ca5208a6d4f097ee16d7c3bfb40be2d5457df5afb61aa7cb6b",
+      "width": 1106,
+      "height": 594,
+      "caption": "تاریخچهٔ آموزش"
+    },
+    {
+      "path": "__results___files/__results___13_55.png",
+      "size_bytes": 210710,
+      "sha256": "bb09b96c4319fd2314a23e631d31216e9ac1c9a0291e5b3fdbd83d9786b1d54d",
+      "width": 1790,
+      "height": 897,
+      "caption": "میدان‌های سیال و کسر حجمی"
+    },
+    {
+      "path": "__results___files/__results___13_58.png",
+      "size_bytes": 49346,
+      "sha256": "6cf7de40e4ddecce237798e4d19fc9a4d7d9ea782c9821d5ef4449f51fae9dc4",
+      "width": 1058,
+      "height": 626,
+      "caption": "پروفیل گلوگاه"
+    },
+    {
+      "path": "__results___files/__results___13_61.png",
+      "size_bytes": 210194,
+      "sha256": "dba9e26bf5a956bdadd0ad1f7b5a310388ebab02492f80865781a434e0d59f5e",
+      "width": 840,
+      "height": 684,
+      "caption": "سطح سرعت"
+    },
+    {
+      "path": "__results___files/__results___13_64.png",
+      "size_bytes": 108319,
+      "sha256": "b9e7e92967ce449da897c08c6bdaa9ba574d68960c9c689ad27320cfe2e19065",
+      "width": 1698,
+      "height": 812,
+      "caption": "تصاویر زمانی سرعت و پارسل‌ها"
+    },
+    {
+      "path": "__results___files/__results___13_67.png",
+      "size_bytes": 48195,
+      "sha256": "f32272c84a5705b26c0793f070719cb4dc0d195cde8e6985426ed33d7ae42222",
+      "width": 1374,
+      "height": 594,
+      "caption": "مسیر پارسل‌ها"
+    },
+    {
+      "path": "__results___files/__results___13_70.png",
+      "size_bytes": 186952,
+      "sha256": "2dfac29fe5792c9bed2ee2cc36f625bc541b13d57770a8a351e5ab402779698f",
+      "width": 798,
+      "height": 760,
+      "caption": "نمای عمق‌دار کانال"
+    },
+    {
+      "path": "__results___files/__results___13_73.png",
+      "size_bytes": 152679,
+      "sha256": "f093305d51cb8d48175ff23b5b209f90c26eaf099850c7625a8df97f48c981ee",
+      "width": 1618,
+      "height": 578,
+      "caption": "سرعت پارسل‌ها"
+    },
+    {
+      "path": "__results___files/__results___13_76.png",
+      "size_bytes": 100369,
+      "sha256": "eb8d0b3ae24a4cdfe01619264518a0dc97344182ff76453728be5ed37a9f39bb",
+      "width": 1938,
+      "height": 546,
+      "caption": "موازنه‌های انرژی و تکانه"
+    },
+    {
+      "path": "__results___files/__results___13_79.png",
+      "size_bytes": 108778,
+      "sha256": "f57b37f5a51e1a6b2bd93e9031e81683292a03cd4e136f6a03844cad4584f62b",
+      "width": 1694,
+      "height": 783,
+      "caption": "تصاویر زمانی ابر گاوسی"
+    },
+    {
+      "path": "__results___files/__results___13_82.png",
+      "size_bytes": 73091,
+      "sha256": "abe86e032942476ec6a46ae08e1b65fda7211af21a7b8e977ee98c5182bcf66e",
+      "width": 1106,
+      "height": 594,
+      "caption": "تاریخچهٔ آموزش"
+    },
+    {
+      "path": "__results___files/__results___13_85.png",
+      "size_bytes": 212581,
+      "sha256": "c33f315d09ea57e16c922497fdc120360180eb313f8429c67e9fcaa4f0416729",
+      "width": 1791,
+      "height": 897,
+      "caption": "میدان‌های سیال و کسر حجمی"
+    },
+    {
+      "path": "__results___files/__results___13_88.png",
+      "size_bytes": 49087,
+      "sha256": "707613ba5b7a22852417a4eb184bdc00477c71a8594b28e5ce4ca410818e1457",
+      "width": 1058,
+      "height": 626,
+      "caption": "پروفیل گلوگاه"
+    },
+    {
+      "path": "__results___files/__results___13_91.png",
+      "size_bytes": 206144,
+      "sha256": "2fcf115dc0c404212e9199be5e8e9825fb1df310b7c3a0be6eb208ef7c72c6ab",
+      "width": 826,
+      "height": 684,
+      "caption": "سطح سرعت"
+    },
+    {
+      "path": "__results___files/__results___13_94.png",
+      "size_bytes": 106898,
+      "sha256": "a5ce6466fd81ba8d96ab2c2d159da619a1d35658013793d34c1f6d53c7ac71a5",
+      "width": 1698,
+      "height": 812,
+      "caption": "تصاویر زمانی سرعت و پارسل‌ها"
+    },
+    {
+      "path": "__results___files/__results___13_97.png",
+      "size_bytes": 48588,
+      "sha256": "f5f9443959cbff04f7df4871dbd820ea00d15013ae448c1eaab4a48a5ae13f88",
+      "width": 1374,
+      "height": 594,
+      "caption": "مسیر پارسل‌ها"
+    },
+    {
+      "path": "__results___files/__results___13_100.png",
+      "size_bytes": 185673,
+      "sha256": "22874a1a0970c5963f67389bb0eac8ad9a3d8df4ec7b385ad001a43b534bf5aa",
+      "width": 798,
+      "height": 760,
+      "caption": "نمای عمق‌دار کانال"
+    },
+    {
+      "path": "__results___files/__results___13_103.png",
+      "size_bytes": 144802,
+      "sha256": "b296aa529f3515338e8ef31f0ab914a01bef1f9a3bcd9ee4971c4a6d7863fd34",
+      "width": 1618,
+      "height": 578,
+      "caption": "سرعت پارسل‌ها"
+    },
+    {
+      "path": "__results___files/__results___13_106.png",
+      "size_bytes": 84361,
+      "sha256": "b29fa8e746ce140f18bada2dd859d0ce386585f6c29f0ee38bace3a97f16bf74",
+      "width": 1938,
+      "height": 546,
+      "caption": "موازنه‌های انرژی و تکانه"
+    },
+    {
+      "path": "__results___files/__results___13_109.png",
+      "size_bytes": 102650,
+      "sha256": "2d458bead0e7a2b4367a2b616fa8b00a0097fea42adf29f2367c0cc3e0adee70",
+      "width": 1694,
+      "height": 784,
+      "caption": "تصاویر زمانی ابر گاوسی"
+    },
+    {
+      "path": "__results___files/__results___13_112.png",
+      "size_bytes": 75160,
+      "sha256": "1cc40827f1fc056c03accdf9d1b4ded4f45479ed8eebab319d9e310c72d1d9f0",
+      "width": 1106,
+      "height": 594,
+      "caption": "تاریخچهٔ آموزش"
+    },
+    {
+      "path": "__results___files/__results___13_115.png",
+      "size_bytes": 205485,
+      "sha256": "7fd08a695b0690f700d57d0b0af89bb77e225b626554c4a0e0ca6d5484c0252e",
+      "width": 1790,
+      "height": 897,
+      "caption": "میدان‌های سیال و کسر حجمی"
+    },
+    {
+      "path": "__results___files/__results___13_118.png",
+      "size_bytes": 49439,
+      "sha256": "ea837b284ceab0b60908a4fd6e76ace82b5c019f3fa77079767972d2da3f9bfa",
+      "width": 1058,
+      "height": 626,
+      "caption": "پروفیل گلوگاه"
+    },
+    {
+      "path": "__results___files/__results___13_121.png",
+      "size_bytes": 213264,
+      "sha256": "2bd6198804b3889d00a0cd142a5e73db0aa985597ecc00d77f9affbbe2008e48",
+      "width": 840,
+      "height": 684,
+      "caption": "سطح سرعت"
+    },
+    {
+      "path": "__results___files/__results___13_124.png",
+      "size_bytes": 106838,
+      "sha256": "1df16c41f59e7d47455e542ab7600ed1413b53fbbcc2372da1cd803050c5c8f3",
+      "width": 1698,
+      "height": 812,
+      "caption": "تصاویر زمانی سرعت و پارسل‌ها"
+    },
+    {
+      "path": "__results___files/__results___13_127.png",
+      "size_bytes": 45917,
+      "sha256": "e8ba1e0eaab997aedaca7b0d3b7072a92fd67576435b5664802059b591127df7",
+      "width": 1374,
+      "height": 594,
+      "caption": "مسیر پارسل‌ها"
+    },
+    {
+      "path": "__results___files/__results___13_130.png",
+      "size_bytes": 185475,
+      "sha256": "8ce3945737e44ca264f8cbe5e2a7e1078558ca074147a3cf282c01a17ddc390e",
+      "width": 798,
+      "height": 760,
+      "caption": "نمای عمق‌دار کانال"
+    },
+    {
+      "path": "__results___files/__results___13_133.png",
+      "size_bytes": 128382,
+      "sha256": "a9d520f0866bbc74a4e6fa117eee0189f8540cae51f5761470b923495f9f45db",
+      "width": 1618,
+      "height": 578,
+      "caption": "سرعت پارسل‌ها"
+    },
+    {
+      "path": "__results___files/__results___13_136.png",
+      "size_bytes": 95183,
+      "sha256": "149dd5bdf1670e861f7b696e4d587bf1a96718a6041fbc3c39e6543512432d89",
+      "width": 1938,
+      "height": 546,
+      "caption": "موازنه‌های انرژی و تکانه"
+    },
+    {
+      "path": "__results___files/__results___13_139.png",
+      "size_bytes": 107817,
+      "sha256": "3373e7b5dd4422b6efc6531656939b2209d9ec31893aa61abe027394cc9d0112",
+      "width": 1694,
+      "height": 783,
+      "caption": "تصاویر زمانی ابر گاوسی"
+    },
+    {
+      "path": "__results___files/__results___13_142.png",
+      "size_bytes": 143573,
+      "sha256": "f226e5921db238a582d3fe7866e7e8329e8de324baa3c2fa4850338513d1c98a",
+      "width": 1778,
+      "height": 610,
+      "caption": "اثر پارامترها بر سرعت متوسط پارسل‌ها"
+    }
+  ],
+  "received_date": "2026-10-16",
+  "review_scope": "Archive integrity and visual inspection only; no numerical run artifacts supplied.",
+  "repository_branch": "geometry/bilateral-semicircle",
+  "repository_code_context": "3d1df57459246863ba79360f47f9436c3d9276b2",
+  "executed_source_revision_verified": false
+}
