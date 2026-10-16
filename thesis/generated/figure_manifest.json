@@ -94,5 +94,47 @@
     "name": "14_boundary_kernel",
     "kind": "schematic",
     "inputs": []
+  },
+  {
+    "name": "15_parcel_transport",
+    "kind": "diagnostic coupled prediction",
+    "inputs": [
+      "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/fields.npz",
+      "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/particles.csv",
+      "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/case_status.json"
+    ]
+  },
+  {
+    "name": "16_parcel_paths_velocities",
+    "kind": "diagnostic coupled prediction",
+    "inputs": [
+      "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/particles.csv",
+      "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/case_status.json"
+    ]
+  },
+  {
+    "name": "17_gaussian_clouds",
+    "kind": "diagnostic coupled prediction",
+    "inputs": [
+      "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/fields.npz",
+      "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/particles.csv",
+      "evidence/gaussian/outputs/evaluated_2d_final/config.json"
+    ]
+  },
+  {
+    "name": "18_parcel_carrier_response",
+    "kind": "diagnostic coupled prediction",
+    "inputs": [
+      "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/fields.npz",
+      "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/particles.csv"
+    ]
+  },
+  {
+    "name": "19_parcel_balances",
+    "kind": "diagnostic coupled prediction",
+    "inputs": [
+      "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/diagnostics.csv",
+      "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/case_status.json"
+    ]
   }
 ]

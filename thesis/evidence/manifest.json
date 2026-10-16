@@ -243,6 +243,42 @@
       "original_path": "docs/METHOD.md",
       "archived_path": "evidence/gaussian/docs/METHOD.md",
       "sha256": "065cff6d6f2a87a42bf02563edd7f49fd67f5c2ca6bfacee34bd99d4a92c5349"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/cases/high_inertia_seed7/fields.npz",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/fields.npz",
+      "sha256": "724373ab336aabd21ebaa63b94c5a814d7b3deb0c94f39f96e6dc93f28a3a27e"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/cases/high_inertia_seed7/particles.csv",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/particles.csv",
+      "sha256": "7030a9d7b1f9a06133fb5ba8eddfcd1e9fdebb00de4eb421426dfb6a55ae2b4f"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/cases/high_inertia_seed7/diagnostics.csv",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/diagnostics.csv",
+      "sha256": "219a534b039f6f23116d8ebb8fc1b61d900e8bf28dc7858c4c23ac8f323e783c"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/cases/high_inertia_seed7/case_status.json",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/case_status.json",
+      "sha256": "120beb0c8ea63f141cea4fce25006538aa1604cb0cd88e07573ddf8e793f77bc"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/cases/high_inertia_seed7/training_status.json",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/cases/high_inertia_seed7/training_status.json",
+      "sha256": "bf870a6fa614807a6648d4d3dfe5e27f954856748c414cd5e9ea2e0f20123805"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "parcel_pinn/diagnostics.py",
+      "archived_path": "evidence/gaussian/parcel_pinn/diagnostics.py",
+      "sha256": "ee9b024ee44b43bafae064f409a33a127060d192f80e26465c3a5e329d97c591"
     }
   ],
   "operation": "Unmodified evidence copies; manuscript figures are redrawn from these arrays.",

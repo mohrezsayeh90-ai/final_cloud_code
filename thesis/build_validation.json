@@ -1,9 +1,9 @@
 {
   "compiler_exit_code": 0,
-  "pages": 59,
-  "figures": 14,
+  "pages": 64,
+  "figures": 19,
   "references": 15,
-  "evidence_files_verified": 40,
+  "evidence_files_verified": 46,
   "recomputed_metrics": 13,
   "unresolved_references": [],
   "overfull_boxes": [],
@@ -11,6 +11,9 @@
   "citation_coverage": "all references cited; all citations defined",
   "template_and_conversation_markers": "absent",
   "constricted_channel_results_claimed": false,
+  "data_availability_section_removed": true,
+  "diagnostic_parcel_figures": 5,
+  "parcel_postprocessing_checks": "passed; complete coupled screen remains unmet",
   "numerical_result_files_modified": false,
-  "sha256": "2e19f96dd08377bd9de899f65b38166c14a1127eb6f9335cc19417ffb8fd705b"
+  "sha256": "68e9a735771cf6bf1a22ad07ab57246ec57ee9ebed15bec1b5d6229ea8114c91"
 }

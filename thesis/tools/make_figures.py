@@ -46,7 +46,7 @@ def save(fig,name,kind,inputs):
         path,sep,field=source.partition(':')
         if path.startswith('basic/data/') or path=='basic/metrics.json':
             path='evidence/basic/results/final_study/'+path.removeprefix('basic/')
-        elif path.startswith('gaussian/validation/'):
+        elif path.startswith('gaussian/validation/') or path.startswith('gaussian/cases/'):
             path='evidence/gaussian/outputs/evaluated_2d_final/'+path.removeprefix('gaussian/')
         else:path='evidence/'+path
         assert (ROOT/path).is_file(),path
@@ -318,6 +318,8 @@ def constriction():
 def main():
     F.mkdir(exist_ok=True);checks=[]
     route();architecture();basic_results(checks);gaussian_architecture();gaussian_results(checks);constriction()
+    from parcel_figures import make_parcel_figures
+    make_parcel_figures(ROOT,save,panel)
     (ROOT/'generated/figure_manifest.json').write_text(json.dumps(REGISTER,indent=2)+'\n')
     (ROOT/'generated/numerical_validation.json').write_text(json.dumps(dict(
         passed=True,recomputed_metrics=checks,schematics_are_not_results=True),indent=2)+'\n')

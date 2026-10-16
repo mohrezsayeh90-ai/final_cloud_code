@@ -30,6 +30,7 @@ def bundle(destination):
         'Particle_Transport_Thesis.pdf']]
     files += [p for d in directories for p in (ROOT/d).rglob('*')
               if p.is_file() and '__pycache__' not in p.parts]
+    if (ROOT/'portable_build_validation.json').exists():files.append(ROOT/'portable_build_validation.json')
     with zipfile.ZipFile(destination,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as out:
         for p in sorted(files):out.write(p,str(p.relative_to(ROOT)))
     with zipfile.ZipFile(destination) as out:
@@ -48,7 +49,10 @@ def main():
         run([sys.executable,'tools/make_figures.py'])
     figures=json.loads((ROOT/'generated/figure_manifest.json').read_text())
     numerical=json.loads((ROOT/'generated/numerical_validation.json').read_text())
+    parcel=json.loads((ROOT/'generated/parcel_validation.json').read_text())
     assert numerical['passed']
+    assert parcel['passed'] and not parcel['complete_coupled_screen_met']
+    assert len([x for x in figures if x['kind']=='diagnostic coupled prediction'])==5
     for item in figures:
         assert (ROOT/'figures'/(item['name']+'.pdf')).is_file()
         for source in item['inputs']:
@@ -76,6 +80,8 @@ def main():
         assert marker.lower() not in text.lower(),f'Unwanted manuscript marker: {marker}'
     assert 'Mohammad Reza Sayah' in text
     assert 'Mohammad Ali Bijarchi' in text
+    assert not re.search(r'data\s+(?:and\s+)?availability',text,re.I)
+    assert 'github.com/mohrezsayeh90-ai' not in text
     for number in ['1.510','0.863','0.717','0.066','0.238','0.218']:
         assert number in text,f'Missing reported result {number}'
     refs=set(re.findall(r'\\bibitem\{([^}]+)\}',(ROOT/'references.tex').read_text()))
@@ -91,6 +97,8 @@ def main():
         unresolved_references=[],overfull_boxes=[],missing_glyphs=[],
         citation_coverage='all references cited; all citations defined',
         template_and_conversation_markers='absent',constricted_channel_results_claimed=False,
+        data_availability_section_removed=True,diagnostic_parcel_figures=5,
+        parcel_postprocessing_checks='passed; complete coupled screen remains unmet',
         numerical_result_files_modified=False,sha256=hashlib.sha256(pdf.read_bytes()).hexdigest())
     (ROOT/'build_validation.json').write_text(json.dumps(checks,indent=2)+'\n')
     print(json.dumps(checks,indent=2))

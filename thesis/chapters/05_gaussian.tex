@@ -299,6 +299,130 @@ no matched physical-validation result for the Gaussian channel. These
 scope limits preserve the distinction between tested components and an
 accepted coupled prediction.
 
+\section{Computed parcel motion and carrier response}
+The incomplete fluid-residual screen does not prevent examining the actual
+finite predictions, provided that the figures retain their diagnostic
+interpretation. I use the $\St=0.6$, $\beta=0.05$ case to document the
+computed motion. Among the four evaluated cases it has the smallest
+held-out momentum residual and the smallest parcel-acceleration residual.
+This selection identifies the more internally consistent available
+calculation; it is not evidence of a general advantage of larger Stokes
+number. The complete four-case comparison remains in
+\cref{tab:coupled_scope}.
+
+For this case the kinematic and acceleration RMS values are approximately
+$6.81\times10^{-4}$ and $1.65\times10^{-3}$, respectively. The carrier
+momentum RMS remains $0.0407$, above $0.03$. The following figures
+therefore illustrate the model's computed response without upgrading it to
+a validated coupled solution or a quantitative loading/deposition trend.
+
+\subsection{Transport and parcel acceleration}
+\Cref{fig:parcel_transport} shows four stored times over $0\leq t\leq1$.
+The same six parcels are identified by consistent colors. They move
+downstream while remaining inside the channel; their speed starts from
+zero and approaches the local sampled carrier speed over the response
+time. The carrier remains predominantly streamwise, with a high-speed
+core and stationary-wall constraints.
+
+\ResultFigure{15_parcel_transport}{Computed transport for
+$\St=0.6$, $\beta=0.05$, seed 7. Background colors show carrier speed
+at four stored times; matching marker colors identify the six parcels.
+Markers are illustrative centers, not physical sphere sizes. Colors
+interpolate the stored $16\times16$ carrier samples using one common scale;
+the wall lines identify the prescribed no-slip boundaries. This is a
+diagnostic coupled prediction with momentum RMS $0.0407$, not an
+independently validated transport result.}{fig:parcel_transport}
+
+The trajectories and component velocities in \cref{fig:parcel_paths}
+resolve different aspects of this motion. Streamwise parcel velocities
+increase from zero to approximately $0.936$--$1.076$ at $t=1$. All six
+centers move down by approximately $0.029$--$0.032$ channel heights under
+the retained effective acceleration and sampled carrier motion. None
+contacts a wall during this interval. Thus these paths provide no
+deposition efficiency or wall-capture result.
+
+\ResultFigure{16_parcel_paths_velocities}{Stored parcel paths and velocity
+histories for the same $\St=0.6$, $\beta=0.05$ case. Open markers indicate
+initial centers and filled markers final centers. Streamwise positions
+are unwrapped. The lower panels retain the independently predicted
+velocity outputs, whose consistency with position is assessed by the
+reported kinematic residual. No trajectory is clipped, replaced by an
+analytical curve, or removed from the six-parcel set.}{fig:parcel_paths}
+
+\subsection{Evolution of the represented Gaussian clouds}
+The effective local fraction is
+\begin{equation}
+ \alpha(\vect{x},t)=\sum_i\frac{m_i}{R}W_i(\vect{x},t).
+ \label{eq:cloud_fraction}
+\end{equation}
+\Cref{fig:parcel_clouds} evaluates this expression using the stored parcel
+centers and the original fixed-quadrature normalizers. The field shows
+how the represented populations translate and overlap as their centers
+move. The width is fixed at $\sigma=0.14$; the display does not imply
+physical diffusion, collisions, or growth of the individual clouds.
+
+The total fraction integrated on the transfer grid is
+$\sum_a\alpha_a\Delta A_a=1.5\times10^{-4}$ at every stored time,
+consistent with total represented mass $0.15$ and $R=1000$.
+Reconstructing the kernel from the saved states reproduces both the stored
+fraction and the sampled streamwise fluid velocity to floating-point
+precision. This checks transfer and postprocessing consistency, rather
+than independently validating the coupled flow equations.
+
+\ResultFigure{17_gaussian_clouds}{Evolution of the effective Gaussian
+fraction for the selected parcel run. The displayed quantity is
+$10^4\alpha$ and uses a common color scale. The smooth display evaluates
+the specified kernel at additional plotting points using stored centers
+and the original transfer-grid normalization; it is not a refined fluid
+solution. All six clouds are included. The field represents population
+weights, not resolved particle surfaces or measured concentration.}
+{fig:parcel_clouds}
+
+\subsection{Carrier response}
+At the final time the computed streamwise correction relative to the
+imposed initial profile is negative at every stored carrier sample, ranging
+from approximately $-0.0701$ to $-0.00324$. The wall-normal carrier
+component is much smaller than the streamwise speed.
+\Cref{fig:parcel_carrier} displays both components while retaining the
+actual parcel positions. The streamwise correction is a change relative
+to an initial condition, not an error against an independent two-way
+reference. Its spatial pattern can be inspected, but the unresolved
+momentum residual prevents assigning it a certified physical accuracy.
+
+\ResultFigure{18_parcel_carrier_response}{Computed carrier response at
+$tU_0/H=1$ for the selected run. Panel (a) shows the change of streamwise
+velocity from the imposed initial profile $u_0=6y(1-y)$; panel (b) shows
+the predicted wall-normal fluid velocity. Each component has its own
+labeled color scale. The contours interpolate stored transfer-grid
+samples; they neither represent a resolved particle wake nor an
+independent error map.}{fig:parcel_carrier}
+
+\subsection{Energy and interphase exchange}
+\Cref{fig:parcel_balances} shows total kinetic energy, drag dissipation,
+and both recorded balance discrepancies. The computed energy first falls
+from approximately $1.8000$ to $1.7172$ and then rises to $1.7329$.
+The late increase is compatible with the presence of imposed driving; a
+driven channel does not require monotonically decreasing total energy.
+The drag contribution remains dissipative: $D_{\mathrm{drag}}$ decreases
+from approximately $0.3993$ to $0.01338$ and stays nonnegative.
+
+The discrepancy panels are retained alongside these observations. In
+particular, the energy-balance discrepancy changes sign and the momentum
+quantity is a nonnegative vector norm. Displaying these definitions
+separately avoids labeling a signed curve as an absolute error. The
+finite discrepancies and the independent residual screen continue to
+limit quantitative interpretation. The plotted energy and dissipation
+are internally consistent numerical diagnostics, not a claim of exact
+global conservation by the trained solution.
+
+\ResultFigure{19_parcel_balances}{Recorded diagnostics for the selected
+coupled parcel run. Total kinetic energy includes carrier and represented
+parcel contributions. The plotted drag dissipation is
+$D_{\mathrm{drag}}\geq0$, so its contribution to interphase power is
+$-D_{\mathrm{drag}}$. The energy discrepancy is signed, whereas the
+momentum discrepancy is a vector norm. No normalization, offset removal,
+or smoothing is applied to the balance curves.}{fig:parcel_balances}
+
 \section{Chapter conclusions}
 The Gaussian formulation establishes exact transfer-quadrature identities
 and successful reduced tests for relaxation, kernel normalization, and

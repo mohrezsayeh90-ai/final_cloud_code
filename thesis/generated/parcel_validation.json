@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "case": "high_inertia_seed7",
+  "stokes": 0.6,
+  "loading": 0.05000000000000001,
+  "time_samples": 41,
+  "parcels": 6,
+  "all_arrays_finite": true,
+  "all_centers_inside": true,
+  "drag_dissipation_nonnegative": true,
+  "max_sampled_ux_reconstruction_error": 1.9984014443252818e-15,
+  "max_alpha_reconstruction_error": 3.2526065174565133e-19,
+  "max_drag_dissipation_reconstruction_error": 2.7755575615628914e-16,
+  "max_normalization_error": 1.9984014443252818e-15,
+  "represented_volume": 0.00015000000000000001,
+  "max_represented_volume_error": 2.710505431213761e-20,
+  "final_vx_range": [
+    0.9361560666923685,
+    1.0758087097476081
+  ],
+  "downward_displacement_range": [
+    0.029252204306918828,
+    0.03171540913125148
+  ],
+  "complete_coupled_screen_met": false,
+  "momentum_rms": 0.04074007051322668
+}

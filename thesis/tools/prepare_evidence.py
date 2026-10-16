@@ -39,6 +39,12 @@ SOURCES = {
         'outputs/evaluated_2d_final/validation/V09.csv',
         'outputs/evaluated_2d_final/validation/V10/comparison.csv',
         'outputs/evaluated_2d_final/validation/literature_audit.csv',
+        'outputs/evaluated_2d_final/cases/high_inertia_seed7/fields.npz',
+        'outputs/evaluated_2d_final/cases/high_inertia_seed7/particles.csv',
+        'outputs/evaluated_2d_final/cases/high_inertia_seed7/diagnostics.csv',
+        'outputs/evaluated_2d_final/cases/high_inertia_seed7/case_status.json',
+        'outputs/evaluated_2d_final/cases/high_inertia_seed7/training_status.json',
+        'parcel_pinn/diagnostics.py',
         'reference_inputs/Validation_Pack/sources.json',
         'parcel_pinn/model.py', 'parcel_pinn/physics.py',
         'parcel_pinn/verification.py', 'parcel_pinn/config.py', 'docs/METHOD.md'])}
