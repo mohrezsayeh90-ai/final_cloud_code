@@ -1,0 +1,169 @@
+\chapter{Literature Review}\label{ch:literature}
+
+\section{Modeling levels for particle-laden flow}
+The hydrodynamics of a particle suspension can be described at different
+levels of resolution. A particle-resolved method imposes boundary conditions
+on each particle surface. It can represent the disturbance flow, finite-size
+effects, and surface stresses when these are sufficiently resolved. Direct
+forcing immersed-boundary methods provide one established route to such
+calculations \citep{uhlmann2005}. Their additional resolution requirements
+are justified when particle-scale flow is itself an essential part of the
+problem.
+
+A point-particle model instead advances particle centers using a force law
+obtained under specified physical assumptions. The classical equation of
+motion for a small rigid sphere includes effects beyond steady drag
+\citep{maxey1983}. The heavy-particle, low-slip-Reynolds-number approximation
+used here retains a much narrower description. It is appropriate to assess
+this approximation as a simplified model rather than attribute to it the
+full physics of the parent equation.
+
+The strength of a point-particle approach is its economy of representation.
+Its limits follow from the same reduction. A particle center and diameter
+do not impose no-slip conditions on an actual moving surface. Finite-size
+wall stresses, rotational dynamics, and lubrication do not appear unless
+additional closures are included. These distinctions are particularly
+important when a channel becomes narrow relative to particle diameter
+\citep{clift1978}.
+
+\section{One-way and two-way coupling}
+In one-way coupling, the fluid field determines the particle force but the
+particle reaction is neglected in the fluid equations. This separation is
+useful for studying dilute transport because the fluid solution can be
+evaluated independently of particle initial conditions. Small particle
+volume fraction is a necessary consideration, although it does not alone
+guarantee negligible feedback when the particle density is high. Mass
+loading and the relevant time scales also matter.
+
+Two-way coupling includes the hydrodynamic reaction in the carrier-fluid
+momentum balance. The coupling must specify how a particle samples the fluid
+and how its reaction is distributed to the Eulerian field. Treating either
+operation independently can generate an inconsistent power exchange even
+when the integrated force is correct. A shared transfer operator provides a
+direct means to avoid this particular inconsistency.
+
+Regularized point-particle methods provide a principled context for this
+transfer. In the exact regularized point-particle method, the treatment of
+the disturbance and its regularization is tied to the governing flow
+equations \citep{gualtieri2015}. A generic normalized Gaussian deposition
+does not inherit all of that method's properties. In particular, sampling
+the disturbed velocity at a force source is not equivalent to recovering
+the undisturbed velocity required by an isolated-particle drag law.
+
+\section{Gaussian parcels and represented populations}
+A parcel represents a population of physical particles through a
+multiplicity. Its represented mass must scale with that multiplicity, and
+its reaction force must use the same convention. A Gaussian kernel spreads
+that force over a finite region, avoiding a singular source in the carrier
+equations. The width of the kernel is a modeling parameter with a direct
+effect on the spatial distribution of forcing.
+
+Three lengths must be kept distinct: the physical diameter, the numerical
+or model regularization width, and the local channel height. Equating the
+Gaussian width with a particle radius without justification would blur
+point-particle and finite-size interpretations. Likewise, changing the
+width while keeping quadrature resolution fixed does not constitute an
+ordinary grid-convergence study: it changes the regularized model being
+solved.
+
+Near a wall, a free-space Gaussian is truncated by the fluid domain. A
+discrete normalization can preserve its integrated weight on the chosen
+quadrature. That normalization establishes a transfer identity; it does
+not derive a wall-corrected drag law. This distinction carries directly into
+the constricted-channel extension developed later.
+
+\section{Physics-informed representations}
+Physics-informed neural networks approximate solution fields with
+differentiable functions and train those functions using equation and
+boundary residuals \citep{raissi2019}. They provide continuous field values
+without a separate spatial interpolant. Automatic differentiation also
+allows the same representation to supply the derivatives entering the
+equations. These features are useful for particle transport, where the
+evaluation locations move continuously.
+
+Physics information in the objective is not a guarantee that optimization
+finds a sufficiently accurate solution. Residual terms can have different
+scales and different optimization behavior. Gradient imbalance and training
+difficulties are documented limitations of PINNs
+\citep{wang2021,wang2022}. A weighted objective may decrease while a
+transport-sensitive region remains inaccurate. Consequently, reporting only
+the optimization history would provide insufficient support for the
+predictions considered here.
+
+Hard constraints offer an additional design choice. An ansatz can impose an
+initial condition, periodicity, or homogeneous wall velocity exactly, leaving
+the network to represent a correction that respects those conditions. This
+reduces the number of requirements enforced through a penalty. It does not
+remove the need to evaluate momentum, continuity, and particle-motion
+residuals at independent points.
+
+The baseline and Gaussian stages use different neural roles. The baseline
+flow network approximates a steady velocity--pressure field, whereas the
+force network approximates a prescribed algebraic law. In the Gaussian
+stage, separate fluid and parcel networks are coupled through common
+residuals. This is a continuous-time coupled forward representation rather
+than a trajectory regression against reference data.
+
+\section{Independent references and numerical credibility}
+The finite-element method supplies an independently discretized reference
+for the baseline carrier flow. Taylor--Hood velocity--pressure elements are
+a standard mixed formulation for incompressible flow \citep{taylor1973}.
+Their assembly here uses \texttt{scikit-fem} \citep{gustafsson2020}. An
+independent discretization is valuable because its numerical errors differ
+from those of the neural representation. It must still be evaluated for
+nonlinear convergence, incompressibility, and mesh sensitivity.
+
+Verification and physical validation address different questions
+\citep{roache1998}. Agreement with an analytical solution tests whether a
+specified mathematical problem is solved correctly. Agreement with another
+numerical solver tests consistency for a matched model and boundary-value
+problem. Experimental validation additionally requires suitable
+measurements, controlled conditions, and compatible physical assumptions.
+The results in this thesis primarily concern the first two questions.
+
+A relative velocity error should be interpreted together with local
+discrepancies, boundary errors, flux variation, and particle-motion
+diagnostics. Pressure requires particular care because incompressible
+velocity boundary conditions determine pressure only up to an additive
+constant. Comparing unaligned pressure arrays can produce a large error
+without a corresponding physical disagreement. Conversely, an error
+measured on a section where the reference pressure is constant can have an
+ill-conditioned denominator. A spatially extended, gauge-aligned comparison
+avoids these problems.
+
+\section{Transport accuracy and confinement}
+Particle endpoints depend on a time-integrated response to the carrier
+field. A small discrepancy may accumulate along a long path or determine
+whether a particle approaches a capture boundary. Near-wall outcomes can
+therefore be less accurate than bulk flow metrics suggest. A meaningful
+trajectory comparison must pair the same initial conditions, restrict its
+position error to the common time interval, and separately report whether
+the two solutions reach the same endpoint class.
+
+Confinement adds a physical limitation to this numerical sensitivity. When
+the local channel height approaches the particle diameter, the unbounded
+Stokes law becomes a questionable description even if the numerical
+trajectory is well resolved. A study of narrowing should therefore track
+both numerical agreement and the changing ratio of particle diameter to
+local gap. A dilute regularized model cannot be used to infer dense
+blockage merely because a narrow geometry is drawn.
+
+\section{Position of the present study}
+\Cref{tab:model_comparison} summarizes the modeling levels relevant to the
+study. The purpose is to build a verified chain across the first two levels
+and specify the requirements for a constrained extension. The focus is
+neither a new empirical drag correlation nor a replacement for resolved
+particle hydrodynamics. The main methodological question is whether a
+neural representation can support the stated fluid and particle quantities
+while preserving a consistent transfer of force and work.
+
+\begin{table}[htbp]\centering\small
+\caption{Model classes and the evidence they require.}\label{tab:model_comparison}
+\begin{tabularx}{\textwidth}{@{}p{.22\textwidth}YY@{}}\toprule
+Model & Main representation & Essential assessment\\\midrule
+One-way point particles & Carrier field and particle ODEs & Field error, slip regime, trajectory agreement\\
+Gaussian parcels & Population-weighted regularized forcing & Shared transfer, residuals, budgets, width sensitivity\\
+Resolved particles & Moving solid surfaces and surrounding flow & Surface resolution, forces, torques and gap flow\\
+Constricted dilute model & Variable-height fluid domain with particles & Wall geometry, flux, throat resolution and closure validity\\
+\bottomrule\end{tabularx}
+\end{table}

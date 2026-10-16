@@ -1,0 +1,98 @@
+[
+  {
+    "name": "01_study_route",
+    "kind": "schematic",
+    "inputs": []
+  },
+  {
+    "name": "02_baseline_architecture",
+    "kind": "schematic",
+    "inputs": [
+      "evidence/basic/particle_pinn/models.py"
+    ]
+  },
+  {
+    "name": "03_poiseuille",
+    "kind": "measured numerical result",
+    "inputs": [
+      "evidence/basic/results/final_study/data/poiseuille.csv",
+      "evidence/basic/results/final_study/data/poiseuille_pressure.csv"
+    ]
+  },
+  {
+    "name": "04_curved_fields",
+    "kind": "measured numerical result",
+    "inputs": [
+      "evidence/basic/results/final_study/data/plotted_fields.npz"
+    ]
+  },
+  {
+    "name": "05_heldout_agreement",
+    "kind": "measured numerical result",
+    "inputs": [
+      "evidence/basic/results/final_study/data/field_validation.csv",
+      "evidence/basic/results/final_study/data/drag_validation.csv"
+    ]
+  },
+  {
+    "name": "06_reference_and_seeds",
+    "kind": "measured numerical result",
+    "inputs": [
+      "evidence/basic/results/final_study/data/mesh_sensitivity.csv",
+      "evidence/basic/results/final_study/data/seed_summary.csv"
+    ]
+  },
+  {
+    "name": "07_flux",
+    "kind": "measured numerical result",
+    "inputs": [
+      "evidence/basic/results/final_study/metrics.json#flow.flux"
+    ]
+  },
+  {
+    "name": "08_gaussian_architecture",
+    "kind": "schematic",
+    "inputs": [
+      "evidence/gaussian/parcel_pinn/model.py"
+    ]
+  },
+  {
+    "name": "09_stokes_response",
+    "kind": "measured numerical result",
+    "inputs": [
+      "evidence/gaussian/outputs/evaluated_2d_final/validation/V01/comparison.csv"
+    ]
+  },
+  {
+    "name": "10_two_way_response",
+    "kind": "measured numerical result",
+    "inputs": [
+      "evidence/gaussian/outputs/evaluated_2d_final/validation/V02/comparison.csv"
+    ]
+  },
+  {
+    "name": "11_taylor_green",
+    "kind": "measured numerical result",
+    "inputs": [
+      "evidence/gaussian/outputs/evaluated_2d_final/validation/V10/comparison.csv"
+    ]
+  },
+  {
+    "name": "12_kernel_verification",
+    "kind": "measured numerical result",
+    "inputs": [
+      "evidence/gaussian/outputs/evaluated_2d_final/validation/V04.csv",
+      "evidence/gaussian/outputs/evaluated_2d_final/validation/V03.csv"
+    ]
+  },
+  {
+    "name": "13_constriction_geometry",
+    "kind": "schematic",
+    "inputs": []
+  },
+  {
+    "name": "14_boundary_kernel",
+    "kind": "schematic",
+    "inputs": []
+  }
+]

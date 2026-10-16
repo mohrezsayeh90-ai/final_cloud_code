@@ -1,0 +1,177 @@
+\documentclass[12pt,a4paper,oneside]{report}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage[left=32mm,right=25mm,top=27mm,bottom=27mm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{microtype,amsmath,amssymb,bm}
+\usepackage{graphicx,booktabs,tabularx,longtable,array}
+\usepackage{enumitem,xcolor,fancyhdr,caption}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xurl,hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage{bookmark,titlesec,placeins}
+\input{metadata}
+\input{generated/values}
+\input{generated/tables}
+\newcommand{\EvidenceRows}[1]{\csname Evidence#1\endcsname}
+\definecolor{ThesisBlue}{HTML}{173F5F}
+\definecolor{ThesisTeal}{HTML}{087F8C}
+\definecolor{ThesisGrey}{HTML}{738390}
+\hypersetup{colorlinks=true,linkcolor=ThesisBlue,citecolor=ThesisBlue,urlcolor=ThesisBlue,
+ pdftitle={\ThesisTitle: \ThesisSubtitle},pdfauthor={\AuthorName},
+ pdfsubject={Master of Science thesis manuscript on physics-informed particle transport}}
+\setcounter{secnumdepth}{2}\setcounter{tocdepth}{1}
+\setlength{\headheight}{16pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\nouppercase{\leftmark}}\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\titleformat{\chapter}[display]{\normalfont\raggedright\color{ThesisBlue}}{\Large\chaptertitlename\ \thechapter}{8pt}{\huge\bfseries}
+\titlespacing*{\chapter}{0pt}{-10pt}{22pt}
+\titleformat{\section}{\large\bfseries\color{ThesisBlue}}{\thesection}{.7em}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{ThesisTeal}}{\thesubsection}{.7em}{}
+\captionsetup{font=small,labelfont=bf,labelsep=period}
+\renewcommand{\arraystretch}{1.18}
+\setlist[itemize]{topsep=4pt,itemsep=2pt,parsep=0pt}
+\setlist[enumerate]{topsep=4pt,itemsep=3pt,parsep=0pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\Rey}{\mathrm{Re}}
+\newcommand{\St}{\mathrm{St}}
+\newcommand{\MSE}{\operatorname{MSE}}
+\newcommand{\FrontChapter}[1]{\chapter*{#1}\phantomsection\addcontentsline{toc}{chapter}{#1}\markboth{#1}{#1}}
+\newcommand{\FigureShort}[1]{\csname FigureShort#1\endcsname}
+\expandafter\def\csname FigureShort01_study_route\endcsname{Study progression and proposed constriction}
+\expandafter\def\csname FigureShort02_baseline_architecture\endcsname{Baseline flow and force network architecture}
+\expandafter\def\csname FigureShort03_poiseuille\endcsname{Analytical plane Poiseuille verification}
+\expandafter\def\csname FigureShort04_curved_fields\endcsname{Curved-channel fields and discrepancies}
+\expandafter\def\csname FigureShort05_heldout_agreement\endcsname{Independent field and normalized drag comparisons}
+\expandafter\def\csname FigureShort06_reference_and_seeds\endcsname{Reference-mesh and training-seed sensitivity}
+\expandafter\def\csname FigureShort07_flux\endcsname{Section flux in the curved baseline}
+\expandafter\def\csname FigureShort08_gaussian_architecture\endcsname{Coupled fluid and Gaussian parcel representation}
+\expandafter\def\csname FigureShort09_stokes_response\endcsname{V01: reduced Stokes response}
+\expandafter\def\csname FigureShort10_two_way_response\endcsname{V02: uniform two-way relaxation}
+\expandafter\def\csname FigureShort11_taylor_green\endcsname{V10: Taylor--Green carrier-flow verification}
+\expandafter\def\csname FigureShort12_kernel_verification\endcsname{Gaussian overlap and bounded-domain normalization}
+\expandafter\def\csname FigureShort13_constriction_geometry\endcsname{Proposed constriction geometry and height profiles}
+\expandafter\def\csname FigureShort14_boundary_kernel\endcsname{Illustration of kernel support near the throat wall}
+\newcommand{\ResultFigure}[4][.98]{\begin{figure}[!htbp]\centering
+ \includegraphics[width=#1\textwidth,height=.67\textheight,keepaspectratio]{figures/#2.pdf}
+ \caption[\FigureShort{#2}]{#3}\label{#4}\end{figure}}
+\setlength{\emergencystretch}{2em}
+\setlength{\parskip}{2pt}
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\centering
+\vspace*{3mm}
+{\Large\UniversityName\par}
+\vspace{3mm}{\large\DepartmentName\par}
+\vspace{19mm}
+{\Huge\bfseries\color{ThesisBlue}\ThesisTitle\par}
+\vspace{7mm}
+{\Large\color{ThesisTeal}\ThesisSubtitle\par}
+\vspace{14mm}
+{\Large\AuthorName\par}
+\vspace{12mm}
+{\large Master's Thesis\par}
+\vspace{3mm}{\large\DegreeName\par}
+\vspace{12mm}
+{\large Supervisor: \SupervisorName\par}
+\vfill
+{\normalsize\UniversityCity\par\SubmissionDate\par}
+\end{titlepage}
+\pagenumbering{roman}\hypersetup{pageanchor=true}
+\FrontChapter{Abstract}
+Predicting particle transport requires an accurate carrier flow, a consistent
+interphase force model, and an evaluation that distinguishes field agreement
+from reliable particle motion. I develop a staged physics-informed framework
+that begins with dilute particle tracking in a curved channel, introduces
+Gaussian parcel coupling in a straight channel, and formulates an extension
+to a smoothly constricted channel. The baseline combines a continuous
+velocity--pressure network with a neural approximation of the prescribed
+Stokes-drag law. Independent finite-element and analytical comparisons give
+sample-relative errors of \FlowVelocity\% in curved-channel velocity and
+\FlowPressure\% in gauge-aligned pressure. The normalized drag error is
+\DragError\%. The Gaussian formulation uses the same normalized kernel for
+fluid interpolation and reaction-force spreading, yielding exact discrete
+force and work identities on the transfer quadrature. Reduced-model tests
+recover Stokes relaxation, two-way momentum exchange, Gaussian overlap, and
+Taylor--Green decay. For these tests, the reported relative errors are below
+0.25\%; this bound concerns the listed solution observables, not every
+residual or every channel prediction. The fully coupled Gaussian channel
+calculations do not yet satisfy all residual criteria and are excluded from
+the set of accepted predictive results. Likewise, the baseline particle
+endpoint comparisons identify a remaining near-wall accuracy limitation.
+The final stage defines a smooth constriction, consistent wall treatment,
+and a reference-based evaluation protocol; no completed constricted-channel
+result is claimed. The central contribution is a verified foundation for
+progressing from one-way particle tracking to conservative regularized
+coupling, together with explicit conditions for extending that foundation
+to confined geometries.
+
+\vspace{5mm}\noindent\textbf{Keywords:} physics-informed neural networks;
+particle transport; Stokes drag; Gaussian parcels; two-way coupling;
+channel constriction; numerical verification.
+
+\clearpage\phantomsection\addcontentsline{toc}{chapter}{Contents}\tableofcontents
+\clearpage\phantomsection\addcontentsline{toc}{chapter}{List of Figures}\listoffigures
+\clearpage\phantomsection\addcontentsline{toc}{chapter}{List of Tables}\listoftables
+\FrontChapter{Abbreviations and Nomenclature}
+\begingroup\small\setstretch{1.02}
+\begin{tabularx}{\textwidth}{@{}lY@{}}\toprule
+Abbreviation & Meaning\\\midrule
+AD & Automatic differentiation\\
+CFD & Computational fluid dynamics\\
+ERPP & Exact regularized point-particle method\\
+FEM & Finite-element method\\
+MLP & Multilayer perceptron\\
+ODE / PDE & Ordinary / partial differential equation\\
+PINN & Physics-informed neural network\\
+RMS & Root-mean-square\\
+\bottomrule\end{tabularx}
+\vspace{7mm}
+\begin{longtable}{@{}p{.22\textwidth}p{.73\textwidth}@{}}
+\toprule Symbol & Meaning\\\midrule\endhead
+$\vect{u},p$ & Dimensionless fluid velocity and pressure\\
+$\vect{q}_i,\vect{v}_i$ & Parcel center and parcel velocity\\
+$\vect{U}_i$ & Fluid velocity interpolated to parcel $i$\\
+$\vect{F}_i,\vect{S}_a$ & Represented hydrodynamic drag and reaction source\\
+$L_0,U_0,H,B$ & Reference length, speed, channel height and spanwise depth\\
+$b=B/H$ & Reference-depth ratio for planar sphere parcels\\
+$d_p,\delta_p$ & Particle diameter scaled by $L_0$ or $H$, respectively\\
+$R=\rho_p/\rho_f$ & Particle-to-fluid density ratio\\
+$\Rey,\Rey_p,\St$ & Flow Reynolds, slip Reynolds and Stokes numbers\\
+$\beta,\alpha$ & Mass loading and effective local solid volume fraction\\
+$N_i,m_i$ & Parcel multiplicity and represented dimensionless mass\\
+$\sigma,W_{ai},Z_i$ & Gaussian width, normalized transfer weight and normalizer\\
+$\Delta A_a$ & Transfer-quadrature area associated with point $a$\\
+$s,\eta$ & Centerline coordinate and normalized transverse coordinate\\
+$Q,h,H_t$ & Volume flux per reference depth, half-height and throat height\\
+$\delta,\ell,x_c$ & Constriction severity, half-length and center\\
+$E_u,E_p$ & Discrete relative velocity and gauge-aligned pressure errors\\
+\bottomrule
+\end{longtable}
+\noindent Pressure uses a viscous scale in the baseline and an inertial scale
+in the Gaussian channel. Each formulation states its scale explicitly.
+The Gaussian width $\sigma$ is distinct from both the particle radius and
+the channel half-height $h$.
+\endgroup
+\clearpage\pagenumbering{arabic}
+\input{chapters/01_introduction}
+\input{chapters/02_literature}
+\input{chapters/03_framework}
+\input{chapters/04_basic}
+\input{chapters/05_gaussian}
+\input{chapters/06_constriction}
+\input{chapters/07_discussion}
+\input{chapters/08_conclusions}
+\input{references}
+\appendix
+\input{chapters/appendix_derivations}
+\input{chapters/appendix_reproducibility}
+\end{document}

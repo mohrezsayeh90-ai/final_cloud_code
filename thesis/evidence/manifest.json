@@ -1,0 +1,250 @@
+{
+  "repository_revisions": {
+    "basic": "c3eb0efe76bcd62a3299dcd6c28922dbfa4c667a",
+    "gaussian": "9d996c4f555bf5bf09e9f6fa78a3877e44310ec9"
+  },
+  "inputs": [
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/metrics.json",
+      "archived_path": "evidence/basic/results/final_study/metrics.json",
+      "sha256": "6b04484c89e7c6b2e3ba4cdb8ec46cd2dbff8a1c2418993da3a86392370303dc"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/config.json",
+      "archived_path": "evidence/basic/results/final_study/config.json",
+      "sha256": "c6d29f647121768dd8ffdfdfe7edc71f889f4a5dda4a602af820ef040e4f7c88"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/manifest.json",
+      "archived_path": "evidence/basic/results/final_study/manifest.json",
+      "sha256": "cf5157c709b51e6eac6000407912a8c06946976c19a8b0e4b4bd43ec2fafd557"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/stages.json",
+      "archived_path": "evidence/basic/results/final_study/stages.json",
+      "sha256": "ff52f244a86abdfa19c563f1f6069538b77550f09e52c8d09c4c4573365f9158"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/failures.json",
+      "archived_path": "evidence/basic/results/final_study/failures.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/data/poiseuille.csv",
+      "archived_path": "evidence/basic/results/final_study/data/poiseuille.csv",
+      "sha256": "330cc74179fda5ca95f5c0b103c9b6d79f29f41b055c9c98ab2df7fc2e2abe29"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/data/poiseuille_pressure.csv",
+      "archived_path": "evidence/basic/results/final_study/data/poiseuille_pressure.csv",
+      "sha256": "9b0128234697a32c8b63d6878b6350c830ed429c8447938d3acdc685922a81af"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/data/field_validation.csv",
+      "archived_path": "evidence/basic/results/final_study/data/field_validation.csv",
+      "sha256": "30bd935ffa8dea804dcda9551181b83416806756260a710820bc3c604da2169f"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/data/drag_validation.csv",
+      "archived_path": "evidence/basic/results/final_study/data/drag_validation.csv",
+      "sha256": "7dc257ab7a107a5ae50edd350762f0fefb4d0b34921fe80ea1707ce888b380a0"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/data/mesh_sensitivity.csv",
+      "archived_path": "evidence/basic/results/final_study/data/mesh_sensitivity.csv",
+      "sha256": "8e72da9e756de2753ec683629b8824aa6c239fd102d91d3329192a022e4e08fb"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/data/seed_summary.csv",
+      "archived_path": "evidence/basic/results/final_study/data/seed_summary.csv",
+      "sha256": "7fd4f07bd963b3a2f3916501f1203046275efdc9661ff9982cc02209b4cd5051"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/data/trajectory_summary.json",
+      "archived_path": "evidence/basic/results/final_study/data/trajectory_summary.json",
+      "sha256": "e9628584b5f7405b7f94e2beec9c08f191e644efbd652743b5e4518d5fc4081f"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/data/plotted_fields.npz",
+      "archived_path": "evidence/basic/results/final_study/data/plotted_fields.npz",
+      "sha256": "03c7526c1d4708868d38f3aa968438e2b167a22a06654964da54f1f02815cf63"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/data/flow_loss_seed_42.csv",
+      "archived_path": "evidence/basic/results/final_study/data/flow_loss_seed_42.csv",
+      "sha256": "f4db487df587760c4a28e8a48f05d952ace61a7f1a1155e59623a6a3ee27eaed"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/data/force_loss.csv",
+      "archived_path": "evidence/basic/results/final_study/data/force_loss.csv",
+      "sha256": "f91d0707ff69cfb5e54289186e00ca684e1419e9844e290db94a4542eed57856"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/models/poiseuille.pt",
+      "archived_path": "evidence/basic/results/final_study/models/poiseuille.pt",
+      "sha256": "5f87da55d694f43bb0d27628ed7066084fb1cf0d0b3da761a6f01c0862de896d"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "results/final_study/models/force.pt",
+      "archived_path": "evidence/basic/results/final_study/models/force.pt",
+      "sha256": "30ad82e3ac957012b7c524ebf5334000220758cd691ab97321d8c39f0bb3ac4e"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "particle_pinn/models.py",
+      "archived_path": "evidence/basic/particle_pinn/models.py",
+      "sha256": "fdf964fbce5e768b5baacea696743d4b49c33cae006bf6bd377421e146db4f6d"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "particle_pinn/geometry.py",
+      "archived_path": "evidence/basic/particle_pinn/geometry.py",
+      "sha256": "c15c682c07f4dcb7d3abe10d19c705f13b8619fe7a9a2d5f952c6aac3ae0d503"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "particle_pinn/quality.py",
+      "archived_path": "evidence/basic/particle_pinn/quality.py",
+      "sha256": "b9163bcf2c3dae72acfb5fc5968da35962d36d075f0b7bb58bc7234056b19e00"
+    },
+    {
+      "dataset": "basic",
+      "original_path": "run_particle_pinn.py",
+      "archived_path": "evidence/basic/run_particle_pinn.py",
+      "sha256": "bbacf28e7f3cda7fce501202a2a5b38df2dffe3c5304d12a5cac7aded7e1ca71"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/summary.json",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/summary.json",
+      "sha256": "dda9f9940453174bddde029a509c5dc9cb744e24cb78bacd8fac9eb8a762ccdd"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/config.json",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/config.json",
+      "sha256": "e8c96ffeb4a2f83a7ceff0fa539c709eebc92e79317dd60b58b6a0c0f110a382"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/runtime.json",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/runtime.json",
+      "sha256": "1042b3ef6656b9d49aebc1032f37d9dc840cf4717af3686a2bb367585fe7e328"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/source_manifest.json",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/source_manifest.json",
+      "sha256": "ccfdebda5bed84625cd603fcf59902b50e0ad81f3ea2b410cca7d04686da5d9e"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/reference_manifest.json",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/reference_manifest.json",
+      "sha256": "09c1fa96784b0cf66074047a71bfa899be3bccef914001ae03a4d85df237c952"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/validation/verification.json",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/validation/verification.json",
+      "sha256": "a9b76fc7f62da836d911df19b5850c3c741f3b56ee6a4d6a1af0bf6a9cecfa7c"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/validation/V01/comparison.csv",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/validation/V01/comparison.csv",
+      "sha256": "180f05d357184ce9ac60acf062d52317f1818474eb9aa166814437f085332bd3"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/validation/V02/comparison.csv",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/validation/V02/comparison.csv",
+      "sha256": "4972318f9082b5be01c1275a15727073ac8b33c869af669a3e0a6aed67316dea"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/validation/V04.csv",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/validation/V04.csv",
+      "sha256": "0f6d228e1a2e5f673f599802cbd0a021bb724dbc6964cb2b691723ce93a91da3"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/validation/V03.csv",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/validation/V03.csv",
+      "sha256": "869497aa8f58dc1dacfc69b25a45b23179e65b8bac8de2d30d31e70256baa8f4"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/validation/V09.csv",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/validation/V09.csv",
+      "sha256": "a424411aece67bf2a080c62de27930917fa76babe598fe45d29496399ae0346a"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/validation/V10/comparison.csv",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/validation/V10/comparison.csv",
+      "sha256": "ded86b2cc729c5efb4116d8a8c465d1e173aa113ad77d0d827c47ecfc5dd05e0"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "outputs/evaluated_2d_final/validation/literature_audit.csv",
+      "archived_path": "evidence/gaussian/outputs/evaluated_2d_final/validation/literature_audit.csv",
+      "sha256": "7d731194bb1a963591aa6f38750a7d419aaa9b722a1659ce9ec6e9ba9b0559be"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "reference_inputs/Validation_Pack/sources.json",
+      "archived_path": "evidence/gaussian/reference_inputs/Validation_Pack/sources.json",
+      "sha256": "85a91acfda504ceb9c0c09c5cd362d07e13a50d3880f4f83dbf9e1e6169020a5"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "parcel_pinn/model.py",
+      "archived_path": "evidence/gaussian/parcel_pinn/model.py",
+      "sha256": "155ceadebfdc80ed4b25e6c51346a1835f916db498998ccacb8f05486848f0c6"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "parcel_pinn/physics.py",
+      "archived_path": "evidence/gaussian/parcel_pinn/physics.py",
+      "sha256": "f5be0610ab68d94c19c139a21c824e465c2d1bf41ffc2586e24256d617556305"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "parcel_pinn/verification.py",
+      "archived_path": "evidence/gaussian/parcel_pinn/verification.py",
+      "sha256": "dc0a8b538c44334fccd18a1d5d5e1342c12e02b2db38a786fce0bdbdb7e7cfdc"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "parcel_pinn/config.py",
+      "archived_path": "evidence/gaussian/parcel_pinn/config.py",
+      "sha256": "98eae511c84b3a36415572b6ee69b3514163a9887639d67519d12029f8dd0abe"
+    },
+    {
+      "dataset": "gaussian",
+      "original_path": "docs/METHOD.md",
+      "archived_path": "evidence/gaussian/docs/METHOD.md",
+      "sha256": "065cff6d6f2a87a42bf02563edd7f49fd67f5c2ca6bfacee34bd99d4a92c5349"
+    }
+  ],
+  "operation": "Unmodified evidence copies; manuscript figures are redrawn from these arrays.",
+  "constricted_channel_results_available": false
+}

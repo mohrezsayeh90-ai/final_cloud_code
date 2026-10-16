@@ -1,0 +1,311 @@
+\chapter{Gaussian Parcels in a Straight Channel}\label{ch:gaussian}
+
+\section{From individual particles to represented populations}
+The second stage adds hydrodynamic feedback while retaining a simple
+carrier geometry. A parcel represents $N_i$ identical spherical particles
+whose centers are approximated by a common planar state. Its mass and
+hydrodynamic reaction are weighted by that multiplicity. The Gaussian
+distribution describes how the represented force interacts with the
+carrier; it does not resolve the surface of a sphere.
+
+The dimensionless fluid domain is $\Omega=[0,3]\times[0,1]$, periodic in
+$x$ with stationary no-slip walls at $y=0$ and $y=1$. The channel has no
+open inlet or outlet. The initial fluid velocity is
+\begin{equation}
+ \vect{u}_0(y)=(6y(1-y),0),
+ \label{eq:gaussian_initial}
+\end{equation}
+whose mean streamwise speed is one. A body-force acceleration
+$\vect{f}_d=(12/\Rey_H,0)$ maintains this profile in the unladen steady
+limit. Parcel initial velocities are zero. The reference depth ratio is
+$b=1$, and the evaluated model uses $\Rey_H=20$, $R=1000$, six parcels,
+and Gaussian width $\sigma=0.14$.
+
+\section{Coupled equations}
+The fluid equations use the inertial pressure convention defined in
+\cref{eq:gaussian_scales}:
+\begin{align}
+ \nabla\cdot\vect{u}&=0,\\
+ \partial_t\vect{u}+(\vect{u}\cdot\nabla)\vect{u}
+ &=-\nabla p_i+\frac{1}{\Rey_H}\nabla^2\vect{u}
+   +\vect{S}+\vect{f}_d.
+ \label{eq:gaussian_ns}
+\end{align}
+The parcel equations are
+\begin{equation}
+ \dot{\vect{q}}_i=\vect{v}_i,\qquad
+ \dot{\vect{v}}_i=\frac{\vect{U}_i-\vect{v}_i}{\St_i}
+ +\vect{g}_{\mathrm{eff}},\qquad
+ \vect{F}_i=\frac{m_i}{\St_i}(\vect{U}_i-\vect{v}_i).
+ \label{eq:gaussian_particle}
+\end{equation}
+Here $\vect{g}_{\mathrm{eff}}$ is a specified effective acceleration,
+including any buoyancy adjustment in the physical mapping. The reaction
+source contains the hydrodynamic drag only. Depositing parcel gravity again
+as fluid drag would count a different force twice.
+
+\section{Normalized Gaussian transfer}
+Let $\vect{x}_a$ denote the fixed transfer-quadrature locations and
+$\Delta A_a$ their area weights. A periodized raw Gaussian is evaluated
+between $\vect{x}_a$ and each parcel center. In the two-dimensional channel,
+its structure is
+\begin{equation}
+ G_{ai}=\sum_{k\in\mathbb{Z}}
+ \exp\left[-\frac{(x_a-q_{ix}+kL_x)^2+(y_a-q_{iy})^2}
+ {2\sigma^2}\right].
+ \label{eq:raw_kernel}
+\end{equation}
+The implementation retains a finite image set with distant tails beyond
+eight widths after choosing the nearest image. A global Gaussian prefactor
+is unnecessary because normalization removes it. Define
+\begin{equation}
+ Z_i=\sum_aG_{ai}\Delta A_a,\qquad W_{ai}=G_{ai}/Z_i,
+ \qquad \sum_aW_{ai}\Delta A_a=1.
+ \label{eq:normalized_kernel}
+\end{equation}
+Both fluid interpolation and force spreading use these weights:
+\begin{equation}
+ \vect{U}_i=\sum_aW_{ai}\vect{u}_a\Delta A_a,\qquad
+ \vect{S}_a=-\sum_iW_{ai}\vect{F}_i.
+ \label{eq:shared_transfer}
+\end{equation}
+Near a wall, $Z_i$ accounts for the actual bounded-domain quadrature.
+At an arbitrary collocation point, the numerator uses that point, while
+the denominator remains the value from the fixed transfer quadrature.
+
+\subsection{Force and work identities}
+Substituting \cref{eq:shared_transfer} into the quadrature sum gives
+\begin{equation}
+ \sum_a\vect{S}_a\Delta A_a=-\sum_i\vect{F}_i,
+ \label{eq:force_identity}
+\end{equation}
+and
+\begin{equation}
+ \sum_a\vect{u}_a\cdot\vect{S}_a\Delta A_a
+ =-\sum_i\vect{U}_i\cdot\vect{F}_i.
+ \label{eq:work_identity}
+\end{equation}
+The combined interphase contribution to fluid and parcel kinetic-energy
+rates is therefore
+\begin{equation}
+ \mathcal{P}_{\mathrm{drag}}
+ =\sum_i(\vect{v}_i-\vect{U}_i)\cdot\vect{F}_i
+ =-\sum_i\frac{m_i}{\St_i}|\vect{U}_i-\vect{v}_i|^2\leq0.
+ \label{eq:drag_dissipation}
+\end{equation}
+These are semidiscrete properties of the shared transfer. A trained PINN
+with nonzero residual need not satisfy the complete global momentum or
+energy balance exactly. External driving can also make total kinetic energy
+increase even though the drag contribution is dissipative.
+
+\section{Neural representation and hard constraints}
+Two MLPs, each with three hidden layers of 32 tanh units, represent the fluid
+correction and parcel histories. The fluid network uses wall-normal position,
+time, and three periodic Fourier harmonics in $x$. The ansatz is
+\begin{equation}
+ \vect{u}(\vect{x},t)=\vect{u}_0(y)
+ +\frac{t}{T}y(1-y)\vect{n}_{u}(\vect{x},t).
+ \label{eq:fluid_ansatz}
+\end{equation}
+It enforces the initial velocity and stationary wall velocity. Periodicity
+follows from the Fourier features. A time-dependent pressure offset is
+removed at $(0,0)$; no independent initial-pressure condition is imposed.
+
+The parcel network uses the relaxation time in its output envelopes:
+\begin{align}
+ b_i(t)&=1-\exp(-t/\St_i),&
+ a_i(t)&=t-\St_i b_i(t),\\
+ \vect{q}_i(t)&=\vect{q}_{i0}+t\vect{v}_{i0}
+                    +a_i(t)\vect{n}_{q,i}(t),&
+ \vect{v}_i(t)&=\vect{v}_{i0}+b_i(t)\vect{n}_{v,i}(t).
+ \label{eq:parcel_ansatz}
+\end{align}
+The envelope imposes the initial states and represents the known response
+scale. It supplies no target fluid velocity or target coupled trajectory.
+Position and velocity remain separate trainable functions, linked by
+$\dot{\vect{q}}_i-\vect{v}_i$ in the objective.
+
+The weighted mean-square residual objective assigns weights 1 to fluid
+momentum, 2 to continuity, 5 to parcel kinematics, 1 to parcel acceleration,
+and 100 to center confinement. All calculations in this formulation use
+float64. \Cref{fig:gaussian_architecture} emphasizes the common quadrature
+that couples the representations. The default calculations are
+collision-free; independently tested impact primitives are not treated as
+a validated collisional suspension model.
+
+\ResultFigure[.96]{08_gaussian_architecture}{Coupled Gaussian formulation.
+The two stylized network symbols indicate distinct MLPs, each with three
+32-unit hidden layers; their radial arrangement is illustrative and does
+not specify literal layer connectivity. Shared quadrature transfers sampled
+fluid velocity to parcels and hydrodynamic reaction to the fluid. The
+complete objective includes fluid and parcel residuals.}
+{fig:gaussian_architecture}
+
+\section{Reduced Stokes-response verification}
+The first reduced test, V01, solves the constant-forcing relaxation problem
+with dimensionless response time one:
+\begin{equation}
+ \dot v=1-v,\qquad \dot z=v,\qquad v(0)=z(0)=0.
+ \label{eq:stokes_test}
+\end{equation}
+Its analytical response is
+\begin{equation}
+ v=1-e^{-t},\qquad z=t-1+e^{-t}.
+ \label{eq:stokes_exact}
+\end{equation}
+The reference arrays are excluded from training and used only after the
+physics-constrained fit. The relative velocity and displacement errors are
+\VOneVelocity\% and \VOneDistance\%, with independent ODE residual RMS
+approximately $1.35\times10^{-3}$. Both the stated relative-error and
+residual criteria are satisfied. \Cref{fig:stokes_response} shows the
+stored predictions against the analytical response.
+
+\ResultFigure{09_stokes_response}{V01 reduced Stokes response. The PINN
+is fitted to the ODE residual and initial conditions; analytical values are
+held out. Open markers are subsampled stored predictions for legibility;
+the metrics use every evaluation sample. This test verifies the reduced
+response equation, not the full two-way channel.}{fig:stokes_response}
+
+\section{Two-way momentum-exchange verification}
+The second reduced problem, V02, considers spatially uniform fluid and
+particle velocities, fluid mass one, parcel mass loading $\beta=0.25$,
+and response time $\St=0.2$. With $u(0)=0$ and $v(0)=1$,
+\begin{equation}
+ \dot u=-\frac{\beta}{\St}(u-v),\qquad
+ \dot v=\frac{u-v}{\St}.
+ \label{eq:two_way_test}
+\end{equation}
+The solution has constant total momentum $u+\beta v=0.25$ and decaying
+slip. The relative fluid- and particle-velocity errors are
+\VTwoFluid\% and \VTwoParticle\%, respectively. The independent residual
+RMS is approximately $6.12\times10^{-3}$.
+
+In this reduced PINN, the output relation $v=1-4u$ imposes total momentum
+exactly. Its zero momentum error is consequently a hard-constraint check,
+not an independent demonstration that a general coupled solution conserves
+momentum. The nontrivial checks are the predicted relaxation and its ODE
+residual. \Cref{fig:two_way_response} also shows the kinetic-energy decay,
+consistent with the sign in \cref{eq:drag_dissipation}.
+
+\ResultFigure{10_two_way_response}{V02 uniform two-way relaxation.
+The two velocities approach a common value while kinetic energy decreases.
+The total-momentum line is exact by the imposed output relation. Velocity
+agreement and the independently sampled ODE residual assess whether the
+learned temporal response satisfies the governing problem.}
+{fig:two_way_response}
+
+\section{Kernel and carrier-flow verification}
+\subsection{Normalization, overlap, and parcel splitting}
+The bounded-domain normalization test V03 probes periodic-seam and wall
+locations. Its maximum recorded discrepancy is approximately
+$8.44\times10^{-15}$ across the checks included in that test. The displayed
+integrals in \cref{fig:kernel_checks} differ from one by only a few units
+of machine precision. The larger summary discrepancy also includes the
+constant-field sampling check and should not be assigned to an individual
+integral in the figure.
+
+V04 compares a three-dimensional product quadrature with an independent
+free-space Gaussian overlap array. The relative difference is approximately
+$1.29\times10^{-15}$. The CSV column retained from the numerical workflow
+uses a generic prediction name; here it is correctly identified as a
+quadrature result rather than a learned PINN field. This is a kernel-integral
+test and does not establish a three-dimensional channel solution.
+
+V09 splits a fixed population of 10,000 particles into 10, 50, and 100
+coincident parcels. The maximum force-density difference is approximately
+$2.66\times10^{-15}$. Because the split centers coincide and total mass
+is unchanged, this tests deterministic representation invariance. It is not
+a convergence study of independently dispersed parcel populations.
+
+\ResultFigure{12_kernel_verification}{Gaussian transfer checks. Panel (a)
+shows V04's independent three-dimensional overlap integral and product
+quadrature. Panel (b) shows the stored V03 normalization values divided by
+machine precision. The kernels are verified on their declared quadrature;
+neither panel is a flow-field prediction.}{fig:kernel_checks}
+
+\subsection{Unsteady incompressible flow}
+V10 considers the periodic two-dimensional Taylor--Green vortex with
+viscosity $\nu=0.01$ over $0\leq t\leq5$. The exact velocity is
+\begin{equation}
+ u=\sin x\cos y\,e^{-2\nu t},\qquad
+ v=-\cos x\sin y\,e^{-2\nu t},
+ \label{eq:tg_velocity}
+\end{equation}
+and the gauge-aligned pressure is
+\begin{equation}
+ p=\frac{1}{4}(\cos2x+\cos2y-2)e^{-4\nu t}.
+ \label{eq:tg_pressure}
+\end{equation}
+The initial field is imposed, while the analytical temporal decay is held
+out of training. Independent sample-relative errors are \TGU\% for $u$,
+\TGV\% for $v$, and \TGP\% for pressure. The independent residual RMS is
+approximately $7.38\times10^{-4}$. These results support the unsteady
+carrier implementation for this smooth periodic test.
+
+\ResultFigure{11_taylor_green}{V10 Taylor--Green verification on independent
+space--time samples. Each panel compares the predicted quantity with its
+analytical value, using the same pressure gauge. The test contains no
+parcels and establishes carrier-flow verification rather than coupled
+particle-transport validation.}{fig:taylor_green}
+
+\begin{table}[htbp]\centering\small
+\caption{Accepted solution-observable errors in the reduced Gaussian-model
+verification problems. Residual criteria are checked separately.}
+\label{tab:gaussian_errors}
+\begin{tabularx}{\textwidth}{@{}lYr@{}}\toprule
+Test & Observable & Relative error\\\midrule
+\EvidenceRows{gaussian_errors}
+\bottomrule\end{tabularx}
+\end{table}
+
+\section{Status of the coupled straight-channel calculations}
+The evaluated coupled channel uses one training seed and four combinations
+of Stokes number and mass loading. The training schedule is 1,200 Adam
+steps followed by a 200-iteration L-BFGS budget; the transfer quadrature
+is $16\times16$. All four calculations produce finite outputs, but none
+meets the complete residual screen. \Cref{tab:coupled_scope} reports the
+momentum and parcel-acceleration RMS values that bound their interpretation.
+
+\begin{table}[htbp]\centering\small
+\caption{Coupled straight-channel screening. Every required held-out
+residual must be below 0.03; the momentum residual exceeds that bound in
+all four cases. These are diagnostic calculations, not accepted transport
+predictions.}\label{tab:coupled_scope}
+\begin{tabularx}{\textwidth}{@{}rrrrY@{}}\toprule
+$\St$ & $\beta$ & Momentum RMS & Parcel RMS & Complete screen\\\midrule
+\EvidenceRows{coupled_scope}
+\bottomrule\end{tabularx}
+\end{table}
+
+The lowest listed momentum RMS is $0.0407$, still above the declared bound.
+The full screen also requires all centers to remain inside the channel,
+a trained finite checkpoint without training error, local volume fraction
+below 0.01, and slip Reynolds number no greater than one. The observed
+maximum slip Reynolds numbers range from approximately $0.234$ to $0.642$.
+These satisfy that loose screening bound but do not establish the
+asymptotically small-slip regime required for accurate Stokes drag.
+Passing the reduced tests therefore does not justify selecting a visually
+smooth coupled-channel field as a validated result. I exclude these
+predictions from quantitative claims about loading effects, sedimentation,
+or deposition. The physical model also samples the disturbed fluid without
+an undisturbed-velocity correction, so successful future residual screening
+would still require independent assessment of the drag closure.
+
+All ten component tests in the evaluated record pass their individual
+criteria. Tests V05--V08 concern impact algebra and a frozen-rate sampling
+primitive, which are outside the collision-free channel study and are not
+used to validate its dynamics. The literature catalogue likewise supplies
+no matched physical-validation result for the Gaussian channel. These
+scope limits preserve the distinction between tested components and an
+accepted coupled prediction.
+
+\section{Chapter conclusions}
+The Gaussian formulation establishes exact transfer-quadrature identities
+and successful reduced tests for relaxation, kernel normalization, and
+unsteady carrier flow. The strongest supported results are these
+independently evaluated components. Further optimization, transfer-grid
+and time-sampling refinement, multiple seeds, and a matched independent
+coupled reference are required before interpreting the fully coupled
+channel quantitatively. The next chapter therefore formulates a controlled
+constricted-channel extension rather than extending unsupported transport
+claims.

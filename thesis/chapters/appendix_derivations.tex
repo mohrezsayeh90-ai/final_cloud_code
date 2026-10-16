@@ -1,0 +1,120 @@
+\chapter{Derivations and Transport Limits}\label{app:derivations}
+
+\section{Uniform two-way relaxation}
+For the uniform system in \cref{eq:two_way_test}, define slip $w=v-u$.
+Adding the fluid and population-weighted particle equations gives
+\begin{equation}
+ \frac{d}{dt}(u+\beta v)=0.
+\end{equation}
+Subtracting the equations gives
+\begin{equation}
+ \dot w=-\frac{1+\beta}{\St}w,\qquad
+ w(t)=w_0\exp\left[-\frac{1+\beta}{\St}t\right].
+\end{equation}
+If $M_0=u_0+\beta v_0$ is the conserved momentum, the velocities are
+\begin{equation}
+ u(t)=\frac{M_0-\beta w(t)}{1+\beta},\qquad
+ v(t)=\frac{M_0+w(t)}{1+\beta}.
+\end{equation}
+For $u_0=0$, $v_0=1$ and $\beta=0.25$, both velocities tend to $0.2$.
+The total kinetic energy is
+\begin{equation}
+ K=\frac{1}{2}u^2+\frac{\beta}{2}v^2,
+ \qquad \dot K=-\frac{\beta}{\St}(v-u)^2.
+\end{equation}
+This gives the dissipative reference behavior of V02. It concerns a
+closed, uniform exchange system; the driven channel has additional work
+and boundary terms.
+
+\section{Adjoint transfer and kinetic energy}
+Let $J$ denote the interpolation operator with entries
+$J_{ia}=W_{ai}\Delta A_a$. With quadrature mass matrix
+$M_A=\operatorname{diag}(\Delta A_a)$, the spreading operator is
+$-M_A^{-1}J^{\mathsf T}$ when the parcel force vector stores integrated
+forces. Thus
+\begin{equation}
+ \vect{U}=J\vect{u},\qquad
+ \vect{S}=-M_A^{-1}J^{\mathsf T}\vect{F}.
+\end{equation}
+The fluid work is
+$\vect{u}^{\mathsf T}M_A\vect{S}
+=-(J\vect{u})^{\mathsf T}\vect{F}$.
+Adding parcel drag work produces
+\cref{eq:drag_dissipation}. This matrix statement makes explicit why
+interpolation and spreading must use the same quadrature and weights.
+
+For a collision-free driven channel with no-slip stationary walls and
+periodic streamwise faces, a formally exact solution obeys
+\begin{equation}
+ \begin{aligned}
+ \frac{d}{dt}\left[\frac{1}{2}\int_\Omega|\vect{u}|^2\,dA
+ +\sum_i\frac{m_i}{2}|\vect{v}_i|^2\right]
+ &=\int_\Omega\vect{u}\cdot\vect{f}_d\,dA
+ +\sum_i m_i\vect{v}_i\cdot\vect{g}_{\mathrm{eff}}\\
+ &\quad-\frac{1}{\Rey_H}\int_\Omega|\nabla\vect{u}|^2\,dA
+ -\sum_i\frac{m_i}{\St_i}|\vect{U}_i-\vect{v}_i|^2.
+ \end{aligned}
+ \label{eq:energy_budget}
+\end{equation}
+Pressure and periodic-face contributions cancel under the stated
+conditions. The wall velocity is zero, so stationary walls do no work.
+Quadrature and neural equation residuals can create a nonzero discrepancy
+when this identity is evaluated numerically. Wall tractions still enter
+the momentum budget; they must not be omitted merely because wall work
+vanishes in the energy budget.
+
+\section{A limiting pressure-drop estimate}
+For slowly varying plane walls and negligible inertia, the local
+lubrication approximation gives the dimensional velocity
+\begin{equation}
+ u(x,y)=-\frac{1}{2\mu}\frac{dp}{dx}[h(x)^2-y^2].
+\end{equation}
+Integrating over $-h\leq y\leq h$ yields
+\begin{equation}
+ Q=-\frac{2h(x)^3}{3\mu}\frac{dp}{dx},\qquad
+ \Delta p=\frac{3\mu Q}{2}\int_{x_a}^{x_b}\frac{dx}{h(x)^3}.
+ \label{eq:lubrication_drop}
+\end{equation}
+For constant half-height $h_0$, this reduces to the plane Poiseuille
+pressure drop $3\mu Q(x_b-x_a)/(2h_0^3)$. At fixed flux, the normalized
+hydraulic resistance estimate is
+\begin{equation}
+ \frac{\Delta p}{\Delta p_0}
+ =\frac{h_0^3}{x_b-x_a}\int_{x_a}^{x_b}\frac{dx}{h(x)^3}.
+\end{equation}
+This is a limiting analytical check, not a simulation result for the
+proposed severity values. Its reliability requires sufficiently small wall
+slope and inertial effects; a full Navier--Stokes solution is needed when
+those assumptions fail \citep{batchelor1967}.
+
+\section{Baseline trajectory criteria}\label{sec:trajectory_appendix}
+\Cref{tab:path_limits} retains the seven baseline comparisons associated
+with the field results in \cref{ch:basic}. RMS position discrepancy is
+normalized by $W=0.3$. The current numerical limits require discrepancy
+below 5\%, common-time coverage above 95\%, and agreement of every endpoint
+class. Some individual rows satisfy those conditions, but the complete set
+does not. The trajectories are consequently not used as validated
+deposition evidence.
+
+\begin{table}[htbp]\centering\small
+\caption{Complete baseline particle comparison; no initial position is
+removed to improve the aggregate outcome.}\label{tab:path_limits}
+\begin{tabularx}{\textwidth}{@{}rrrY@{}}\toprule
+Initial $\eta$ & RMS position/$W$ (\%) & Common time (\%) & Same endpoint class\\\midrule
+\EvidenceRows{trajectories}
+\bottomrule\end{tabularx}
+\end{table}
+
+\section{Planar mass convention}
+For a physical sphere of diameter $d$, mass is $\rho_p\pi d^3/6$.
+A parcel containing $N_i$ such spheres has mass
+$N_i\rho_p\pi d^3/6$. Dividing by $\rho_fH^2B$ gives
+\begin{equation}
+ \frac{N_i\rho_p\pi d^3/6}{\rho_fH^2B}
+ =\frac{N_iR\pi(d/H)^3}{6(B/H)},
+\end{equation}
+which is \cref{eq:parcel_mass}. The dimensional reaction source in a planar
+fluid equation has force divided by depth and area. This is why a
+two-dimensional Gaussian normalization uses area rather than volume. The
+reference depth records the physical interpretation without introducing a
+resolved spanwise flow field.

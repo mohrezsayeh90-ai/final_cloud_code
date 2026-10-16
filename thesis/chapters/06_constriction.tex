@@ -1,0 +1,259 @@
+\chapter{Extension to a Constricted Channel}\label{ch:constriction}
+
+\section{Purpose and status of the extension}
+A constriction introduces a varying gap, a changing cross-sectional mean
+velocity at fixed flux, and stronger sensitivity to wall treatment.
+It provides a natural next problem after the constant-width baseline and
+the Gaussian coupling study. It also introduces new requirements that
+cannot be met by merely changing the appearance of a straight-channel
+figure.
+
+This chapter defines the geometry, governing problem, and evaluation design
+for that extension. The geometry drawings are mathematical illustrations.
+No constricted-channel velocity, pressure, particle trajectory, or deposition
+rate has been computed for the accepted result set. The proposed parameter
+values below are study-design choices rather than measured or completed
+results.
+
+The obstruction is static and represented by the walls. A progressively
+growing particle deposit, moving obstacle, or porous plug would require
+additional evolution laws and is outside this design. I use the term
+\emph{constriction} for the prescribed narrowing to keep this geometric
+effect separate from dynamic clogging.
+
+\section{Parameterized geometry}
+Let the nominal channel height be $H$ and let the walls be
+$y=\pm h(x)$. A compact, smooth narrowing centered at $x_c$ is defined by
+\begin{equation}
+ h(x)=\frac{H}{2}[1-\delta f(\xi)],\qquad
+ \xi=\frac{x-x_c}{\ell},\qquad 0\leq\delta<1,
+ \label{eq:constriction_height}
+\end{equation}
+where
+\begin{equation}
+ f(\xi)=
+ \begin{cases}
+ \left[\dfrac{1+\cos(\pi\xi)}{2}\right]^2,&|\xi|<1,\\[2mm]
+ 0,&|\xi|\geq1.
+ \end{cases}
+ \label{eq:constriction_profile}
+\end{equation}
+The profile and its first three derivatives match the constant-height
+segments at the joins. Its minimum gap is $H_t=(1-\delta)H$. The initial
+design uses $L_x/H=8$, $x_c/H=4$, and $\ell/H=1.2$, with nominal severities
+$\delta\in\{0,0.2,0.4\}$. These values define a controlled sequence from
+the unblocked channel to moderate narrowing. The actual reference study
+must check that upstream and downstream lengths are sufficient.
+
+\Cref{fig:constriction_geometry} displays the geometry and height profiles.
+Only geometric quantities are plotted. In particular, the height curves
+must not be interpreted as velocity or pressure results.
+
+\ResultFigure{13_constriction_geometry}{Proposed constriction. Panel (a)
+defines the throat, characteristic length, and reference sections. Panel
+(b) shows the mathematical height profiles for the proposed severity
+values. The illustrated channel has $L_x/H=8$ and $\ell/H=1.2$; no fluid
+or particle solution is represented.}{fig:constriction_geometry}
+
+\section{Carrier-flow boundary conditions}
+For an open-channel extension, the governing equations retain the inertial
+pressure scale and the same Newtonian constitutive law. I prescribe a
+parabolic inlet velocity with a specified flux $Q$ and no slip on both
+walls. A downstream traction condition provides an outlet reference rather
+than imposing a second velocity profile. The finite-element reference and
+the PINN must implement exactly the same outlet condition and pressure
+convention.
+
+This is a different boundary-value problem from both earlier stages.
+The curved baseline has prescribed velocities at both ends, whereas the
+straight Gaussian channel is periodic and body-force driven. Comparisons
+across these stages must therefore identify which changes follow from
+geometry and which follow from the drive or boundary conditions. A useful
+control is a straight open channel with the same inlet and outlet treatment
+as the constricted case.
+
+For unsteady particle introduction, the initial carrier field should be an
+independently converged unladen solution in the constricted domain.
+Imposing the original straight-channel profile throughout the narrowed
+region would violate the new wall geometry. An alternative start from rest
+requires a compatible smooth inlet ramp and its own transient verification.
+The primary design uses the steady unladen field to avoid mixing inlet
+startup with particle response.
+
+\section{Geometry-aware representation}
+The fixed-width centerline mapping of the baseline cannot represent this
+variable-height domain without modification. A convenient mapping is
+\begin{equation}
+ (x,\eta)\longmapsto(x,y)=(x,h(x)\eta),\qquad -1\leq\eta\leq1.
+ \label{eq:constriction_map}
+\end{equation}
+Its area Jacobian is $h(x)$. If the differential residual is evaluated in
+mapped coordinates, the chain rule must include this geometry dependence.
+For example,
+\begin{equation}
+ \left.\partial_x\right|_y
+ =\left.\partial_x\right|_\eta
+ -\eta\frac{h'(x)}{h(x)}\partial_\eta,\qquad
+ \partial_y=\frac{1}{h(x)}\partial_\eta.
+ \label{eq:mapped_derivatives}
+\end{equation}
+Evaluating automatic derivatives directly with respect to physical
+coordinates is another option. Either route requires a manufactured
+derivative test before training a new flow problem.
+
+Periodic Fourier features in the streamwise direction would impose the
+wrong structure for the proposed open domain. They must be replaced by
+nonperiodic coordinate features. A wall-distance factor can enforce the
+stationary wall velocity, but it must be consistent with the nonzero inlet
+condition and with the mapped derivatives. A divergence-free streamfunction
+ansatz is a possible alternative, provided that its boundary and pressure
+conditions are verified. These are implementation choices to evaluate,
+rather than capabilities already established by the straight-channel model.
+
+\section{Gaussian support near the narrowing}
+The force-transfer rule must use quadrature over the fluid domain:
+\begin{equation}
+ Z_i=\sum_{a\in\Omega_\delta}
+ G(\vect{x}_a-\vect{q}_i)\Delta A_a,\qquad
+ W_{ai}=\frac{G(\vect{x}_a-\vect{q}_i)}{Z_i}.
+ \label{eq:constriction_normalization}
+\end{equation}
+For mapped quadrature, $\Delta A_a$ includes the Jacobian from
+\cref{eq:constriction_map}. The same points, weights, and normalizer must
+be used for interpolation and reaction-force deposition. Under that
+condition, the derivations of \cref{eq:force_identity,eq:work_identity}
+remain valid on the new quadrature.
+
+\Cref{fig:boundary_kernel} illustrates why normalization must follow the
+actual domain. Some Gaussian support intersects the wall region near the
+throat. Removing those points without updating $Z_i$ would lose force.
+Renormalizing restores the integrated force, but changes the shape of the
+sampling operator. It still does not supply missing lubrication or
+undisturbed-velocity corrections.
+
+\ResultFigure[.95]{14_boundary_kernel}{Illustration of a Gaussian centered
+near the upper throat wall. Shading is a prescribed kernel shape restricted
+to the proposed fluid domain, not a computed concentration or force field.
+The normalizer must use the same fluid-domain quadrature as both transfer
+operations.}{fig:boundary_kernel}
+
+Three ratios require explicit monitoring:
+\begin{equation}
+ \frac{d}{H_t},\qquad \frac{\sigma}{H_t},\qquad
+ \frac{\sigma}{\Delta_{\mathrm{quad}}},
+ \label{eq:constriction_ratios}
+\end{equation}
+where $\Delta_{\mathrm{quad}}$ denotes a local quadrature-spacing measure.
+The first concerns physical confinement; the second concerns regularization
+relative to the gap; the third concerns the numerical resolution of that
+regularization. They address different questions and should be varied
+separately. If physical wall effects dominate, the present unbounded
+Stokes closure may need replacement before more accurate training is useful.
+
+\section{Particle and parcel wall conditions}
+An individual sphere has an admissible center region obtained by offsetting
+the wall by its radius. For a sloped wall, the offset is based on signed
+normal distance to the boundary, not only the vertical gap. A contact event
+must therefore use the actual geometry. The baseline's irreversible
+sticking rule can be retained as a controlled modeling choice, but it must
+not be called a prediction of deposition physics.
+
+A parcel introduces an additional issue: its center represents many
+particles. Stopping the entire represented population at the first center
+contact may create a strong and artificial capture rule. The proposed
+first study therefore focuses on carrier fields and freely transported
+dilute parcels whose centers remain inside the admissible region. A
+deposition extension should specify whether it resolves individual
+particles, splits parcels, or uses a separately justified population-level
+wall model. No capture efficiency is assigned before making that choice.
+
+\section{Controlled evaluation sequence}
+The extension should be evaluated in the following order.
+\begin{enumerate}
+\item Recover the straight, unladen open-channel solution at $\delta=0$
+with the new inlet and outlet conditions. Verify pressure gauge, wall
+velocity, and section flux before adding particles.
+\item Solve the unladen constricted channel with an independent mesh-based
+method. Refine the throat and the upstream and downstream transition
+regions; monitor pressure drop and the complete velocity field.
+\item Introduce individual one-way particles with identical initial
+conditions in the neural and reference fields. Compare position,
+common-time coverage, and endpoint class separately.
+\item Add a single Gaussian parcel at low loading and verify force/work
+transfer on the irregular-domain quadrature. Compare the coupled fluid
+response with an independently discretized regularized model.
+\item Vary severity and loading only after the earlier controls pass.
+Keep physical diameter, total represented mass, and kernel width explicit.
+\end{enumerate}
+
+The initial proposed Reynolds numbers are $1$, $5$, and $20$ at nominal
+height. These are design points rather than an observed regime map.
+Particle response times should be selected to retain an acceptably small
+slip Reynolds number at the throat. Mass-loading changes must be made
+through represented population while holding diameter fixed when the
+purpose is to isolate feedback. A separate diameter sweep changes both
+response time and confinement, and should be interpreted accordingly.
+
+\section{Observables and acceptance criteria}
+The primary observables are the section flux, throat velocity profile,
+pressure drop between fixed reference sections, and field error against
+the matched reference. For particles, residence time and endpoint class
+are added only after trajectory agreement is demonstrated. The reference
+sections must remain identical across severity values so that the pressure
+drop represents the same geometric interval.
+
+At fixed flux, incompressibility gives the exact sectional mean relation
+\begin{equation}
+ \overline{u}_x(x)=\frac{Q}{2h(x)},\qquad
+ \frac{\overline{u}_{x,t}}{\overline{u}_{x,0}}
+ =\frac{1}{1-\delta}.
+ \label{eq:mean_acceleration}
+\end{equation}
+This is a geometric conservation implication, not a computed centerline
+velocity or a prediction of recirculation. A lubrication estimate,
+derived in \cref{app:derivations}, gives a useful additional check only
+when its small-slope and low-inertia assumptions apply.
+
+\begin{table}[htbp]\centering\small
+\caption{Proposed acceptance protocol for the constricted study. Limits
+must be fixed before interpreting the associated parameter sweep; these
+checks have not been executed.}\label{tab:constriction_protocol}
+\begin{tabularx}{\textwidth}{@{}p{.26\textwidth}YY@{}}\toprule
+Quantity & Proposed check & Interpretation\\\midrule
+Unladen field & $E_u,E_p<5\%$ against a matched reference & Carrier-field agreement\\
+Reference refinement & Changes in $\Delta p$ and field norms below 2\% & Numerical sensitivity, not exact uncertainty\\
+Section flux & Maximum relative variation below 2\% & Integrated mass balance\\
+Transfer & Force/work discrepancies consistent with roundoff & Algebraic operator consistency\\
+Particle paths & RMS position below $0.05W$; common interval above 95\%; all endpoint classes matched & Transport accuracy for stated initial conditions\\
+Physical regime & Report maximum $\Rey_p$, $d/H_t$, local $\alpha$ and wall distance & Closure applicability; no universal threshold inferred\\
+\bottomrule\end{tabularx}
+\end{table}
+
+The error limits in \cref{tab:constriction_protocol} are proposed numerical
+screens. In addition, residuals should be reported by component on a
+separate set of throat, near-wall, and bulk points. A global average must
+not conceal a concentration of error near the narrowing. The Gaussian
+width study should remain separate from spatial and temporal refinement,
+and multiple seeds should be included before drawing a quantitative trend.
+
+\section{Expected mechanisms and testable statements}
+Conservation at fixed flux predicts a larger section-mean speed as the
+gap narrows. The accompanying changes in particle transit depend on
+response time, local flow, and the retained force law. I treat changes in
+residence time, wall approach, and downstream recovery as hypotheses for
+the controlled study. Recirculation, enhanced deposition, or a particular
+pressure-loss factor cannot be inferred from the geometry alone.
+
+At fixed imposed pressure difference, flux becomes an outcome instead.
+That experiment addresses a different question and must not be pooled with
+the fixed-flux design. Keeping these operating conditions separate is
+essential for a meaningful comparison of unblocked and constricted cases.
+
+\section{Chapter conclusions}
+The constricted-channel stage is fully specified at the level of geometry,
+governing conditions, transfer consistency, and evaluation requirements.
+It extends the study in a controlled direction while preserving the
+distinction between mathematical consequences, proposed experiments, and
+completed numerical findings. Its next milestone is a verified unladen
+reference problem, followed by one-way transport and then two-way Gaussian
+feedback.

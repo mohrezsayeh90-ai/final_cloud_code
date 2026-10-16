@@ -1,0 +1,123 @@
+\chapter{Introduction}\label{ch:introduction}
+
+\section{Motivation}
+Particle-laden channel flows connect local hydrodynamics with transport
+outcomes. A particle can follow the carrier flow closely, cross a streamline
+because of inertia, or approach a wall closely enough to change its final
+destination. In a narrow passage, these outcomes depend on both the flow
+field and the force closure. A small average velocity error can coexist
+with a significant error in a particle's residence time or contact location.
+Predictive modeling therefore requires more than visually plausible
+streamlines.
+
+Conventional computational methods provide established ways to discretize
+the incompressible Navier--Stokes equations and integrate particle motion
+\citep{ferziger2002,clift1978}. Physics-informed neural networks offer a
+different representation: a differentiable network approximates the
+solution, while differential equations and boundary conditions constrain
+its parameters \citep{raissi2019,karniadakis2021}. This representation is
+attractive when smooth field evaluation and derivatives are needed at
+many moving particle positions. Its utility must nevertheless be established
+by comparison with an independent reference and by checks that are sensitive
+to the intended transport quantities.
+
+I organize this study around a progressive increase in physical coupling
+and geometric confinement. The first stage considers dilute particles whose
+motion does not alter the carrier flow. The second introduces represented
+particle populations and a spatially regularized reaction force in a straight
+channel. The third defines a smooth constriction as the next geometry to be
+studied. This progression isolates the consequences of adding two-way
+coupling before introducing a varying channel height.
+
+\section{Problem statement}
+The central problem is to determine which parts of a physics-informed
+fluid--particle model have sufficient numerical support for transport
+prediction. There are three distinct questions. The first concerns the
+carrier field: does the predicted velocity and pressure agree with a solution
+of the same boundary-value problem? The second concerns the force transfer:
+does the discrete coupling apply equal and opposite hydrodynamic forces
+without introducing artificial interphase power? The third concerns
+particle transport: are trajectories, contact events, and transit times
+accurate for the geometry under consideration?
+
+These questions are related but are not interchangeable. An algebraically
+conservative transfer operator does not eliminate the residual error of a
+trained fluid field. A low drag-network error does not correct an inaccurate
+near-wall velocity. A successful straight-channel benchmark does not
+establish performance at a constriction. I therefore treat each claim at
+the level at which it has been evaluated.
+
+\section{Aim and objectives}
+The aim is to establish a physically consistent and numerically assessable
+framework for physics-informed particle transport in channels. The study
+has four objectives:
+\begin{enumerate}
+\item Formulate and evaluate a one-way coupled baseline with independent
+carrier-flow and analytical drag references.
+\item Derive a Gaussian parcel coupling that preserves force and interphase
+work on its transfer quadrature.
+\item Evaluate the components of the coupled formulation using independent
+analytical and numerical verification problems.
+\item Specify a constricted-channel extension whose geometry, boundary
+conditions, and acceptance criteria can be tested without altering the
+meaning of the earlier benchmarks.
+\end{enumerate}
+
+The corresponding research questions are: How accurately does the baseline
+recover independently computed channel flow? Which conservation properties
+follow from the Gaussian discretization, and which require additional
+solution accuracy? What evidence is still needed before the formulation
+can support predictions in a constricted channel?
+
+\section{Scope and physical assumptions}
+The completed channel models describe incompressible Newtonian flow and
+spherical heavy particles moving in a plane. The baseline uses one-way
+Stokes drag and a prescribed irreversible wall-sticking rule. The Gaussian
+model represents spherical-particle populations through regularized force
+distributions. The Gaussian cloud is a force-transfer representation; it
+is not a resolved solid sphere and it is not an independently validated
+description of a dense particle agglomerate.
+
+The two-dimensional carrier does not resolve spanwise motion. No inference
+about a finite-depth three-dimensional channel follows from an extruded
+view. Particle rotation, lubrication, history force, and hydrodynamic
+interactions of resolved finite-size bodies lie outside the accepted
+baseline. The constriction is considered as a static wall geometry rather
+than a dynamically growing deposit or a biological vessel.
+
+\section{Study sequence and contributions}
+\Cref{fig:route} summarizes the study sequence. The first contribution is a
+baseline evaluation that combines analytical plane flow, an independently
+assembled finite-element reference, a held-out drag test, and an explicit
+distinction between field and trajectory accuracy. The second is a
+consistent planar sphere-parcel formulation with shared Gaussian
+interpolation and spreading. The third is a verification chain connecting
+reduced relaxation problems, normalization identities, and an unsteady
+incompressible-flow benchmark. The final contribution is a defined
+constricted-channel study design that preserves the same requirements for
+reference matching and conservation.
+
+Completed findings are presented for the baseline carrier field and the
+Gaussian model's verification problems. The coupled Gaussian channel
+predictions have unresolved residual errors. The constricted-channel
+formulation is prospective. This division determines the interpretation of
+the conclusions and prevents a proposed geometry from being presented as
+an executed calculation.
+
+\ResultFigure[.92]{01_study_route}{Study progression. The first two panels
+identify the model classes investigated; the third defines the proposed
+constricted-channel extension. All three panels are geometric illustrations,
+not simulation fields. Gaussian shading depicts kernel support rather than
+a measured particle concentration.}{fig:route}
+
+\section{Thesis organization}
+\Cref{ch:literature} reviews the modeling choices and the requirements for
+credible numerical evidence. \Cref{ch:framework} defines the common
+nondimensional and evaluation framework. \Cref{ch:basic} develops the
+baseline particle problem and reports its supported results.
+\Cref{ch:gaussian} introduces the straight-channel Gaussian formulation and
+its verification results. \Cref{ch:constriction} defines the constricted
+channel and the proposed evaluation protocol. \Cref{ch:discussion} compares
+the implications of the stages, and \cref{ch:conclusions} gives the
+conclusions and priorities for further work. Supplementary derivations and
+the computational record appear in the appendices.

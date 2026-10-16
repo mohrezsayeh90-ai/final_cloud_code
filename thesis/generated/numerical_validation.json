@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "recomputed_metrics": [
+    {
+      "metric": "curved_velocity",
+      "recomputed": 0.015096144982268116,
+      "recorded": 0.015096144982268116
+    },
+    {
+      "metric": "curved_pressure",
+      "recomputed": 0.008625689132770578,
+      "recorded": 0.008625689602803936
+    },
+    {
+      "metric": "poiseuille_pressure",
+      "recomputed": 0.0017966059138103533,
+      "recorded": 0.0017966055844855723
+    },
+    {
+      "metric": "poiseuille_full_velocity",
+      "recomputed": 0.002170516376677131,
+      "recorded": 0.0021705328336898335
+    },
+    {
+      "metric": "drag_2048_heldout",
+      "recomputed": 0.007172187945671539,
+      "recorded": 0.007172185152757193
+    },
+    {
+      "metric": "drag_1000_plot_samples",
+      "recomputed": 0.005834759445503769,
+      "recorded": null
+    },
+    {
+      "metric": "V01_v_over_vt",
+      "recomputed": 0.0006647099998360116,
+      "recorded": 0.0006647099998360116
+    },
+    {
+      "metric": "V01_distance_over_vt_tau",
+      "recomputed": 0.00023987202423615057,
+      "recorded": 0.00023987202423615057
+    },
+    {
+      "metric": "V02_fluid_u",
+      "recomputed": 0.0009646903734508469,
+      "recorded": 0.0009646903734508469
+    },
+    {
+      "metric": "V02_particle_v",
+      "recomputed": 0.002381949471607388,
+      "recorded": 0.002381949471607388
+    },
+    {
+      "metric": "V10_u",
+      "recomputed": 0.002183658002593811,
+      "recorded": 0.002183658002593811
+    },
+    {
+      "metric": "V10_v",
+      "recomputed": 0.0018698515994722174,
+      "recorded": 0.0018698515994722174
+    },
+    {
+      "metric": "V10_p",
+      "recomputed": 0.0021543776369157904,
+      "recorded": 0.0021543776369157904
+    }
+  ],
+  "schematics_are_not_results": true
+}

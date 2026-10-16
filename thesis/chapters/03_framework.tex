@@ -1,0 +1,184 @@
+\chapter{Mathematical and Evaluation Framework}\label{ch:framework}
+
+\section{Baseline nondimensionalization}
+Let $L_0$ and $U_0$ denote reference length and velocity, and let $\rho_f$
+and $\mu$ denote the fluid density and dynamic viscosity. The baseline
+uses
+\begin{equation}
+ \vect{x}^{*}=\frac{\vect{x}}{L_0},\quad
+ t^{*}=\frac{tU_0}{L_0},\quad
+ \vect{u}^{*}=\frac{\vect{u}}{U_0},\quad
+ p_v^{*}=\frac{pL_0}{\mu U_0},\quad
+ \Rey=\frac{\rho_fU_0L_0}{\mu}.
+ \label{eq:baseline_scales}
+\end{equation}
+Stars are suppressed after the scales have been specified. The steady
+carrier equations are
+\begin{equation}
+ \nabla\cdot\vect{u}=0,\qquad
+ \Rey(\vect{u}\cdot\nabla)\vect{u}
+ =-\nabla p_v+\nabla^2\vect{u}.
+ \label{eq:baseline_ns}
+\end{equation}
+Using a viscous pressure scale places $\Rey$ on the convective term.
+Pressure values from this model cannot be compared directly with a model
+using an inertial pressure scale without conversion.
+
+For a spherical heavy particle, the retained force is the creeping-flow
+drag. With $R=\rho_p/\rho_f$ and $d_p=d/L_0$, its dimensionless equations
+are
+\begin{equation}
+ \frac{d\vect{q}}{dt}=\vect{v},\qquad
+ \frac{d\vect{v}}{dt}
+ =\frac{18}{R\Rey d_p^2}[\vect{u}(\vect{q})-\vect{v}]
+ =\frac{\vect{u}(\vect{q})-\vect{v}}{\St},
+ \qquad \St=\frac{R\Rey d_p^2}{18}.
+ \label{eq:baseline_particle}
+\end{equation}
+The slip Reynolds number is
+\begin{equation}
+ \Rey_p=\Rey d_p|\vect{u}(\vect{q})-\vect{v}|.
+ \label{eq:slip_re}
+\end{equation}
+The physical rationale for Stokes drag requires $\Rey_p\ll1$, along with a
+small particle relative to the spatial scales of the carrier flow.
+
+\section{Geometry and boundary-value matching}
+The baseline channel is a constant-width tube around a planar centerline
+$\vect{c}(s)$. Let $\vect{n}(s)$ denote its unit normal and let $h$ denote
+the half-width. Coordinates are mapped by
+\begin{equation}
+ \vect{x}(s,\eta)=\vect{c}(s)+h\eta\vect{n}(s),\qquad
+ 0\leq s\leq L,\quad -1\leq\eta\leq1.
+ \label{eq:centerline_map}
+\end{equation}
+The carrier velocity vanishes on both walls. At each end section, a
+parabolic velocity in the local tangent direction is prescribed:
+\begin{equation}
+ \vect{u}(s_{\mathrm{end}},\eta)
+ =(1-\eta^2)\vect{t}(s_{\mathrm{end}}).
+ \label{eq:end_bc}
+\end{equation}
+Thus the reference problem uses velocity conditions at both ends, rather
+than an imposed pressure outlet. A pressure gauge fixes the remaining
+constant. The neural and finite-element comparisons must use this same
+problem.
+
+The associated volume flux per unit reference depth is
+\begin{equation}
+ Q_0=h\int_{-1}^{1}(1-\eta^2)\,d\eta=\frac{4h}{3}.
+ \label{eq:flux}
+\end{equation}
+For a steady incompressible flow without sources of fluid mass, the section
+flux should be independent of $s$. This makes flux variation a useful
+integrated diagnostic alongside local differential residuals.
+
+\section{Gaussian-channel scales}
+For the Gaussian stage, the reference length is the channel height $H$.
+The pressure scale is inertial:
+\begin{equation}
+ p_i^{*}=\frac{p}{\rho_f U_0^2},\qquad
+ \Rey_H=\frac{U_0H}{\nu},\qquad \delta_p=\frac{d}{H}.
+ \label{eq:gaussian_scales}
+\end{equation}
+For identical length and velocity scales, the two pressure conventions
+satisfy $p_v^{*}=\Rey_H p_i^{*}$. The governing equation is correspondingly
+written with $1/\Rey_H$ multiplying viscous diffusion.
+
+The carrier is two-dimensional, but the represented physical particles are
+spheres. A reference depth $B$ is therefore required to convert represented
+sphere mass into a planar source. With $b=B/H$ and multiplicity $N_i$, the
+dimensionless represented mass is
+\begin{equation}
+ m_i=\frac{N_iR\pi\delta_{p,i}^3}{6b},\qquad
+ \St_i=\frac{R\Rey_H\delta_{p,i}^2}{18},\qquad
+ \beta=\frac{\sum_i m_i}{|\Omega|}.
+ \label{eq:parcel_mass}
+\end{equation}
+This convention scales physical mass by $\rho_fH^2B$. The kernel has units
+of inverse area before nondimensionalization. Replacing it with a
+three-dimensional volume kernel without changing the mass convention would
+be dimensionally inconsistent.
+
+\section{What is learned}
+The neural representations approximate fields or trajectories; the
+physical equations specify their constraints. The baseline force network
+learns a known drag response from an algebraic residual. It does not infer
+an unknown force law from experiments. The Gaussian parcel network predicts
+time-dependent position and velocity corrections whose consistency is
+enforced by both kinematic and dynamic residuals.
+
+Adam is used for initial optimization, with optional limited-memory
+quasi-Newton refinement \citep{kingma2015,liu1989}. The optimizer sequence
+does not define the credibility of the final state. Checkpoint selection
+uses a fixed residual monitor, whereas the reported field comparison uses
+an independent reference. A longer training budget is a computational
+choice, not an accuracy certificate.
+
+\section{Error measures and pressure gauge}
+For values at $M$ independent locations, the sample-relative velocity error
+is
+\begin{equation}
+ E_u=\left[
+ \frac{\sum_{j=1}^{M}|\vect{u}^{\mathrm{PINN}}_j-
+               \vect{u}^{\mathrm{ref}}_j|^2}
+      {\sum_{j=1}^{M}|\vect{u}^{\mathrm{ref}}_j|^2}
+ \right]^{1/2}.
+ \label{eq:velocity_error}
+\end{equation}
+These are discrete norms over the specified samples. Unless area weights
+are explicitly included, they are not exact domain-integral norms. For
+pressure, I first remove the arithmetic mean of each compared array:
+\begin{equation}
+ \widetilde p_j=p_j-\frac{1}{M}\sum_{k=1}^{M}p_k,\qquad
+ E_p=\frac{\|\widetilde{\vect{p}}^{\mathrm{PINN}}-
+                    \widetilde{\vect{p}}^{\mathrm{ref}}\|_2}
+                   {\|\widetilde{\vect{p}}^{\mathrm{ref}}\|_2}.
+ \label{eq:pressure_error}
+\end{equation}
+The pressure samples span the streamwise direction so that the reference
+denominator is meaningful. Mean subtraction removes only a constant; it
+does not rescale a pressure gradient or modify the predicted dynamics.
+
+The section-flux diagnostic is
+\begin{equation}
+ E_Q=\max_s\left|\frac{Q(s)}{Q_0}-1\right|.
+ \label{eq:flux_error}
+\end{equation}
+Reported differential residuals use their stated nondimensional equations.
+Their magnitudes should not be compared across pressure scales, equation
+normalizations, or geometries without accounting for those differences.
+
+\section{Trajectory evaluation}
+Consider a neural and reference trajectory with the same initial condition.
+If their common interval is $[0,T_c]$, the position discrepancy is measured
+over that interval and normalized by channel width $W=2h$. Endpoint
+agreement is assessed separately using the terminal event class. I also
+retain the fraction of the longer trajectory covered by the common
+interval. A low error calculated over a short common interval is not
+sufficient evidence of agreement over the full transit.
+
+Integration success has a narrower meaning: it indicates that the numerical
+ODE solver completed its assigned calculation without reporting failure.
+It does not establish that the neural velocity or force was accurate.
+Accordingly, the acceptance criteria distinguish integration status,
+position discrepancy, common-time coverage, and endpoint agreement.
+
+\section{Evidence hierarchy}
+I use four levels of numerical evidence. Algebraic identities establish
+properties of the coupling operators. Analytical benchmarks test reduced
+equations with known solutions. Independently discretized references test
+the field approximation for a matched problem. Finally, transport
+comparisons assess the accumulated consequences of the field and force
+errors. None of these alone establishes experimental agreement.
+
+For the baseline, the numerical screening limits are 5\% for field and
+normalized drag errors, 2\% for boundary RMS and reference-interpolation
+error, and 5\% for maximum flux deviation. Baseline particle acceptance is
+stricter in its combination of conditions: every tested endpoint class must
+agree, every width-normalized RMS position error must be below 5\%, and
+every common-time fraction must exceed 95\%. For the Gaussian verification
+tests, the stated relative-error and independent residual criteria are
+0.03. These limits are study criteria rather than universal physical
+thresholds. Their actual outcomes are reported where the corresponding
+results are presented.

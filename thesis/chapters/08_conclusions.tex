@@ -1,0 +1,68 @@
+\chapter{Conclusions and Future Work}\label{ch:conclusions}
+
+\section{Principal conclusions}
+This thesis develops a staged framework for physics-informed
+fluid--particle transport. The progression begins with a one-way coupled
+particle problem, introduces Gaussian parcel reaction in a straight
+channel, and defines a smooth constriction for the next study. The
+completed evidence supports the following conclusions.
+
+First, the baseline carrier network agrees with an independent
+finite-element solution of the stated curved-channel problem, with velocity
+and gauge-aligned pressure errors of \FlowVelocity\% and
+\FlowPressure\%. Analytical plane-flow verification and reference-mesh
+sensitivity support this comparison. The normalized learned Stokes
+response has an independent error of \DragError\%.
+
+Second, carrier-field agreement does not by itself establish accurate
+particle transport. The seven baseline comparisons do not all meet the
+endpoint, position, and time-coverage conditions. Deposition and
+wall-sensitive parameter trends are therefore outside the accepted
+quantitative conclusions.
+
+Third, a normalized Gaussian used for both interpolation and spreading
+preserves discrete force and work on the transfer quadrature. The resulting
+interphase drag power is nonpositive. These identities are algebraic
+properties of the discretization and do not imply that an imperfectly
+trained field satisfies every global balance.
+
+Fourth, the reduced Gaussian-model tests recover Stokes response, uniform
+two-way relaxation, kernel integrals, and Taylor--Green decay with the
+reported errors and residuals. The accepted solution-observable errors
+in the listed relaxation and vortex tests are below 0.25\%. The fully
+coupled straight-channel predictions remain diagnostic because their
+complete residual criteria are not met.
+
+Finally, the constricted-channel extension has a consistent geometric and
+evaluation definition, including physical-coordinate derivatives,
+fluid-domain kernel normalization, and independent throat-resolution
+checks. It has no completed predictive result in the present study.
+
+\section{Contributions}
+The study contributes a common evaluation framework connecting carrier
+fields, drag approximation, transfer consistency, and particle outcomes.
+It gives a dimensionally consistent planar sphere-parcel formulation and
+explicitly separates a Gaussian force distribution from a resolved solid
+body. It also defines which verified components can be retained when
+extending the model to a variable-height channel.
+
+These contributions provide a practical basis for further computation
+without assigning unsupported accuracy to complex coupled predictions.
+The numerical record and portable manuscript sources preserve the arrays,
+criteria, and figure provenance needed to reassess the stated findings.
+
+\section{Priorities for future work}
+The immediate priority is to improve and independently verify the
+transport-sensitive parts of the calculation. For the baseline, this
+means near-wall field assessment and a direct exact-drag comparison. For
+Gaussian coupling, it means a matched independent regularized channel
+solution, transfer-quadrature refinement, temporal sampling refinement,
+and multiple training seeds at fixed physical parameters.
+
+The constricted study should then begin with an unladen flow and a
+straight-channel boundary-condition control. One-way particles can be
+introduced after the carrier reference passes, followed by low-loading
+Gaussian feedback. Physical deposition or dynamic clogging requires a
+separately specified wall and population model. Experimental comparison
+will require matched geometry, operating conditions, particle properties,
+and observables before it can establish physical validity.

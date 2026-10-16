@@ -1,0 +1,5 @@
+/build/
+__pycache__/
+*.py[cod]
+!/evidence/gaussian/outputs/
+!/evidence/gaussian/outputs/**

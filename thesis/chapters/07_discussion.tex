@@ -1,0 +1,132 @@
+\chapter{Discussion}\label{ch:discussion}
+
+\section{What the baseline establishes}
+The baseline demonstrates that a physics-informed field representation can
+agree closely with an independently discretized curved-channel solution
+for the specified steady, low-Reynolds-number problem. The velocity and
+pressure errors are below 2\% and 1\%, respectively, while the drag-network
+error is below 1\%. The analytical plane-flow test provides an additional
+check that is independent of the curved-channel finite-element field.
+Reference-mesh sensitivity and section flux add evidence beyond a single
+parity plot.
+
+The trajectory comparison changes the interpretation of this success.
+The carrier-field results are useful but do not establish that the complete
+particle problem is solved with the same relative accuracy. A particle
+integrates the local field over time, and a small near-wall discrepancy
+can change an endpoint event. Six of seven matching endpoint classes
+therefore indicate a remaining limitation rather than permission to
+generalize deposition trends. This finding supports evaluating the final
+transport quantity directly, instead of treating bulk velocity error as
+its surrogate.
+
+The force network also raises a methodological question. Since the
+retained Stokes law is known analytically, its neural approximation is
+most useful as a controlled component of a broader learning framework.
+The present error does not show that the learned force is superior to the
+direct analytical formula. A future assessment should compare the two
+within identical carrier fields and identify whether the approximation
+adds cost, flexibility, or error.
+
+\section{What conservative transfer establishes}
+The shared Gaussian operator gives a stronger result of a different kind.
+The force and work identities follow from the normalization and the common
+quadrature. Their validity does not depend on a low training loss. This
+property removes one avoidable source of inconsistent interphase exchange
+and remains available when the carrier geometry changes, provided that the
+same fluid-domain quadrature is used consistently.
+
+The identities do not guarantee the accuracy of the coupled solution.
+The carrier momentum equation can retain a residual even when the sum of
+deposited forces is exact. In the evaluated coupled channel, the remaining
+momentum residual exceeds the study's bound in every tested parameter
+combination. The correct inference is that the operator design is verified
+while the quantitative coupled-channel prediction remains unresolved.
+
+The successful reduced tests address important parts of the calculation:
+response-time dynamics, reciprocal momentum exchange, kernel integrals,
+and unsteady incompressible flow. Each isolates a necessary capability.
+Their combination is a verification chain, not a substitute for a matched
+independent two-way channel reference. This distinction is consistent with
+the separation between numerical verification and physical validation
+\citep{roache1998}.
+
+\section{Optimization, residuals, and independent error}
+The completed calculations illustrate why optimization metrics and
+independent solution errors should be reported together. Residual
+normalization changes their numerical magnitude, and a weighted objective
+can favor some components over others. Reported raw residuals should
+therefore retain their equation convention. In particular, comparing the
+baseline momentum RMS directly with the Gaussian momentum RMS would
+ignore different scaling, geometry, and transient content.
+
+Training difficulties in physics-informed learning are well documented
+\citep{wang2021,wang2022}. They motivate focused improvements such as
+component scaling, more informative collocation, and better temporal
+resolution of the response scale. These improvements must be assessed
+using the same independent checks. Lowering a threshold after inspecting
+the results or selecting only a visually attractive field would weaken the
+inference rather than improve the model.
+
+\section{Regularization and model validity}
+The Gaussian width controls how the represented force is distributed.
+It affects both the sampled fluid velocity and the carrier response.
+A smaller width is not automatically more physically accurate, especially
+if the transfer quadrature underresolves it. A larger width can smooth
+localized forcing while changing the regularized interaction. Width
+sensitivity must therefore be distinguished from convergence at fixed
+model parameters.
+
+The undisturbed-velocity issue is equally important. The current parcels
+sample the disturbed fluid directly. A reduced Stokes-response test cannot
+resolve the resulting self-interaction question in a spatially coupled
+flow. Comparison with an independent solver of the same regularized
+equations would test numerical consistency; assessment against a suitable
+physical reference would additionally test the closure.
+
+Confinement further separates numerical and physical accuracy. A model
+can converge accurately to equations that omit important wall effects.
+For that reason, the proposed constriction study records particle-to-gap
+ratio and local slip Reynolds number in addition to ordinary solver errors.
+If those quantities indicate a breakdown of the retained approximation,
+more training is not the appropriate physical correction.
+
+\section{Transferability across the three stages}
+\Cref{tab:claim_scope} summarizes the actual scope of the findings. The
+baseline establishes a carrier-field comparison for one geometry and
+Reynolds number, with two seeds. The Gaussian tests establish specific
+reduced dynamics and transfer properties. The constriction stage provides
+a defined study design. None of these establishes a universal neural
+operator over channel shape, loading, and Reynolds number.
+
+\begin{table}[htbp]\centering\small
+\caption{Supported conclusions and their boundaries.}\label{tab:claim_scope}
+\begin{tabularx}{\textwidth}{@{}p{.24\textwidth}YY@{}}\toprule
+Stage & Supported statement & Remaining boundary\\\midrule
+Baseline carrier & Analytical and independent numerical field agreement & One declared geometry/Re case; finite residuals\\
+Baseline particles & Completed integrations and drag approximation & Endpoint and full-path criteria not all met\\
+Gaussian transfer & Discrete force/work consistency and component verification & Disturbed-velocity closure and coupled field error\\
+Straight coupled channel & Executed diagnostic predictions & Full residual screen not met\\
+Constriction & Defined geometry and evaluation protocol & No completed constricted-channel solution\\
+\bottomrule\end{tabularx}
+\end{table}
+
+The transferable parts are the nondimensional bookkeeping, reference
+matching, shared transfer, and evaluation logic. New physical and geometric
+claims require their own executed evidence. In particular, a parameter
+slot in a network does not establish learned parametric generalization,
+and a geometric illustration does not establish a flow solution.
+
+\section{Implications for the next computational study}
+The most informative next work is narrower than a large parameter sweep.
+First, the baseline trajectory limitation should be isolated using the
+same carrier field with exact and learned drag. Second, the Gaussian
+channel should be compared with an independent regularized solver at fixed
+width and well-resolved quadrature. Third, the unladen constricted problem
+should be solved before introducing moving populations.
+
+This ordering reduces ambiguity. A failed two-way constricted calculation
+could otherwise reflect carrier approximation, irregular-domain transfer,
+wall geometry, particle closure, or optimization. Establishing the controls
+in sequence allows each additional mechanism to be interpreted against a
+known numerical foundation.

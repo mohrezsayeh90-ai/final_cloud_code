@@ -1,0 +1,268 @@
+\chapter{Baseline Particle Problem}\label{ch:basic}
+
+\section{Physical problem and parameter set}
+The baseline separates carrier-flow approximation from particle response.
+The carrier is steady and two-dimensional. Particles are spherical, heavy,
+and dilute, and their forces do not feed back into the fluid. The principal
+channel consists of two connected semicircular bends with nominal inner
+and outer radii $R_{\mathrm{in}}=0.2$ and $R_{\mathrm{out}}=0.5$. Its
+width is $W=0.3$ and its centerline length is approximately $2.1991$, all
+scaled by $L_0$. The Reynolds number is $\Rey=1$.
+
+The baseline particle parameters are $R=1000$ and $d_p=0.025$. The resulting
+Stokes number is $\St\simeq0.03472$. The channel wall rule stops the
+particle when its center approaches within one radius of a wall. This is
+a specified irreversible sticking model, not a prediction of adhesion
+chemistry or a resolved impact process. In the full trajectory set, the
+largest recorded slip Reynolds number is approximately $0.01221$, which
+supports the low-slip-Reynolds-number assumption for these calculations.
+The ratio $d_p/W\simeq0.0833$ still warrants caution for near-wall motion.
+
+\section{Flow and force representations}
+\subsection{FlowNet}
+The flow network maps five input slots to velocity and pressure:
+\begin{equation}
+ (x,y,R_{\mathrm{in}},R_{\mathrm{out}},\Rey)
+ \longmapsto (u,v,p_v).
+ \label{eq:flownet}
+\end{equation}
+It has five hidden layers with 70 tanh units per layer. The spatial inputs
+are centered and scaled, and the pressure output is scaled with a
+channel-based pressure magnitude. The geometry and Reynolds inputs are
+fixed within an individual trained model. Their presence does not establish
+generalization across untrained geometries or Reynolds numbers.
+
+The objective combines momentum and continuity residuals, wall and end
+velocity conditions, a pressure gauge, and a section-flux condition. If
+$r_c=\nabla\cdot\vect{u}$ and $\vect{r}_m$ denotes the residual of
+\cref{eq:baseline_ns}, the scaled physics term is
+\begin{equation}
+ \mathcal{L}_{\mathrm{phys}}
+ =\left\langle (hr_c)^2\right\rangle
+ +\left\langle |h^2\vect{r}_m|^2\right\rangle.
+ \label{eq:baseline_loss}
+\end{equation}
+Here the averages follow the componentwise mean-square convention of the
+implementation. The complete objective uses weights 20 for the velocity
+boundary term, 1 for the scaled gauge term, and 5 for the normalized flux
+term. Finite-element interior values are not used in this objective.
+
+\subsection{ForceNet}
+The second network has five hidden layers with 90 tanh units and maps
+\begin{equation}
+ (u,v,p_v,d_p,x_p,y_p,u_p,v_p)\longmapsto(F_x,F_y).
+ \label{eq:forcenet}
+\end{equation}
+The force scale is the displaced-fluid mass times $U_0^2/L_0$. Under this
+convention, the dimensionless Stokes force and particle acceleration are
+\begin{equation}
+ \vect{F}^{*}=\frac{18}{\Rey d_p^2}
+ (\vect{u}-\vect{v}),\qquad
+ \frac{d\vect{v}}{dt}=\frac{\vect{F}^{*}}{R}.
+ \label{eq:force_scaling}
+\end{equation}
+The neural approximation is trained on the normalized slip response.
+Subtracting its evaluation at zero slip from its evaluation at the actual
+slip enforces exactly zero force when $\vect{u}=\vect{v}$. The network
+therefore approximates a specified drag relation. Its agreement with that
+relation is an approximation test, not discovery of a new constitutive law.
+
+\Cref{fig:basic_architecture} gives a visual summary of both networks.
+The role of ForceNet is intentionally kept separate from the carrier-field
+approximation so that the two errors can be evaluated independently.
+
+\ResultFigure[.96]{02_baseline_architecture}{Baseline neural architecture.
+Each row represents a fully connected MLP; the few displayed nodes are
+illustrative, while the numbers above hidden layers give their actual
+widths. FlowNet supplies velocity and pressure. ForceNet approximates the
+normalized Stokes response and uses a zero-slip subtraction. The first
+network is constrained by PDE and boundary residuals; the second by an
+algebraic drag residual.}{fig:basic_architecture}
+
+\section{Independent finite-element reference}
+The reference solves the same incompressible equations using quadratic
+velocity and linear pressure Taylor--Hood elements
+\citep{taylor1973,gustafsson2020}. A Picard iteration treats the convective
+term, and sparse direct solution is used for the linear subproblems.
+The finest channel mesh contains 3,026 triangles, 12,530 velocity degrees
+of freedom, and 1,620 pressure degrees of freedom.
+
+Three meshes assess sensitivity. \Cref{tab:mesh} shows that the difference
+between the two finest velocity fields is \MeshDifference\%. The finest
+reference has a nonlinear residual of approximately
+$1.60\times10^{-10}$. Its reported divergence norm is not identically zero;
+the mixed discretization enforces incompressibility weakly. The mesh
+differences are sensitivity indicators, not a formal uncertainty estimate
+or a grid-convergence index \citep{roache1998}.
+
+\begin{table}[htbp]\centering\small
+\caption{Reference-mesh assessment. Velocity differences are measured
+relative to the finest field on the comparison samples.}
+\label{tab:mesh}
+\begin{tabularx}{\textwidth}{@{}rrrrY@{}}\toprule
+Triangles & Velocity DOFs & Pressure DOFs & Difference (\%) & Nonlinear residual\\\midrule
+\EvidenceRows{mesh}
+\bottomrule\end{tabularx}
+\end{table}
+
+The first successful training seed is used for the principal comparison;
+it is not selected by its error against the reference. The reported final
+evaluation restores completed checkpoints. Consequently, the training
+budgets associated with those checkpoints, rather than the defaults of a
+later evaluation command, identify the computations that produced the
+weights. The computational record in \cref{app:reproducibility} preserves
+this distinction.
+
+\section{Analytical plane-flow verification}
+Before interpreting curved-channel results, I consider plane Poiseuille
+flow in a straight channel with half-width $h$. In the baseline units, the
+analytical solution is
+\begin{equation}
+ u=1-(y/h)^2,\qquad v=0,\qquad
+ p_v=-\frac{2x}{h^2}+C.
+ \label{eq:poiseuille}
+\end{equation}
+The finite-element relative velocity error is approximately
+$8.19\times10^{-10}$. The PINN velocity error is
+\PoiseuilleVelocity\%, and its gauge-aligned pressure error is
+\PoiseuillePressure\%. The velocity metric includes both components;
+\cref{fig:poiseuille} displays the streamwise profile for readability.
+Pressure is evaluated on points distributed along the channel, with each
+array's mean removed.
+
+The near-exact finite-element result for this polynomial plane flow is
+consistent with the approximation spaces and simple geometry. It should
+not be interpreted as the error of the curved-channel reference. The
+curved problem requires its own mesh-sensitivity assessment.
+
+\ResultFigure{03_poiseuille}{Analytical verification of the baseline flow
+solvers. Panel (a) compares the streamwise velocity profile with the
+parabolic solution. Panel (b) compares pressure after constant-gauge
+alignment on spatially distributed samples. Lines and markers retain the
+stored predictions; no fitted correction is applied.}{fig:poiseuille}
+
+\section{Curved-channel carrier-flow results}
+\Cref{fig:curved_fields} compares the principal neural field with the
+finite-element field. Both solutions recover the curved high-speed core
+and the pressure decrease through the channel. Common color limits are
+used for corresponding speed and pressure panels. The discrepancy panels
+show that agreement is spatially nonuniform; a small global norm should
+not be interpreted as uniformly small local error.
+
+The velocity error is \FlowVelocity\%, and the centered pressure error is
+\FlowPressure\% on the independent field-comparison samples. The maximum
+absolute velocity discrepancy is approximately $0.05401$. These values
+support agreement for the specified boundary-value problem. They do not
+establish zero equation residual: the separately recorded raw continuity
+and momentum RMS values are approximately $0.1781$ and $1.8296$ in the
+baseline equation convention. Those residuals, the field errors, and the
+flux diagnostic measure different aspects of the approximation.
+
+\ResultFigure{04_curved_fields}{Curved-channel carrier field at $\Rey=1$.
+The speed panels use $|\vect{u}|/U_0$ and identical scales; the pressure
+panels use centered viscous-scale pressure and identical scales.
+Velocity discrepancy is the Euclidean component error, whereas pressure
+discrepancy is signed. The fields are evaluated on the same stored mapped
+grid; no spanwise solution is implied.}{fig:curved_fields}
+
+\begin{table}[htbp]\centering\small
+\caption{Supported baseline numerical comparisons. The relative errors
+refer to their stated sample sets and normalizations.}
+\label{tab:basic_errors}
+\begin{tabularx}{\textwidth}{@{}p{.31\textwidth}Yr@{}}\toprule
+Problem & Quantity & Error\\\midrule
+\EvidenceRows{basic_errors}
+\bottomrule\end{tabularx}
+\end{table}
+
+\section{Held-out drag and field comparisons}
+The normalized ForceNet error is \DragError\% on the independent
+2,048-sample evaluation used for the reported metric.
+\Cref{fig:heldout} presents velocity and pressure parity together with a
+separate 1,000-sample drag diagnostic. The plotted drag set and the aggregate
+2,048-sample test are distinct; they need not have identical numerical
+errors. This distinction avoids assigning one test's error to another
+test's points.
+
+The drag comparison supports the network's approximation of the retained
+creeping-flow law. It cannot establish the accuracy of neglected lift,
+history, lubrication, or wall corrections. Direct analytical Stokes drag
+also remains an essential baseline for judging the value of a learned
+approximation of this known relation.
+
+\ResultFigure{05_heldout_agreement}{Independent numerical comparisons.
+Velocity components and gauge-aligned pressure are compared with the
+finite-element reference. The third panel compares normalized learned
+drag with the specified Stokes-slip response on the stored 1,000-sample
+diagnostic. The dashed lines indicate equality. The aggregate drag error
+in \cref{tab:basic_errors} comes from a separate 2,048-sample test.}
+{fig:heldout}
+
+\section{Seed variation, reference sensitivity, and flux}
+Two independently trained seeds give velocity errors of 1.510\% and
+1.429\%, and pressure errors of 0.863\% and 0.886\%, respectively. Their
+mean velocity error is \SeedVelocityMean\%, with a sample standard deviation
+of \SeedVelocitySD\ percentage points. Two seeds are sufficient to reveal
+some training dependence but are insufficient for a strong statistical
+uncertainty statement. No confidence interval is inferred.
+
+\begin{table}[htbp]\centering
+\caption{Field errors for the two completed training seeds.}
+\label{tab:seeds}
+\begin{tabular}{@{}rrr@{}}\toprule
+Seed & Velocity error (\%) & Pressure error (\%)\\\midrule
+\EvidenceRows{seeds}
+\bottomrule\end{tabular}
+\end{table}
+
+\ResultFigure{06_reference_and_seeds}{Reference and training sensitivity.
+The left panel compares the two coarser finite-element meshes with the
+finest reference; the right panel shows the two completed training seeds.
+The finest mesh is a comparison reference, not an exact solution. Seed
+labels identify the individual observations rather than confidence bounds.}
+{fig:reference_seeds}
+
+The maximum section-flux deviation is \FluxDeviation\%.
+\Cref{fig:flux} shows the full stored section sequence normalized by the
+prescribed flux. The variation is finite and should remain visible even
+though the study's 5\% flux criterion is met. Together with boundary RMS
+of approximately $0.00420$, this result provides an integrated check on
+the velocity field that complements the sample-relative error.
+
+\ResultFigure[.95]{07_flux}{Section flux in the curved baseline, normalized
+by the prescribed value $Q_0=4h/3=0.2$. The dashed line is the exact
+constant-flux target, and every stored PINN section is shown. The maximum
+deviation is \FluxDeviation\%; the curve has not been rescaled to enforce
+agreement.}{fig:flux}
+
+\section{Particle-transport interpretation}
+The baseline evaluation completes 119 particle or tracer integrations
+without a recorded integration failure. The reference velocity
+interpolator differs from direct finite-element evaluation by
+\InterpolationDifference\% on its assessment samples. These are useful
+computational checks, but neither alone proves accurate particle outcomes.
+
+Among the seven baseline particle initial positions, six endpoint classes
+agree with the reference. The largest width-normalized RMS position
+discrepancy is approximately 34.97\%, and the lowest common-time coverage
+is approximately 73.55\%. The endpoint, position, and time-coverage
+criteria therefore do not all pass. Detailed values are retained in
+\cref{tab:path_limits} so that the scope of the carrier-flow findings is
+unambiguous. Particle deposition maps and parameter-sweep trajectories are
+not used as accepted results in this chapter.
+
+This outcome is physically and numerically informative. Bulk field
+agreement and a good approximation of a specified drag law are necessary
+components, but their combination is not enough to certify wall-sensitive
+transport. The justified baseline conclusion is that the carrier and drag
+components agree well with their stated references, while the full
+trajectory prediction remains an improvement target.
+
+\section{Chapter conclusions}
+The baseline establishes a reproducible carrier-flow and drag foundation
+for the subsequent coupling study. Analytical plane flow, independent
+curved-channel fields, two completed training seeds, and section flux
+provide complementary evidence. The results also set a boundary on the
+claim: the present field accuracy does not establish reliable deposition
+or all baseline particle endpoints. That boundary becomes more important
+when reaction forcing and geometric narrowing are introduced.

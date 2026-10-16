@@ -1,5 +1,7 @@
 # Gaussian Parcel PINN
 
+**پایان‌نامهٔ انگلیسی:** [PDF کامل](thesis/Particle_Transport_Thesis.pdf) · [سورس قابل استفاده در Overleaf](thesis/Particle_Transport_Thesis_Source.zip) · [فایل‌ها و راهنمای بازسازی](thesis/README.md) · [یادداشت تحویل فارسی](thesis/DELIVERY_NOTES_FA.md). متن با ترتیب مدل پایهٔ ذرات، پارسل‌های گاوسی در کانال ساده و توسعهٔ پیشنهادی به کانال دارای گرفتگی تنظیم شده است.
+
 **اجرای GPU با بودجهٔ زمانی:** [notebook مستقل GPU](GaussianParcelPINN_GPU.ipynb) · [راهنمای فارسی و خروجی‌ها](docs/GPU_NOTEBOOK_FA.md). مدل اصلی پارسل گاوسی دوبعدی، چهار حالت، هدف ۵۵ دقیقه شامل حداکثر ۳۵ دقیقه آموزش و زمان جدا برای شکل‌ها و انیمیشن. کد و مراجع تحلیلی لازم داخل notebook هستند؛ GPU و دقت نهایی باید در اجرای واقعی بررسی شوند.
 
 [باز کردن مستقیم در Google Colab](https://colab.research.google.com/github/mohrezsayeh90-ai/final_cloud_code/blob/main/GaussianParcelPINN_GPU.ipynb) · [بستهٔ کد GPU](deliverables/GaussianParcelPINN_GPU_code.zip)

@@ -1,0 +1,108 @@
+\chapter{Computational and Reproducibility Record}\label{app:reproducibility}
+
+\section{Completed numerical records}
+The baseline results are associated with the computational record
+\path{basic_particle_problem/results/final_study}. The Gaussian
+verification results and the diagnostic coupled calculations are associated
+with \path{final_cloud_code/outputs/evaluated_2d_final}. These two result
+sets are kept separate from short environment smoke tests. The smoke tests
+are not used as research results in this thesis.
+
+The archived repository revisions are
+\begin{quote}\small\ttfamily
+basic\_particle\_problem:\par
+c3eb0efe76bcd62a3299dcd6c28922dbfa4c667a\par\medskip
+final\_cloud\_code:\par
+9d996c4f555bf5bf09e9f6fa78a3877e44310ec9
+\end{quote}
+The source bundle contains a SHA-256 manifest of the numerical inputs and
+method files used to prepare the manuscript. The original result files are
+copied without numerical modification. Figure scripts change presentation,
+not the stored solution values. Gauge alignment and the exact computations
+used to recompute metrics are explicit in those scripts.
+
+The historical result manifests retain their own source hashes. The
+archived baseline model and geometry, and the Gaussian model, physics, and
+verification modules match their recorded hashes. Current driver and
+configuration files do not all match the historical manifests; they are
+retained for method inspection and are not claimed as an exact replay of
+the original training execution.
+
+\section{Training and evaluation distinction}
+The baseline final evaluation restores previously trained network weights.
+The associated original flow configuration uses 1,000 Adam epochs, a
+250-iteration L-BFGS budget, and a refinement budget of 1,800 epochs with
+700 L-BFGS iterations. The original force budget is 1,000 epochs. The two
+flow seeds are 42 and 43. The later evaluation configuration contains
+different default training fields, which do not imply that restored weights
+were retrained with those defaults.
+
+The Gaussian channel uses seed 7, float64, and the evaluated configuration
+with 1,200 fluid/parcel Adam steps and a 200-iteration L-BFGS budget. Its
+reduced ODE tests use 700 Adam steps with a 120-iteration refinement budget;
+the Taylor--Green test uses 1,200 Adam steps with a 200-iteration refinement
+budget. An iteration budget need not equal the number of closure
+evaluations in a line-search optimizer. The stored status files and
+configuration distinguish these quantities.
+
+Reference values are excluded from the Gaussian reduced-test optimization.
+In V01 the initial response is imposed. In V02 the initial values and total
+momentum relation are imposed. In V10 the initial velocity and pressure
+structure are imposed while the temporal decay is held out. These choices
+determine which aspects of the tests are independent predictions.
+
+\section{Software and execution scope}
+The numerical environment is Linux with Python 3.12. The baseline CPU
+environment uses PyTorch 2.14.1, and the Gaussian CPU environment uses
+PyTorch 2.6.0. The scientific stack includes NumPy 2.3.5, SciPy 1.17.0,
+Matplotlib 3.10.8, and scikit-fem 12.0.2. The preserved historical Gaussian
+runtime file records CPU execution with two threads. These are
+computational reproducibility details; no GPU performance or speedup is
+claimed.
+
+The source bundle supports two levels of reproduction. Compiling
+\path{thesis.tex} uses the included tables and vector figures and does not
+require retraining. Rebuilding the figures additionally uses the archived
+arrays, model definitions, and two small baseline checkpoints. Independent
+metric checks include the full Poiseuille velocity vector, centered
+pressure, the final held-out drag evaluation, and the reduced Gaussian
+benchmarks.
+
+Reproducing all training runs requires the complete corresponding
+repositories and their dependency environments. It also requires their
+reference-input files. The manuscript bundle is a reproducible evidence
+and typesetting package, not a claim that every full simulation can be
+retrained from the manuscript alone.
+
+\section{Figures and numerical transformations}
+Fourteen figures are included, each registered with its input source or
+its schematic status. Architecture figures are explanatory drawings.
+The constriction and kernel-wall illustrations specify design choices.
+They are never registered as computed flow results. Numerical plots retain
+all evaluation arrays for aggregate errors; marker subsampling is used only
+to make reference curves readable.
+
+Pressure comparisons subtract an additive constant independently from each
+array. Paired field panels use common color limits. Discrepancy panels have
+their own explicitly described scale and are not smoothed to conceal local
+error. The drag parity plot uses a stored diagnostic set different from
+the final held-out metric set; both are identified in the caption and
+validation record.
+
+No failed channel field, synthetic demonstration, or extruded
+three-dimensional illustration is used as accepted predictive evidence.
+The material limitations are retained in the main chapters and the complete
+baseline trajectory table. Additional unsuccessful run histories remain
+outside the figure selection because they do not add accepted transport
+results.
+
+\section{Data and availability record}
+The computational projects are
+\url{https://github.com/mohrezsayeh90-ai/basic_particle_problem} and
+\url{https://github.com/mohrezsayeh90-ai/final_cloud_code}.
+The accompanying manuscript source package contains the selected numerical
+evidence, figure-generation scripts, numerical audit, bibliographic entries,
+and complete LaTeX source. It contains no experimental measurements produced
+by this study and no constricted-channel solution data. External literature
+is cited for its methods and physical context; it is not represented as
+measured agreement with the present channel model.
